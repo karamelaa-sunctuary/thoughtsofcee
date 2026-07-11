@@ -42,13 +42,13 @@ export default function BookReader({
             .split(/\n\s*\n/)
             .map((paragraph, index) => {
 
-              const text = paragraph
-                .replace(/\s+/g, " ")
-                .trim();
+                const text = paragraph.trim();
 
               if (!text) return null;
 
-              const isFeatured = featured.includes(text);
+              const isFeatured = featured.some(
+                (item) => item.trim() === text.trim()
+              );
 
               if (isFeatured) {
                 return (
