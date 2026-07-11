@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+:root {
+  --linen-cream: #F8F5F0;
+  --charcoal-ink: #2E2A27;
+  --stone: #6B645E;
+  --mocha: #8B6F5C;
+  --paper-line: #E5DDD4;
+}
+
+body {
+  background: var(--linen-cream);
+  color: var(--charcoal-ink);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.linen-woven {
+  background-color: #F8F5F0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(139,111,92,0.3) 0px,
+    rgba(139,111,92,0.3) 2px,
+    transparent 2px,
+    transparent 8px
+  );
+}
+.fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@font-face {
+  font-family: "KunstlerScript";
+  src: url("/fonts/KunstlerScript.ttf") format("truetype");
+  font-display: swap;
+}
+
+.kunstler {
+  font-family: "KunstlerScript", cursive;
+}
+.paper-texture {
+  background-image:
+    radial-gradient(
+      rgba(120,100,80,0.08) 1px,
+      transparent 1px
+    );
+  background-size: 18px 18px;
+}
