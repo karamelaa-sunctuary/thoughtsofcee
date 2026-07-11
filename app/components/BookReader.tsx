@@ -47,7 +47,17 @@ export default function BookReader({
               if (!text) return null;
 
               const isFeatured = featured.some(
-                (item) => item.trim() === text.trim()
+                (item) =>
+                  text
+                    .replace(/[.,!?]/g, "")
+                    .trim()
+                    .toLowerCase()
+                    .includes(
+                      item
+                        .replace(/[.,!?]/g, "")
+                        .trim()
+                        .toLowerCase()
+                    )
               );
 
               if (isFeatured) {
