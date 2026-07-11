@@ -10,10 +10,10 @@ export default async function LetterPage({
   const { slug } = await params;
 
   const writing = writings.find(
-    (item) =>
-      item.slug === slug &&
-      item.type === "letter"
+    (item) => item.slug === slug
   );
+  
+  console.log("LETTER DATA:", writing);
 
   if (!writing) {
     return (

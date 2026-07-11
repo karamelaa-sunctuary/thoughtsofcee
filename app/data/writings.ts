@@ -13,12 +13,16 @@ export const writings = [
         "Some letters are never meant to be delivered. Some are written simply to understand what was left unsaid.",
         
         featured: [
-            "Not because they did not matter.",
-            "I learned that silence can carry many things.",
-            "The younger version of me who needed reassurance.",
-            "Maybe it was about finally admitting that those feelings existed.",
-            "The person who needed these words the most was always me.",
-          ],
+                "Not because they did not matter",
+              
+                "I learned that silence can carry many things",
+              
+                "The younger version of me who needed reassurance",
+              
+                "Maybe it was about finally admitting that those feelings existed",
+              
+                "The person who needed these words the most was always me",
+              ],
         pages: [
             `
             There are words I have carried for a long time.
@@ -198,6 +202,15 @@ export const writings = [
       excerpt:
         "A letter about growing up too soon, learning to survive, and carrying the fear of becoming what once hurt us.",
     
+        featured: [
+            "I became independent before I was ready",
+          
+            "I learned how to survive before I learned how to feel safe",
+          
+            "I deserved to be cared for then",
+          
+            "And I still deserve that care now",
+          ],
         
         pages: [
             `
@@ -298,7 +311,15 @@ export const writings = [
   
       excerpt:
         "Some goodbyes are never spoken. They simply remain somewhere between gratitude, memories, and the things we were not ready to release.",
-    
+    featured: [
+            "Maybe the hardest goodbyes are the ones we never say",
+          
+            "Some people become chapters instead of destinations",
+          
+            "Some moments become memories instead of futures",
+          
+            "Some goodbyes are not meant to be spoken",
+          ],
       
       pages: [
 `
@@ -418,7 +439,7 @@ Some are simply carried with gratitude.
       "A letter about promises, heartbreak, and the moment we realize some words were never meant to come from someone else.",
   
     featured: [
-      "Never ever again.",
+      "Never ever, he promised.",
       "They were the words she needed to say to herself.",
       "Never ever were never words she needed from him.",
       "The words she used to quietly stitch together the wounds he left behind.",
