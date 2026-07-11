@@ -11,6 +11,22 @@ export default function BookReader({
 }) {
   const [page, setPage] = useState(0);
 
+  const isFeaturedLine = (text: string) => {
+    return featured.some(
+      (item) =>
+        text
+          .replace(/[.,!?"]/g, "")
+          .trim()
+          .toLowerCase()
+          .includes(
+            item
+              .replace(/[.,!?"]/g, "")
+              .trim()
+              .toLowerCase()
+          )
+    );
+  };
+
   return (
     <div className="mx-auto w-full max-w-3xl">
 
@@ -39,65 +55,58 @@ export default function BookReader({
         >
 
           {pages[page]
-            .split(/\n\s*\n/)
-            .map((paragraph, index) => {
+            .split("\n")
+            .map((line, index) => {
 
-                const text = paragraph.trim();
+              const text = line.trim();
 
-              if (!text) return null;
-
-              const isFeatured = featured.some(
-                (item) =>
-                  text
-                    .replace(/[.,!?]/g, "")
-                    .trim()
-                    .toLowerCase()
-                    .includes(
-                      item
-                        .replace(/[.,!?]/g, "")
-                        .trim()
-                        .toLowerCase()
-                    )
-              );
-
-              if (isFeatured) {
+              if (!text) {
                 return (
                   <div
                     key={index}
-                    className="my-12"
+                    className="h-4"
+                  />
+                );
+              }
+
+
+              const featuredLine = isFeaturedLine(text);
+
+
+              if (featuredLine) {
+                return (
+                  <div
+                    key={index}
+                    className="
+                      my-10
+                      border-l-2
+                      border-[#C8B8A5]
+                      pl-5
+                      md:pl-7
+                    "
                   >
-
-                    <div className="mb-8 flex justify-center">
-                      <div className="h-px w-24 bg-[#D9CEC0]" />
-                    </div>
-
                     <p
                       className="
-                        text-center
                         font-heading
-                        text-xl
-                        leading-[1.8]
+                        font-bold
+                        text-lg
+                        leading-[1.7]
                         text-[#2E2A27]
-                        md:text-2xl
+                        md:text-xl
                       "
                     >
                       {text}
                     </p>
-
-                    <div className="mt-8 flex justify-center">
-                      <div className="h-px w-24 bg-[#D9CEC0]" />
-                    </div>
-
                   </div>
                 );
               }
+
 
               return (
                 <p
                   key={index}
                   className="
-                    mb-5
-                    whitespace-pre-line
+                    mb-2
                     text-[15px]
                     leading-[1.85]
                     text-[#2E2A27]
