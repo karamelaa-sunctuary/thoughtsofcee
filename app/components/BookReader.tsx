@@ -39,10 +39,12 @@ export default function BookReader({
         >
 
           {pages[page]
-            .split("\n\n")
+            .split(/\n\s*\n/)
             .map((paragraph, index) => {
 
-              const text = paragraph.trim();
+              const text = paragraph
+                .replace(/\s+/g, " ")
+                .trim();
 
               if (!text) return null;
 
@@ -59,7 +61,6 @@ export default function BookReader({
                       <div className="h-px w-24 bg-[#D9CEC0]" />
                     </div>
 
-
                     <p
                       className="
                         text-center
@@ -73,7 +74,6 @@ export default function BookReader({
                       {text}
                     </p>
 
-
                     <div className="mt-8 flex justify-center">
                       <div className="h-px w-24 bg-[#D9CEC0]" />
                     </div>
@@ -81,7 +81,6 @@ export default function BookReader({
                   </div>
                 );
               }
-
 
               return (
                 <p
@@ -92,12 +91,12 @@ export default function BookReader({
                     text-[15px]
                     leading-[1.85]
                     text-[#2E2A27]
+                    md:text-[16px]
                   "
                 >
                   {text}
                 </p>
               );
-
             })}
 
         </div>
@@ -121,7 +120,11 @@ export default function BookReader({
         <button
           disabled={page === 0}
           onClick={() => setPage(page - 1)}
-          className="transition hover:text-[#2E2A27] disabled:opacity-30"
+          className="
+            transition
+            hover:text-[#2E2A27]
+            disabled:opacity-30
+          "
         >
           ← Previous
         </button>
@@ -135,7 +138,11 @@ export default function BookReader({
         <button
           disabled={page === pages.length - 1}
           onClick={() => setPage(page + 1)}
-          className="transition hover:text-[#2E2A27] disabled:opacity-30"
+          className="
+            transition
+            hover:text-[#2E2A27]
+            disabled:opacity-30
+          "
         >
           Next →
         </button>
