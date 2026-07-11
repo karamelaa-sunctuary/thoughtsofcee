@@ -18,9 +18,24 @@ export default function Footer() {
   
   
             <div className="flex gap-6 text-sm text-[#8B6F5C]">
-              <a href="#">Instagram</a>
-              <a href="#">Pinterest</a>
-              <a href="#">Contact</a>
+  
+              <a
+                href="https://instagram.com/thoughtsofcee"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Thoughts of Cee Instagram"
+              >
+                Instagram
+              </a>
+  
+              <a href="#">
+                Pinterest
+              </a>
+  
+              <a href="#">
+                Contact
+              </a>
+  
             </div>
   
           </div>
