@@ -4,8 +4,10 @@ import { useState } from "react";
 
 export default function BookReader({
   pages,
+  featured = [],
 }: {
   pages: string[];
+  featured?: string[];
 }) {
   const [page, setPage] = useState(0);
 
@@ -36,53 +38,49 @@ export default function BookReader({
           "
         >
 
-            {pages[page]
-            .split(/\n\s*\n/)
+          {pages[page]
+            .split("\n\n")
             .map((paragraph, index) => {
 
-                const text = paragraph
-                .replace(/\s+/g, " ")
-                .trim();
+              const text = paragraph.trim();
 
               if (!text) return null;
 
+              const isFeatured = featured.includes(text);
 
-              const isFeatured = text.includes("[[");
+              if (isFeatured) {
+                return (
+                  <div
+                    key={index}
+                    className="my-12"
+                  >
+
+                    <div className="mb-8 flex justify-center">
+                      <div className="h-px w-24 bg-[#D9CEC0]" />
+                    </div>
 
 
-              const cleanText = text
-                .replace(/\[\[/g, "")
-                .replace(/\]\]/g, "")
-                .trim();
+                    <p
+                      className="
+                        text-center
+                        font-heading
+                        text-xl
+                        leading-[1.8]
+                        text-[#2E2A27]
+                        md:text-2xl
+                      "
+                    >
+                      {text}
+                    </p>
 
 
-                if (isFeatured) {
-                    return (
-                      <div
-                        key={index}
-                        className="
-                          my-8
-                          border-l-2
-                          border-[#C8B8A5]
-                          pl-5
-                          md:pl-7
-                        "
-                      >
-                        <p
-                          className="
-                            font-heading
-                            font-bold
-                            text-lg
-                            leading-[1.7]
-                            text-[#2E2A27]
-                            md:text-xl
-                          "
-                        >
-                          {cleanText}
-                        </p>
-                      </div>
-                    );
-                  }
+                    <div className="mt-8 flex justify-center">
+                      <div className="h-px w-24 bg-[#D9CEC0]" />
+                    </div>
+
+                  </div>
+                );
+              }
 
 
               return (
@@ -94,10 +92,9 @@ export default function BookReader({
                     text-[15px]
                     leading-[1.85]
                     text-[#2E2A27]
-                    md:text-[16px]
                   "
                 >
-                  {cleanText}
+                  {text}
                 </p>
               );
 
@@ -124,11 +121,7 @@ export default function BookReader({
         <button
           disabled={page === 0}
           onClick={() => setPage(page - 1)}
-          className="
-            transition
-            hover:text-[#2E2A27]
-            disabled:opacity-30
-          "
+          className="transition hover:text-[#2E2A27] disabled:opacity-30"
         >
           ← Previous
         </button>
@@ -142,11 +135,7 @@ export default function BookReader({
         <button
           disabled={page === pages.length - 1}
           onClick={() => setPage(page + 1)}
-          className="
-            transition
-            hover:text-[#2E2A27]
-            disabled:opacity-30
-          "
+          className="transition hover:text-[#2E2A27] disabled:opacity-30"
         >
           Next →
         </button>
