@@ -73,7 +73,8 @@ export default async function LetterPage({
         <div className="mb-12 h-px bg-[#DDD2C4]" />
 
         <BookReader
-          pages={writing.pages ?? []}
+        pages={writing.pages ?? []}
+        featured={writing.featured ?? []}
         />
 
       </article>

@@ -10,6 +10,8 @@ export default function BookReader({
   featured?: string[];
 }) {
   const [page, setPage] = useState(0);
+  
+  console.log("FEATURED RECEIVED:", featured);
 
   const isFeaturedLine = (text: string) => {
     return featured.some(
