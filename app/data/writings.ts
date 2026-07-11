@@ -29,7 +29,7 @@ export const writings = [
             or the right moment to say.
             
             
-            [[Not because they did not matter.]]
+            Not because they did not matter
             
             But because sometimes the things that matter the most
             are the hardest ones to put into words.
@@ -55,7 +55,7 @@ export const writings = [
             the things I could not say out loud.
             
             
-            [[I learned that silence can carry many things.]]
+            I learned that silence can carry many things
             
             Love.
             
@@ -86,7 +86,7 @@ export const writings = [
             who was still waiting for an answer.
             
             
-           [[The younger version of me who needed reassurance.]]
+           The younger version of me who needed reassurance
             
             The version of me
             who needed to know that feelings were allowed.
@@ -98,7 +98,7 @@ export const writings = [
             
             Maybe this letter was never about finding the perfect words.
             
-           [[Maybe it was about finally admitting that those feelings existed.]]
+           Maybe it was about finally admitting that those feelings existed
             `,
             
             
@@ -126,7 +126,7 @@ export const writings = [
             And maybe that is enough.
             
             
-            Because [[The person who needed these words the most was always me.]]
+            Because The person who needed these words the most was always me
             
             
             — Cee
@@ -230,14 +230,14 @@ export const writings = [
             Through moments I wish I could have avoided if someone had been there to help me understand.
             
             
-            [[I became independent before I was ready.]]
+            I became independent before I was ready
             
-            [[I learned how to survive before I learned how to feel safe.]]
+            I learned how to survive before I learned how to feel safe
             `,
             
             
             `
-            [[There was a love I spent years searching for.]]
+            There was a love I spent years searching for
             
             Not the kind that is perfect.
             
@@ -258,7 +258,7 @@ export const writings = [
             But I am learning something different now.
             
             
-            [[I am not only the result of what I experienced.]]
+            I am not only the result of what I experienced
             
             I am also the person who gets to decide what happens next.
             
@@ -275,7 +275,7 @@ export const writings = [
             It was about acknowledging the parts of me that had to grow too soon.
             
             
-           [[I deserved to be cared for then.]]
+           I deserved to be cared for then
             
             And I still deserve that care now.
             
@@ -311,7 +311,7 @@ A conversation ends.
 A person walks away.
 
 
-[[But some goodbyes never happen at all.]]
+But some goodbyes never happen at all
 
 They stay somewhere between what was
 
@@ -376,12 +376,12 @@ Holding on to memories that no longer have a place to return to.
 Holding on to questions that will never have answers.
 
 
-[[But letting go does not mean something meant nothing.]]
+But letting go does not mean something meant nothing
 
 
-[[Some people become chapters instead of destinations.]]
+Some people become chapters instead of destinations
 
-[[Some moments become memories instead of futures.]]
+Some moments become memories instead of futures
 
 
 So this is the goodbye I never said.
@@ -395,7 +395,7 @@ Thank you for the lessons I did not understand at the time.
 I hope life is gentle with you.
 
 
-[[Some goodbyes are not meant to be spoken.]]
+Some goodbyes are not meant to be spoken
 
 Some are simply carried with gratitude.
 
@@ -426,7 +426,7 @@ Some are simply carried with gratitude.
   
     pages: [
   `
-  [[Never ever,]] he promised.
+  Never ever, he promised.
   
   Lured by hope, she believed.
   
@@ -468,9 +468,9 @@ Some are simply carried with gratitude.
   
   But "never ever" were never words she needed from him.
   
-  [[They were the words she needed to say to herself.]]
+  They were the words she needed to say to herself
   
-  [[Never ever again.]]
+  Never ever again
   `
     ],
   },
