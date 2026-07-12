@@ -42,10 +42,9 @@ export default async function FragmentPage({
 
 
     const FragmentWritings = writings.filter(
-        (writing) =>
-          writing.fragment === slug &&
-          writing.type === "letter"
-      );
+      (writing) =>
+        writing.collection === slug
+    );
 
 
   if (!Fragment) {
