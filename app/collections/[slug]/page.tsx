@@ -137,7 +137,11 @@ export default async function FragmentPage({
 
                 <Link
                   key={writing.slug}
-                  href={`/letters/${writing.slug}`}
+                  href={
+                    writing.type === "letter"
+                      ? `/letters/${writing.slug}`
+                      : `/writings/${writing.slug}`
+                  }
                   className="
                     group
                     block

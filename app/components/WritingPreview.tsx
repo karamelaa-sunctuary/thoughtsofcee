@@ -46,11 +46,11 @@ const writings = [
                 "
               >
   
-                <p className="mb-4 text-sm text-[#8B6F5C]">
+                <p className="mb-3 text-sm text-[#8B6F5C]">
                   {writing.category}
                 </p>
   
-                <h3 className="mb-4 text-2xl text-[#2E2A27]">
+                <h3 className="mb3 text-18 text-[#2E2A27]">
                   {writing.title}
                 </h3>
   

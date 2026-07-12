@@ -10,7 +10,7 @@ export default function BookReader({
   featured?: string[];
 }) {
   const [page, setPage] = useState(0);
-  
+
   console.log("FEATURED RECEIVED:", featured);
 
   const isFeaturedLine = (text: string) => {
@@ -58,29 +58,18 @@ export default function BookReader({
 
           {pages[page]
             .split("\n")
+            .map((line) => line.trim())
+            .filter(Boolean)
             .map((line, index) => {
 
-              const text = line.trim();
-
-              if (!text) {
-                return (
-                  <div
-                    key={index}
-                    className="h-4"
-                  />
-                );
-              }
-
-
-              const featuredLine = isFeaturedLine(text);
-
+              const featuredLine = isFeaturedLine(line);
 
               if (featuredLine) {
                 return (
                   <div
                     key={index}
                     className="
-                      my-10
+                      my-8
                       border-l-2
                       border-[#C8B8A5]
                       pl-5
@@ -90,32 +79,29 @@ export default function BookReader({
                     <p
                       className="
                         font-heading
-                        font-bold
+                        italic
                         text-lg
                         leading-[1.7]
                         text-[#2E2A27]
                         md:text-xl
                       "
                     >
-                      {text}
+                      {line}
                     </p>
                   </div>
                 );
               }
 
-
               return (
                 <p
                   key={index}
                   className="
-                    mb-2
-                    text-[15px]
-                    leading-[1.85]
+                    mb-5
+                    leading-[1.9]
                     text-[#2E2A27]
-                    md:text-[16px]
                   "
                 >
-                  {text}
+                  {line}
                 </p>
               );
             })}

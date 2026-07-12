@@ -159,7 +159,6 @@ export const writings = [
   
   and where we are going
   
-  
   often hold the deepest lessons.
         `,
     },
@@ -549,6 +548,136 @@ Some are simply carried with gratitude.
     
     But to introduce us to parts of ourselves we had not met yet.`
     ]
+  },
+  {
+    slug: "the-version-i-left-behind",
+    type: "fragment",
+    title: "The Version I Left Behind",
+    category: "Days Between",
+    collection: "days-between",
+  
+    fragment:
+      "There is a version of me I had to say goodbye to. Not because she was wrong. Not because she failed. But because she carried things I was no longer meant to carry.",
+  
+    excerpt:
+      "There is a version of me I had to say goodbye to. Not because she was wrong. Not because she failed.",
+  
+    content: `
+  There is a version of me I had to say goodbye to.
+  
+  Not because she was wrong.
+  
+  Not because she failed.
+  
+  But because she carried things I was no longer meant to carry.
+    `,
+  },
+  
+  
+  {
+    slug: "the-quiet-changes",
+    type: "fragment",
+    title: "The Quiet Changes",
+    category: "Days Between",
+    collection: "days-between",
+  
+    fragment:
+      "Some changes happen so quietly that even we do not notice them until one day we look back and realize we are no longer waiting for the same things.",
+  
+    excerpt:
+      "Some changes happen so quietly that even we do not notice them.",
+  
+    content: `
+  Some changes happen so quietly that even we do not notice them.
+  
+  Until one day, we look back and realize we are no longer waiting for the same things.
+    `,
+  },
+  
+  
+  {
+    slug: "the-space-nobody-sees",
+    type: "fragment",
+    title: "The Space Nobody Sees",
+    category: "Days Between",
+    collection: "days-between",
+  
+    fragment:
+      "The hardest seasons are sometimes the ones nobody knows you are surviving.",
+  
+    excerpt:
+      "The hardest seasons are sometimes the ones nobody knows you are surviving.",
+  
+    content: `
+  The hardest seasons are sometimes the ones nobody knows you are surviving.
+  
+  The ones where you are rebuilding yourself quietly, one ordinary day at a time.
+    `,
+  },
+  
+  
+  {
+    slug: "i-was-not-behind",
+    type: "fragment",
+    title: "I Was Not Behind",
+    category: "Things I Learned Slowly",
+    collection: "things-i-learned-slowly",
+  
+    fragment:
+      "I spent so much time thinking I was falling behind. I did not realize I was becoming someone at my own pace.",
+  
+    excerpt:
+      "I spent so much time thinking I was falling behind.",
+  
+    content: `
+  I spent so much time thinking I was falling behind.
+  
+  I did not realize I was becoming someone at my own pace.
+    `,
+  },
+  
+  
+  {
+    slug: "what-i-mistook-for-strength",
+    type: "fragment",
+    title: "What I Mistook For Strength",
+    category: "Things I Learned Slowly",
+    collection: "things-i-learned-slowly",
+  
+    fragment:
+      "I thought being strong meant needing nothing from anyone.",
+  
+    excerpt:
+      "I thought being strong meant needing nothing from anyone.",
+  
+    content: `
+  I thought being strong meant needing nothing from anyone.
+  
+  I learned that strength can also look like admitting when something hurts.
+    `,
+  },
+  
+  
+  {
+    slug: "the-things-i-understand-now",
+    type: "fragment",
+    title: "The Things I Understand Now",
+    category: "Things I Learned Slowly",
+    collection: "things-i-learned-slowly",
+  
+    fragment:
+      "There are things I could only understand after living through them.",
+  
+    excerpt:
+      "Some lessons cannot be explained. They have to be felt.",
+  
+    content: `
+  There are things I could only understand after living through them.
+  
+  Some lessons cannot be explained.
+  
+  They have to be felt.
+    `,
   },
   
 ];
