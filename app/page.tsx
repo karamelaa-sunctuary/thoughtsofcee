@@ -32,7 +32,7 @@ export default function Home() {
           </p>
 
           <Link
-            href="/writings"
+            href="/fragments"
             className="inline-flex rounded-full bg-[#2E2A27] px-10 py-4 text-sm uppercase tracking-[0.2em] text-[#F8F5F0] transition hover:opacity-90"
           >
             Begin Reading

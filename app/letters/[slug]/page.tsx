@@ -42,8 +42,7 @@ export default async function LetterPage({
           </Link>
 
           <Link
-            href="/collections"
-            className="transition hover:text-[#2E2A27]"
+            href="/letters"
           >
             Back to Letters →
           </Link>
@@ -70,8 +69,8 @@ export default async function LetterPage({
         <div className="mb-12 h-px bg-[#DDD2C4]" />
 
         <BookReader
-          pages={letter.pages ?? []}
-          featured={letter.featured ?? []}
+        pages={letter.pages ?? []}
+        featured={letter.featured ?? []}
         />
 
       </article>

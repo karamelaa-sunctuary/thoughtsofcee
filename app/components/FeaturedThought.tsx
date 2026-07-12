@@ -16,7 +16,7 @@ export default function FeaturedThought() {
             </h2>
   
             <a
-              href="/writings/a-letter-i-never-sent"
+              href="/letters/a-letter-i-never-sent"
               className="text-sm uppercase tracking-[0.2em] text-[#8B6F5C] transition hover:text-[#2E2A27]"
             >
               Read this thought →

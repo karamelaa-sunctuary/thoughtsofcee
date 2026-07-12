@@ -47,7 +47,7 @@ export default function Collections() {
 
 
           <Link
-            href="/writings"
+            href="/fragments"
             className="transition hover:text-[#2E2A27]"
           >
             Fragments

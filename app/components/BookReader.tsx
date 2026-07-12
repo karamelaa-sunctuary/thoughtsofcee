@@ -11,30 +11,31 @@ export default function BookReader({
 }) {
   const [page, setPage] = useState(0);
 
-  console.log("FEATURED RECEIVED:", featured);
-
   const isFeaturedLine = (text: string) => {
-    return featured.some(
-      (item) =>
-        text
-          .replace(/[.,!?"]/g, "")
-          .trim()
-          .toLowerCase()
-          .includes(
-            item
-              .replace(/[.,!?"]/g, "")
-              .trim()
-              .toLowerCase()
-          )
+    return featured.some((item) =>
+      text
+        .replace(/[.,!?"]/g, "")
+        .trim()
+        .toLowerCase()
+        .includes(
+          item
+            .replace(/[.,!?"]/g, "")
+            .trim()
+            .toLowerCase()
+        )
     );
   };
+
+  const lines = pages[page]
+    ?.split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean) ?? [];
 
   return (
     <div className="mx-auto w-full max-w-3xl">
 
       <div
         className="
-          min-h-[520px]
           rounded-sm
           border
           border-[#E8DED2]
@@ -50,61 +51,58 @@ export default function BookReader({
         <div
           className="
             text-[15px]
-            leading-[1.85]
+            leading-[1.7]
             text-[#2E2A27]
             md:text-[16px]
           "
         >
 
-          {pages[page]
-            .split("\n")
-            .map((line) => line.trim())
-            .filter(Boolean)
-            .map((line, index) => {
+          {lines.map((line, index) => {
 
-              const featuredLine = isFeaturedLine(line);
+            const featuredLine = isFeaturedLine(line);
 
-              if (featuredLine) {
-                return (
-                  <div
-                    key={index}
-                    className="
-                      my-8
-                      border-l-2
-                      border-[#C8B8A5]
-                      pl-5
-                      md:pl-7
-                    "
-                  >
-                    <p
-                      className="
-                        font-heading
-                        italic
-                        text-lg
-                        leading-[1.7]
-                        text-[#2E2A27]
-                        md:text-xl
-                      "
-                    >
-                      {line}
-                    </p>
-                  </div>
-                );
-              }
-
+            if (featuredLine) {
               return (
-                <p
+                <div
                   key={index}
                   className="
-                    mb-5
-                    leading-[1.9]
-                    text-[#2E2A27]
+                    my-6
+                    border-l-2
+                    border-[#C8B8A5]
+                    pl-5
                   "
                 >
-                  {line}
-                </p>
+                  <p
+                    className="
+                      font-heading
+                      font-bold
+                      text-lg
+                      leading-[1.5]
+                      text-[#2E2A27]
+                    "
+                  >
+                    {line}
+                  </p>
+                </div>
               );
-            })}
+            }
+
+            return (
+              <p
+                key={index}
+                className="
+                  mb-3
+                  text-[15px]
+                  leading-[1.7]
+                  text-[#2E2A27]
+                  md:text-[16px]
+                "
+              >
+                {line}
+              </p>
+            );
+
+          })}
 
         </div>
 
