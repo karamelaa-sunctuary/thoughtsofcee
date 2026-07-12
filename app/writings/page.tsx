@@ -26,7 +26,7 @@ export default function Fragments() {
               href="/collections"
               className="transition hover:text-[#2E2A27]"
             >
-              Collections →
+              Fragments →
             </Link>
 
           </div>

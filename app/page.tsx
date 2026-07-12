@@ -44,7 +44,7 @@ export default function Home() {
 
       {/* Featured Thought */}
       <FeaturedThought />
-      {/* Letters Collection */}
+      {/* Letters Preview */}
       
       <section className="px-6 py-20">
 
@@ -219,7 +219,7 @@ export default function Home() {
       </section>
 
 
-      {/* Library Preview */}
+      {/* Letters Section */}
       <WritingPreview />
 
 

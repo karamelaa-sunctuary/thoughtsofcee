@@ -13,12 +13,13 @@ export default function Navbar() {
 
         <div className="flex items-center justify-between">
 
-          <Link
+            <Link
             href="/"
-            className="font-heading text-2xl md:text-3xl text-[#2E2A27]"
-          >
-            Thoughts of Cee
-          </Link>
+            aria-label="Thoughts of Cee"
+            className="font-heading text-3xl text-sm text-[#8B6F5C]"
+            >
+            c.
+            </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex gap-8 text-sm text-[#8B6F5C]">
@@ -28,11 +29,11 @@ export default function Navbar() {
             </Link>
 
             <Link href="/writings" className="transition hover:text-[#2E2A27]">
-              Library
+              Fragments
             </Link>
 
             <Link href="/collections" className="transition hover:text-[#2E2A27]">
-              Collections
+              Letters
             </Link>
 
             <Link href="/about" className="transition hover:text-[#2E2A27]">
@@ -61,11 +62,11 @@ export default function Navbar() {
             </Link>
 
             <Link href="/writings" onClick={() => setOpen(false)}>
-              Library
+              Letters
             </Link>
 
             <Link href="/collections" onClick={() => setOpen(false)}>
-              Collections
+              Fragments
             </Link>
 
             <Link href="/about" onClick={() => setOpen(false)}>

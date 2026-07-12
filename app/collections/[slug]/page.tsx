@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { writings } from "../../data/writings";
 
-const collections = {
+const Fragments = {
   "letters-i-never-sent": {
     title: "Letters I Never Sent",
     intro:
@@ -28,7 +28,7 @@ const collections = {
 };
 
 
-export default async function CollectionPage({
+export default async function FragmentPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -37,25 +37,25 @@ export default async function CollectionPage({
   const { slug } = await params;
 
 
-  const collection =
-    collections[slug as keyof typeof collections];
+  const Fragment =
+    Fragments[slug as keyof typeof Fragments];
 
 
-    const collectionWritings = writings.filter(
+    const FragmentWritings = writings.filter(
         (writing) =>
-          writing.collection === slug &&
+          writing.Fragment === slug &&
           writing.type === "letter"
       );
 
 
-  if (!collection) {
+  if (!Fragment) {
     return (
       <main className="min-h-screen bg-[#F8F5F0] px-6 py-24">
 
         <section className="mx-auto max-w-3xl">
 
           <h1 className="font-heading text-4xl text-[#2E2A27]">
-            Collection not found
+            Fragment not found
           </h1>
 
         </section>
@@ -84,10 +84,10 @@ export default async function CollectionPage({
 
 
           <Link
-            href="/collections"
+            href="/Fragments"
             className="transition hover:text-[#2E2A27]"
           >
-            Collections
+            Fragments
           </Link>
 
         </div>
@@ -95,13 +95,13 @@ export default async function CollectionPage({
 
 
         <p className="mb-8 text-xs uppercase tracking-[0.35em] text-[#8B6F5C]">
-          Collection
+          Fragment
         </p>
 
 
 
         <h1 className="mb-12 font-heading text-4xl leading-tight text-[#2E2A27]">
-          {collection.title}
+          {Fragment.title}
         </h1>
 
 
@@ -112,7 +112,7 @@ export default async function CollectionPage({
 
         <div className="whitespace-pre-line pt-12 text-lg leading-[1.9] text-[#2E2A27]">
 
-          {collection.intro}
+          {Fragment.intro}
 
         </div>
 
@@ -125,16 +125,16 @@ export default async function CollectionPage({
         <section>
 
           <p className="mb-10 text-xs uppercase tracking-[0.35em] text-[#8B6F5C]">
-            Within this collection
+            Within this Fragment
           </p>
 
 
 
-          {collectionWritings.length > 0 ? (
+          {FragmentWritings.length > 0 ? (
 
             <div className="space-y-10">
 
-              {collectionWritings.map((writing) => (
+              {FragmentWritings.map((writing) => (
 
                 <Link
                   key={writing.slug}

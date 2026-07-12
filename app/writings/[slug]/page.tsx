@@ -65,7 +65,7 @@ export default async function WritingPage({
             href="/writings"
             className="transition hover:text-[#2E2A27]"
           >
-            Library →
+            Letters →
           </Link>
 
         </div>
@@ -170,7 +170,7 @@ export default async function WritingPage({
             hover:text-[#2E2A27]
             "
           >
-            Return to library →
+            Return to Letters →
           </Link>
 
         </div>

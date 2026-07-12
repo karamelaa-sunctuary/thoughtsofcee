@@ -26,7 +26,7 @@ const writings = [
         <div className="mx-auto max-w-5xl">
   
           <h2 className="mb-12 text-center text-4xl text-[#2E2A27]">
-            Latest Writings
+            Latest Letters
           </h2>
   
           <div className="grid gap-8 md:grid-cols-3">
