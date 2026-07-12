@@ -495,4 +495,60 @@ Some are simply carried with gratitude.
   `
     ],
   },
+  {
+    slug: "the-days-nobody-saw",
+    type: "letter",
+    title: "The Days Nobody Saw",
+    category: "Days Between",
+    collection: "days-between",
+    fragment: "the-days-nobody-saw",
+    excerpt:
+      "The days where you are not who you were anymore, but you have no idea who you are becoming.",
+    featured: [
+      "The days where you are not who you were anymore, but you have no idea who you are becoming.",
+      "The moments I spent alone with my own thoughts were changing me.",
+      "But to introduce us to parts of ourselves we had not met yet."
+    ],
+    pages: [
+      `Nobody talks about the days in between.
+    
+    The days after something ends, but before something new begins.
+    
+    The days where you are not who you were anymore, but you have no idea who you are becoming.
+    
+    Those days are strange.`,
+    
+      `You move through them quietly.
+    
+    Trying to understand what changed.
+    Trying to understand what stayed.
+    
+    There are moments when it feels like nothing is happening.
+    
+    But maybe everything is.`,
+    
+      `The moments I spent alone with my own thoughts were changing me.
+    
+    The silence.
+    The distance.
+    The questions I never had answers for.
+    
+    They were shaping parts of me I had not discovered yet.
+    
+    Not every transformation arrives loudly.`,
+    
+      `Some happen in ordinary mornings.
+    Some happen in empty spaces.
+    Some happen when nobody is watching.
+    
+    And maybe that was the purpose of those days.
+    
+    Not to take something away from us.
+    
+    Not to make us someone else.
+    
+    But to introduce us to parts of ourselves we had not met yet.`
+    ]
+  },
+  
 ];
