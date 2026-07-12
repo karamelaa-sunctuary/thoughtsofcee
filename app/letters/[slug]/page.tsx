@@ -48,7 +48,7 @@ export default async function LetterPage({
             href="/collections"
             className="transition hover:text-[#2E2A27]"
           >
-            Back to Fragments →
+            Back to Letters →
           </Link>
 
         </div>
