@@ -370,7 +370,138 @@ export const writings = [
         `
       ],
     },
-  
+    {
+      slug: "the-version-i-left-behind",
+      type: "letter",
+      title: "The Version I Left Behind",
+      category: "Days Between",
+      collection: "days-between",
+    
+      date: "2026-07-14",
+    
+      fragment:
+        "There is a version of me I had to say goodbye to. Not because she was wrong. Not because she failed. But because she carried things I was no longer meant to carry.",
+    
+      excerpt:
+        "A letter to the version of myself who survived everything she was never meant to carry.",
+    
+      featured: [
+        "There is a version of me I had to say goodbye to.",
+        "Not because she was wrong. Not because she failed.",
+        "And maybe I was too hard on her for not knowing what I know now.",
+        "Not because I want to become her again.",
+        "She was simply tired of carrying things she was never meant to carry.",
+        "Some versions of us are not meant to be found again. They are meant to be thanked.",
+        "I will carry what you taught me, but I will not carry what hurt you anymore."
+      ],
+    
+      pages: [
+        `
+    There is a version of me I had to say goodbye to.
+    
+    Not because she was wrong. Not because she failed.
+    
+    But because she carried things
+    
+    I was no longer meant to carry.
+    
+    For a long time,
+    
+    I thought becoming someone new meant leaving her behind.
+    
+    I thought I had to forget the person I was
+    
+    to become the person I wanted to be.
+    
+    But I understand now,
+    
+    she was never someone I needed to escape.
+
+    She was simply tired of carrying things she was never meant to carry.
+    
+    She was someone I needed to thank.
+        `,
+    
+        `
+    She was the version of me
+    
+    who stayed when things were difficult.
+    
+    The one who smiled when she did not understand her own sadness.
+    
+    The one who kept going
+    
+    even when nobody knew how heavy everything felt.
+    
+    She made mistakes.
+    
+    She made choices she wishes she could change.
+    
+    But she was learning.
+    
+    She was surviving with the little she had.
+    
+    And maybe I was too hard on her for not knowing what I know now.
+        `,
+    
+        `
+    I do not miss everything about who I used to be.
+    
+    I do not miss the fear.
+    
+    I do not miss the moments when I forgot my own worth.
+    
+    I do not miss carrying things
+    
+    that were never mine to hold.
+    
+    But I miss her sometimes.
+    
+    Not because I want to become her again.
+    
+    But because I remember how hard she tried.
+    
+    How many times she chose to continue.
+    
+    How many times she started over
+    
+    without anyone knowing.
+        `,
+    
+        `
+    Maybe growth is not about becoming someone completely new.
+    
+    Maybe it is about meeting every version of yourself
+    
+    with a little more kindness.
+    
+    The person I was before
+    
+    deserves love too.
+    
+    She brought me here.
+    
+    She protected me.
+    
+    She carried me through seasons
+    
+    I thought would break me.
+    
+    Some versions of us are not meant to be found again. They are meant to be thanked.
+    
+    So goodbye,
+    
+    to the version of me I left behind.
+    
+    Thank you for surviving.
+    
+    Thank you for staying.
+    
+    I will carry what you taught me, but I will not carry what hurt you anymore.
+        `
+      ],
+    },
+
     {
       slug: "the-goodbye-i-never-said",
       type: "letter",
@@ -700,7 +831,7 @@ one choice at a time.
     category: "Days Between",
     collection: "days-between",
 
-    linkedLetter: "the-days-nobody-saw",
+    linkedLetter: "the-version-i-left-behind",
 
     fragment:
       "There is a version of me I had to say goodbye to. Not because she was wrong. Not because she failed. But because she carried things I was no longer meant to carry.",

@@ -1,9 +1,16 @@
 import { redirect } from "next/navigation";
 import { writings } from "../data/writings";
 
-export default function RandomThought() {
+export default function RandomPage() {
+
   const random =
     writings[Math.floor(Math.random() * writings.length)];
 
-  redirect(`/writings/${random.slug}`);
+
+  if (random.type === "letter") {
+    redirect(`/letters/${random.slug}`);
+  }
+
+
+  redirect(`/fragments/${random.slug}`);
 }
