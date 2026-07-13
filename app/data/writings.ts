@@ -229,6 +229,8 @@ export const writings = [
       title: "Almost",
       category: "Letters I Never Sent",
       collection: "letters-i-never-sent",
+
+      date: "2026-07-13",
     
       fragment:
         "Sometimes the hardest thing to lose is not what we had, but the life we almost had.",

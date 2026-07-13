@@ -6,6 +6,7 @@ import WritingPreview from "./components/WritingPreview";
 import AboutCee from "./components/AboutCee";
 import Footer from "./components/Footer";
 import Typewriter from "./components/Typewriter";
+import RecentlyAdded from "./components/RecentlyAdded";
 
 export default function Home() {
   return (
@@ -41,7 +42,8 @@ export default function Home() {
         </div>
       </section>
 
-
+      <RecentlyAdded />
+      
       {/* Featured Thought */}
       <FeaturedThought />
       {/* Letters Preview */}
