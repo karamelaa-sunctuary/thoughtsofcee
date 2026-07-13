@@ -480,6 +480,7 @@ export const writings = [
         "Never ever, he promised.",
         "They were the words she needed to say to herself.",
         "Never ever were never words she needed from him.",
+        "But some promises are only words until someone chooses to keep them."
       ],
   
       pages: [
@@ -506,17 +507,38 @@ export const writings = [
   The promise she wanted to believe.
   
   
-  But some promises are only words
-  
-  until someone chooses to keep them.
+  But some promises are only words until someone chooses to keep them.
   `,
   
   `
+"Never ever," he promised.
+
+"Never ever," she repeated.
+
+Those were the two words she held onto for 53 days, 
+
+until the nightmare returned to her reality once more. 
+
+First. Second. Third. 
+
+She had long since lost count.
+
+
+  `,
+  
+  `
+  "Never ever."
+
+The words she used to quietly stitch together the wounds he left behind, 
+wounds he never even knew he had made.
+
+Fifty-three days were all it took for him to break his promise, while she held on for 455.
+
+"Never ever" were only words he spoke to calm her fears, to keep her close a little longer.
+
   Never ever were never words she needed from him.
   
-  
   They were the words she needed to say to herself.
-  
   
   Never ever again.
   `
