@@ -26,11 +26,11 @@ export default function Navbar() {
           href="/"
           className="
             font-heading
-            text-2xl
+            text-sm
             text-[#2E2A27]
           "
         >
-          Cee
+          c.
         </Link>
 
 
