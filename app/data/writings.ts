@@ -223,7 +223,151 @@ export const writings = [
   `
       ],
     },
-  
+    {
+      slug: "almost",
+      type: "letter",
+      title: "Almost",
+      category: "Letters I Never Sent",
+      collection: "letters-i-never-sent",
+    
+      fragment:
+        "Sometimes the hardest thing to lose is not what we had, but the life we almost had.",
+    
+      excerpt:
+        "A letter about grieving not only what ended, but the future that never had the chance to arrive.",
+    
+      featured: [
+        "We stood so close to the life we imagined that I could almost mistake it for a memory.",
+        "It was the silence where our future was supposed to be.",
+        "the ordinary moments I had already begun to miss before they ever happened,",
+        "Because almost gives you just enough hope to imagine forever, but never enough time to live it.",
+        "Almost asks you to miss a life you never got to live.",
+        "The heart is capable of loving not only what happened, but also what almost did."
+        
+      ],
+    
+      pages: [
+        `
+    Almost may be the most painful word I have ever known.
+    
+    Because it asks you to grieve something that was never fully yours.
+    
+    I used to think the hardest things to lose were the things we had.
+    
+    But sometimes,
+    
+    it is the things we almost had
+    
+    that stay with us the longest.
+    
+    We stood so close to the life we imagined that I could almost mistake it for a memory.
+    
+    I could already see the quiet mornings.
+    
+    The familiar laughter.
+    
+    The comfort of no longer wondering.
+    
+    Funny how the heart remembers a future
+    
+    that never happened.
+        `,
+    
+        `
+    We almost made it.
+    
+    We were almost there.
+    
+    We almost became the people we dreamed of being.
+    
+    We almost had a future.
+    
+    And then,
+    
+    we became an almost.
+    
+    A goodbye was said.
+    
+    A chapter ended.
+    
+    But some endings do not take away everything at once.
+    
+    Some endings leave behind pieces of a life
+    
+    you thought you were still going to live.
+    
+    It wasn't just your absence
+    
+    that I had to learn to live with.
+    
+    It was the silence where our future was supposed to be.
+        `,
+    
+        `
+    I wasn't only letting go of you.
+    
+    I was letting go
+    
+    of the mornings
+    
+    I thought we'd wake up to,
+    
+    the conversations
+    
+    we never got to finish,
+    
+    the ordinary moments I had already begun to miss before they ever happened,
+    
+    and the home
+    
+    my heart had already begun to build.
+    
+    Maybe that is why "almost" hurts so much.
+    
+    It does not only take away a person.
+    
+    It takes away a future
+    
+    your heart had already started remembering.
+        `,
+    
+        `
+    Because almost gives you just enough hope to imagine forever, but never enough time to live it.
+    
+    A goodbye gives you someone to miss.
+    
+    Almost asks you to miss a life you never got to live.
+    
+    The hardest part was not only accepting that we ended.
+    
+    It was accepting that the version of us
+    
+    I believed was waiting ahead
+    
+    was never going to arrive.
+    
+    Maybe "almost" was never meant to become forever.
+    
+    Maybe some people enter our lives
+    
+    not to stay,
+    
+    but to show us how deeply we are capable of feeling.
+    
+    Some stories do not become the ones we hoped for.
+    
+    But that does not mean they were meaningless.
+    
+    Some people change our lives
+    
+    without becoming our life.
+    
+    And maybe that is the quiet truth we learn with time—
+    
+    The heart is capable of loving not only what happened, but also what almost did.
+        `
+      ],
+    },
   
     {
       slug: "the-goodbye-i-never-said",
@@ -459,7 +603,22 @@ export const writings = [
   // FRAGMENTS
   // =========================
 
-
+  {
+    slug: "almost",
+    type: "fragment",
+    title: "Almost",
+    category: "Letters I Never Sent",
+    collection: "letters-i-never-sent",
+  
+    fragment:
+      "Sometimes the hardest thing to lose is not what we had, but the life we almost had.",
+  
+    excerpt:
+      "A reflection on the futures we imagine, the goodbyes we say, and the things that almost became ours.",
+  
+    linkedLetter:
+      "almost",
+  },
   {
     slug: "the-days-between-dates",
     type: "fragment",
@@ -662,5 +821,6 @@ Some lessons cannot be explained.
 They have to be felt.
 `,
   },
+
 
 ];
