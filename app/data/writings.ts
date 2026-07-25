@@ -911,7 +911,7 @@ one ordinary day at a time.
     category: "Things I Learned Slowly",
     collection: "things-i-learned-slowly",
 
-    linkedLetter: "the-love-i-learned-to-search-for",
+  linkedLetter: "the-love-i-learned-to-search-for",  
 
     fragment:
       "I spent so much time thinking I was falling behind. I did not realize I was becoming someone at my own pace.",
@@ -977,5 +977,227 @@ They have to be felt.
 `,
   },
 
-
+  {
+    slug: "accountability",
+    type: "fragment",
+    title: "Accountability",
+    category: "Things I Learned Slowly",
+    collection: "things-i-learned-slowly",
+  
+    linkedLetter: "accountability",
+  
+    date: "2026-07-25",
+  
+    fragment:
+      "Some chapters don't end to teach us about someone else. They end to introduce us to ourselves.",
+  
+    excerpt:
+      "Sometimes healing begins when we stop looking for someone else to understand and start understanding ourselves.",
+  
+    content: `
+  Some chapters don't end
+  
+  to teach us about someone else.
+  
+  They end to introduce us to ourselves.
+  `,
+  },
+  {
+    slug: "accountability",
+    type: "letter",
+    title: "Accountability",
+    category: "Things I Learned Slowly",
+    collection: "things-i-learned-slowly",
+  
+    date: "2026-07-25",
+  
+    fragment:
+      "Some chapters don't end to teach us about someone else. They end to introduce us to ourselves.",
+  
+    excerpt:
+      "A letter about looking inward, growing with honesty, and discovering that healing sometimes begins with ourselves.",
+  
+    featured: [
+      "Some chapters don't end to teach us about someone else.",
+      "They end to introduce us to ourselves.",
+      "Accountability isn't carrying all the blame. It's having the courage to meet yourself honestly.",
+      "Growth begins where blame ends.",
+      "Sometimes the lesson isn't about who was right. It's about who we became because of it."
+    ],
+  
+    pages: [
+  
+  `
+  Some chapters don't end
+  to teach us about someone else.
+  
+  They end
+  to introduce us
+  to ourselves.
+  
+  For the longest time,
+  I believed healing meant understanding what happened.
+  
+  Why they changed.
+  
+  Why they left.
+  
+  Why they stopped choosing us.
+  
+  I searched for answers
+  in every conversation,
+  
+  every memory,
+  
+  every silence that followed.
+  
+  I thought if I understood them,
+  
+  I would finally find peace.
+  
+  But I never did.
+  
+  Because healing
+  was never waiting for me
+  inside their story.
+  
+  It was waiting
+  inside mine.
+  `,
+  
+  `
+  There came a moment
+  when I stopped asking,
+  
+  "What did they do to me?"
+  
+  and quietly began asking,
+  
+  "What is this trying to teach me?"
+  
+  Not because everything
+  was my fault.
+  
+  Not because their choices
+  suddenly became acceptable.
+  
+  But because I realized
+  there was a part of the story
+  that belonged to me too.
+  
+  Maybe I stayed silent
+  when I should have spoken.
+  
+  Maybe I accepted things
+  that slowly taught me
+  to abandon myself.
+  
+  Maybe I held on
+  long after my heart
+  had already begun
+  to let go.
+  
+  Those aren't reasons
+  to blame myself.
+  
+  They're reasons
+  to understand myself.
+  `,
+  
+  `
+  Accountability
+  is not punishment.
+  
+  It isn't carrying
+  the weight
+  of someone else's decisions.
+  
+  It is the courage
+  to look at ourselves honestly,
+  
+  without shame,
+  
+  without excuses,
+  
+  without pretending
+  we already know everything.
+  
+  It is asking,
+  
+  What boundaries
+  didn't I protect?
+  
+  What fears
+  kept making my decisions?
+  
+  What parts of me
+  are still waiting to heal?
+  
+  Because if we never stop
+  to understand ourselves,
+  
+  we risk carrying
+  the same wounds
+  
+  into a different story,
+  
+  hoping it will somehow
+  end differently.
+  `,
+  
+  `
+  Maybe that is
+  what growth really is.
+  
+  Not proving
+  we were right.
+  
+  Not proving
+  they were wrong.
+  
+  But leaving
+  with a little more wisdom
+  than we arrived with.
+  
+  Some relationships
+  are meant to last.
+  
+  Others are meant
+  to reveal us
+  to ourselves.
+  
+  The people we lose
+  sometimes leave behind
+  the lessons
+  we needed most.
+  
+  And maybe...
+  
+  that is accountability.
+  
+  Not carrying blame.
+  
+  Not carrying regret.
+  
+  But carrying
+  the willingness
+  
+  to become someone
+  who loves more honestly,
+  
+  chooses more wisely,
+  
+  and never stops growing.
+  
+  Some chapters don't end
+  to teach us about someone else.
+  
+  They end
+  to introduce us
+  to ourselves.
+  
+  — Cee
+  `,
+    ],
+  },
 ];
