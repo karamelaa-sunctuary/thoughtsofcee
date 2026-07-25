@@ -11,14 +11,12 @@ export default async function LetterPage({
   const { slug } = await params;
 
   const letter = writings.find(
-    (writing) => writing.slug === slug
+    (writing) =>
+      writing.slug === slug &&
+      writing.type === "letter"
   );
 
   if (!letter) {
-    notFound();
-  }
-
-  if (letter.type !== "letter") {
     notFound();
   }
 

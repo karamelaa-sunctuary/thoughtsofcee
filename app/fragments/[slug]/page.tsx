@@ -9,11 +9,10 @@ export default async function WritingPage({
   const { slug } = await params;
 
   const writing = writings.find(
-    (item) =>
-      item.slug === slug &&
-      item.type === "fragment"
+    (writing) =>
+      writing.slug === slug &&
+      writing.type === "fragment"
   );
-
 
   if (!writing) {
     return (
