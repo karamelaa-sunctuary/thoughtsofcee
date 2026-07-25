@@ -4,13 +4,15 @@ import { writings } from "../data/writings";
 export default function RecentlyAdded() {
 
   const recent = [...writings]
-    .filter((item) => item.date)
-    .sort(
-      (a, b) =>
-        new Date(b.date!).getTime() -
-        new Date(a.date!).getTime()
-    )
-    .slice(0, 3);
+  .filter(
+    (item) => item.type === "fragment" && item.date
+  )
+  .sort(
+    (a, b) =>
+      new Date(b.date!).getTime() -
+      new Date(a.date!).getTime()
+  )
+  .slice(0, 3);
 
 
   return (
@@ -72,15 +74,9 @@ export default function RecentlyAdded() {
               </span>
 
 
-              <Link
-                href={
-                  writing.type === "letter"
-                    ? `/letters/${writing.slug}`
-                    : `/fragments/${writing.slug}`
-                }
-              >
-                Read →
-              </Link>
+              <Link href={`/letters/${writing.linkedLetter}`}>
+                Read Letter →
+                </Link>
 
             </div>
 
