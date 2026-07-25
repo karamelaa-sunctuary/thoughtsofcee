@@ -1,3 +1,8 @@
+npm run build
+
+
+
+
 import Link from "next/link";
 
 import Navbar from "./components/Navbar";
@@ -131,7 +136,7 @@ export default function Home() {
 
 
             <Link
-                href="/letters/accountability"
+              href="/letters/the-goodbye-i-never-said"
               className="
                 rounded-sm
                 border
@@ -148,12 +153,12 @@ export default function Home() {
               </p>
 
               <h3 className="mb-3 font-heading text-3xl text-[#2E2A27]">
-                Accountability
-                </h3>
+                The Goodbye I Never Said
+              </h3>
 
-                <p className="leading-relaxed text-[#6B645E]">
-                A reflection on looking inward, growing honestly, and understanding the parts of ourselves that need healing.
-                </p>
+              <p className="leading-relaxed text-[#6B645E]">
+                Some goodbyes are never spoken. They are simply carried with gratitude.
+              </p>
 
             </Link>
 
