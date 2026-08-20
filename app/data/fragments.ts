@@ -88,4 +88,14 @@ export const fragments = [
   
       linkedLetter: "becoming-someone-new",
     },
+    {
+      slug: "what-betrayal-changes",
+      title: "What Betrayal Changes",
+      category: "Love & Loss",
+    
+      thought:
+        "Betrayal changes more than the way you see someone. It changes the way you remember everything that came before.",
+    
+      linkedLetter: "what-betrayal-changes",
+    },
   ];
