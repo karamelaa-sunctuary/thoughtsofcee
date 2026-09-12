@@ -40,6 +40,21 @@ export default function Home() {
           </Link>
 
         </div>
+        </section>
+
+      {/* Atmospheric Video */}
+      <section className="px-6 pb-20">
+        <div className="mx-auto max-w-5xl overflow-hidden rounded-sm">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="h-[280px] w-full object-cover sm:h-[420px]"
+          >
+            <source src="/videos/home-rain.mp4" type="video/mp4" />
+          </video>
+        </div>
       </section>
 
       <RecentlyAdded />
@@ -227,7 +242,24 @@ export default function Home() {
 
       {/* About */}
       <AboutCee />
-
+      
+{/* About Cee Video */}
+<section className="px-6 pb-24">
+  <div className="mx-auto max-w-5xl overflow-hidden rounded-sm">
+    <video
+      autoPlay
+      muted
+      loop
+      playsInline
+      className="h-[300px] w-full object-cover sm:h-[420px] md:h-[520px]"
+    >
+      <source
+        src="/videos/about-cee.mp4"
+        type="video/mp4"
+      />
+    </video>
+  </div>
+</section>
 
       {/* Footer */}
       <Footer />

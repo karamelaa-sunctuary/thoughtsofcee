@@ -11,43 +11,57 @@ export default function BookReader({
 }) {
   const [page, setPage] = useState(0);
 
+  const currentPage = pages[page] ?? "";
+
   const isFeaturedLine = (text: string) => {
-    return featured.some((item) =>
-      text
+    const normalize = (value: string) =>
+      value
         .replace(/[.,!?"]/g, "")
         .trim()
-        .toLowerCase()
-        .includes(
-          item
-            .replace(/[.,!?"]/g, "")
-            .trim()
-            .toLowerCase()
-        )
+        .toLowerCase();
+
+    const normalizedText = normalize(text);
+
+    return featured.some((item) => {
+      const normalizedItem = normalize(item);
+
+      return (
+        normalizedText.includes(normalizedItem) ||
+        normalizedItem.includes(normalizedText)
+      );
+    });
+  };
+
+  const lines = currentPage
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  const goPrevious = () => {
+    setPage((current) => Math.max(current - 1, 0));
+  };
+
+  const goNext = () => {
+    setPage((current) =>
+      Math.min(current + 1, pages.length - 1)
     );
   };
 
-  const lines = pages[page]
-    ?.split("\n")
-    .map((line) => line.trim())
-    .filter(Boolean) ?? [];
-
   return (
     <div className="mx-auto w-full max-w-3xl">
-
       <div
         className="
           rounded-sm
           border
           border-[#E8DED2]
           bg-[#FDF9F2]
-          shadow-xl
           px-7
           py-8
+          shadow-xl
           sm:px-10
           sm:py-10
         "
       >
-
         <div
           className="
             text-[15px]
@@ -56,9 +70,7 @@ export default function BookReader({
             md:text-[16px]
           "
         >
-
           {lines.map((line, index) => {
-
             const featuredLine = isFeaturedLine(line);
 
             if (featuredLine) {
@@ -75,8 +87,8 @@ export default function BookReader({
                   <p
                     className="
                       font-heading
-                      font-bold
                       text-lg
+                      font-bold
                       leading-[1.5]
                       text-[#2E2A27]
                     "
@@ -101,13 +113,9 @@ export default function BookReader({
                 {line}
               </p>
             );
-
           })}
-
         </div>
-
       </div>
-
 
       <div
         className="
@@ -121,39 +129,38 @@ export default function BookReader({
           text-[#8B6F5C]
         "
       >
-
         <button
+          type="button"
           disabled={page === 0}
-          onClick={() => setPage(page - 1)}
+          onClick={goPrevious}
           className="
             transition
             hover:text-[#2E2A27]
+            disabled:cursor-not-allowed
             disabled:opacity-30
           "
         >
           ← Previous
         </button>
 
-
         <span>
           {page + 1} / {pages.length}
         </span>
 
-
         <button
-          disabled={page === pages.length - 1}
-          onClick={() => setPage(page + 1)}
+          type="button"
+          disabled={page >= pages.length - 1}
+          onClick={goNext}
           className="
             transition
             hover:text-[#2E2A27]
+            disabled:cursor-not-allowed
             disabled:opacity-30
           "
         >
           Next →
         </button>
-
       </div>
-
     </div>
   );
 }

@@ -1,4 +1,8 @@
-export const writings = [
+
+
+
+
+      "I became independent export const writings = [
 
   // =========================
   // LETTERS
@@ -1144,172 +1148,167 @@ They have to be felt.
   `,
     ],
   },
-  {
-    slug: "what-betrayal-changes",
-    type: "fragment",
-    title: "What Betrayal Changes",
-    category: "Love & Loss",
-    collection: "love-and-loss",
-    date: "2026-08-21",
-
-    fragment:
-      "Betrayal changes more than the way you see someone. It changes the way you remember everything that came before.",
-
-    excerpt:
-      "Sometimes the hardest part of betrayal is not what happened, but realizing that you may never remember what came before in quite the same way.",
-
-    content: `
-Betrayal changes more than the way you see someone.
-
-It changes the way you remember everything that came before.
-
-Some things feel completely different
-once you know what you know.
-
-And sometimes,
-the hardest part is not what happened.
-
-It is remembering everything
-that came before it.
-`,
-
-    linkedLetter: "what-betrayal-changes",
-  },
-
-  {
-    slug: "what-betrayal-changes",
-    type: "letter",
-    title: "What Betrayal Changes",
-    category: "Love & Loss",
-    collection: "love-and-loss",
-    date: "2026-08-21",
-
-    fragment:
-      "Betrayal changes more than the way you see someone. It changes the way you remember everything that came before.",
-
-    excerpt:
-      "Sometimes the hardest part of betrayal is not what happened, but realizing that you may never remember what came before in quite the same way.",
-
-    featured: [
-      "Betrayal changes more than the way you see someone.",
-      "It changes the way you remember everything that came before.",
-      "I started going back through memories I had never questioned.",
-      "The hardest part was wondering what had been real.",
-      "I did not want to hate anyone.",
-      "I just wanted to stop doubting myself.",
-    ],
-
+    {
+      slug: "what-betrayal-changes",
+      type: "fragment",
+      title: "What Betrayal Changes",
+      category: "Love & Loss",
+      collection: "love-and-loss",
+      date: "2026-08-21",
+    
+      fragment:
+        "Betrayal changes more than the way you see someone. It changes the way you remember everything that came before.",
+    
+      excerpt:
+        "Sometimes the hardest part of betrayal is not what happened, but realizing that you may never remember what came before in quite the same way.",
+    
+      content:
+        `
+    Betrayal changes more than the way you see someone.
+    
+    It changes the way you remember everything that came before.
+    
+    Some things feel completely different
+    once you know what you know.
+    
+    And sometimes,
+    the hardest part is not what happened.
+    
+    It is remembering everything
+    that came before it.
+    `,
+  
     pages: [
       `
-Betrayal changes more than the way you see someone.
-
-It changes the way you remember everything that came before.
-
-The conversations.
-
-The promises.
-
-The ordinary moments
-you never thought you would have to think about again.
-
-Suddenly,
-
-you find yourself going back through them.
-
-Not because you want to.
-
-Because your mind is trying to understand
-when something changed.
-`,
-
+  Betrayal changes more than the way you see someone.
+  
+  It changes the way you remember everything that came before.
+  
+  
+  The conversations.
+  
+  The promises.
+  
+  The ordinary moments
+  you never thought you would have to think about again.
+  
+  
+  Suddenly,
+  you find yourself going back through them.
+  
+  
+  Not because you want to.
+  
+  Because your mind is trying to understand
+  when something changed.
+  `,
+  
       `
-I started going back through memories
-I had never questioned.
-
-Things that once felt ordinary
-started carrying different meanings.
-
-A sentence.
-
-A look.
-
-A moment I had forgotten about
-until I remembered it differently.
-
-And I wondered
-how many things I had overlooked
-because I trusted the person standing in front of me.
-
-Maybe that is what betrayal takes from you.
-
-Not just trust in someone else.
-
-Sometimes,
-
-it makes you question your own ability to see clearly.
-`,
-
+  I started going back through memories
+  I had never questioned.
+  
+  
+  Things that once felt ordinary
+  started carrying different meanings.
+  
+  
+  A sentence.
+  
+  A look.
+  
+  A moment I had forgotten about
+  until I remembered it differently.
+  
+  
+  And I wondered
+  how many things I had overlooked
+  because I trusted the person standing in front of me.
+  
+  
+  Maybe that is what betrayal takes from you.
+  
+  
+  Not just trust in someone else.
+  
+  
+  Sometimes,
+  it makes you question your own ability to see clearly.
+  `,
+  
       `
-The hardest part was wondering what had been real.
-
-Not everything could have been a lie.
-
-I knew that.
-
-There were moments that mattered.
-
-There were memories I still loved.
-
-There were parts of my life
-I did not want to erase
-just because the ending hurt.
-
-But it is strange
-
-when something you once held with certainty
-becomes something you have to reconsider.
-
-You start asking questions
-you never thought you would need to ask.
-`,
-
+  The hardest part was wondering what had been real.
+  
+  
+  Not everything could have been a lie.
+  
+  I knew that.
+  
+  
+  There were moments that mattered.
+  
+  There were memories I still loved.
+  
+  There were parts of my life
+  I did not want to erase
+  just because the ending hurt.
+  
+  
+  But it is strange
+  when something you once held with certainty
+  becomes something you have to reconsider.
+  
+  
+  You start asking questions
+  you never thought you would need to ask.
+  `,
+  
       `
-For a while,
-
-I thought I needed answers.
-
-I thought if I understood every detail,
-I would finally be able to put everything back where it belonged.
-
-But some things do not go back.
-
-And maybe they are not supposed to.
-
-I did not want to hate anyone.
-
-I just wanted to stop doubting myself.
-
-To trust what I saw.
-
-To trust what I felt.
-
-To stop rewriting my own memories
-just to make someone else's actions easier to understand.
-
-Maybe that is what healing looks like sometimes.
-
-Not forgetting.
-
-Not pretending it did not happen.
-
-Just learning that something can have been meaningful
-and still have hurt you.
-
-And learning that what happened
-does not get to decide what you believe about yourself.
-
-— Cee
-`,
+  For a while,
+  I thought I needed answers.
+  
+  
+  I thought if I understood every detail,
+  I would finally be able to put everything back where it belonged.
+  
+  
+  But some things do not go back.
+  
+  
+  And maybe they are not supposed to.
+  
+  
+  I did not want to hate anyone.
+  
+  
+  I just wanted to stop doubting myself.
+  
+  
+  To trust what I saw.
+  
+  To trust what I felt.
+  
+  To stop rewriting my own memories
+  just to make someone else's actions easier to understand.
+  
+  
+  Maybe that is what healing looks like sometimes.
+  
+  
+  Not forgetting.
+  
+  Not pretending it did not happen.
+  
+  
+  Just learning that something can have been meaningful
+  and still have hurt you.
+  
+  
+  And learning that what happened
+  does not get to decide what you believe about yourself.
+  
+  
+  — Cee
+  `
     ],
   },
 ];
