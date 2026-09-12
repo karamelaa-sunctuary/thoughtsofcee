@@ -7,6 +7,8 @@ import AboutCee from "./components/AboutCee";
 import Footer from "./components/Footer";
 import Typewriter from "./components/Typewriter";
 import RecentlyAdded from "./components/RecentlyAdded";
+import VideoGallery from "./components/VideoGallery";
+
 
 export default function Home() {
   return (
@@ -62,6 +64,7 @@ export default function Home() {
       {/* Featured Thought */}
       <FeaturedThought />
       {/* Letters Preview */}
+      <VideoGallery />
       
       <section className="px-6 py-20">
 
@@ -206,7 +209,7 @@ export default function Home() {
         </div>
 
       </section>
-
+     
       {/* Begin Anywhere */}
       <section className="px-6 py-12">
         <div className="mx-auto max-w-2xl text-center">
@@ -242,7 +245,7 @@ export default function Home() {
 
       {/* About */}
       <AboutCee />
-      
+
 {/* About Cee Video */}
 <section className="px-6 pb-24">
   <div className="mx-auto max-w-5xl overflow-hidden rounded-sm">

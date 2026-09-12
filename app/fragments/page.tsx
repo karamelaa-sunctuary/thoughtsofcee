@@ -1,20 +1,18 @@
 import Link from "next/link";
+
 import { writings } from "../data/writings";
+
+import VideoGallery from "../components/VideoGallery";
 
 export default function Fragments() {
   return (
     <main className="min-h-screen bg-[#F8F5F0] px-6 py-24">
-
-      <section className="mx-auto max-w-3xl">
-
+      <section className="mx-auto max-w-5xl">
 
         {/* Header */}
-
         <div className="mb-16">
 
-
           <div className="mb-10 flex gap-8 text-sm text-[#8B6F5C]">
-
             <Link
               href="/"
               className="transition hover:text-[#2E2A27]"
@@ -22,22 +20,17 @@ export default function Fragments() {
               ← Home
             </Link>
 
-
             <Link
               href="/letters"
               className="transition hover:text-[#2E2A27]"
             >
               Letters →
             </Link>
-
           </div>
-
-
 
           <p className="mb-6 text-xs uppercase tracking-[0.35em] text-[#8B6F5C]">
             Fragments
           </p>
-
 
           <h1
             className="
@@ -53,7 +46,6 @@ export default function Fragments() {
             I wanted to keep.
           </h1>
 
-
           <p
             className="
               max-w-xl
@@ -67,15 +59,15 @@ export default function Fragments() {
             Some are simply words that stayed.
           </p>
 
-
         </div>
 
 
+        {/* Video Gallery */}
+        <VideoGallery />
 
-        {/* Fragment Cards */}
 
-        <div className="space-y-16">
-
+        {/* Written Fragments */}
+        <div className="mt-24 space-y-16">
 
           {writings
             .filter((writing) => writing.type === "fragment")
@@ -90,7 +82,6 @@ export default function Fragments() {
                 "
               >
 
-
                 <p
                   className="
                     mb-6
@@ -102,8 +93,6 @@ export default function Fragments() {
                 >
                   {writing.category}
                 </p>
-
-
 
                 <h2
                   className="
@@ -117,8 +106,6 @@ export default function Fragments() {
                   {writing.title}
                 </h2>
 
-
-
                 <p
                   className="
                     mb-8
@@ -130,8 +117,6 @@ export default function Fragments() {
                 >
                   "{writing.fragment}"
                 </p>
-
-
 
                 <Link
                   href={`/fragments/${writing.slug}`}
@@ -146,10 +131,7 @@ export default function Fragments() {
                   Read the fragment →
                 </Link>
 
-
-
                 {writing.linkedLetter && (
-
                   <Link
                     href={`/letters/${writing.linkedLetter}`}
                     className="
@@ -161,21 +143,15 @@ export default function Fragments() {
                   >
                     Read the full letter →
                   </Link>
-
                 )}
-
 
               </article>
 
             ))}
 
-
         </div>
 
-
       </section>
-
-
     </main>
   );
 }
