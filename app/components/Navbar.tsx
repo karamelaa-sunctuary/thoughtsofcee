@@ -1,156 +1,111 @@
+
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
+
+const links = [
+  { label: "Home", href: "/" },
+  { label: "Letters", href: "/letters" },
+  { label: "Fragments", href: "/fragments" },
+  { label: "About", href: "/about" },
+];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   return (
-    <nav className="border-b border-[#E5DDD4] bg-[#F8F5F0]">
-      <div
-        className="
-          mx-auto
-          flex
-          max-w-6xl
-          items-center
-          justify-between
-          px-6
-          py-6
-        "
+    <header className="sticky top-0 z-50 border-b border-black/20 bg-[#EAE4DB]">
+      <nav
+        aria-label="Main navigation"
+        className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 sm:px-10"
       >
-
-        {/* Logo */}
-
         <Link
           href="/"
-          className="
-            font-heading
-            text-sm
-            text-[#2E2A27]
-          "
+          onClick={() => setOpen(false)}
+          className="flex flex-col"
+          aria-label="Thoughts of Cee home"
         >
-          c.
+          <span className="font-[Impact,Haettenschweiler,'Arial_Narrow_Bold',sans-serif] text-3xl uppercase leading-[0.9] tracking-tight text-black sm:text-4xl">
+            Thoughts of Cee.
+          </span>
+
+          <span className="mt-2 text-[9px] font-bold uppercase tracking-[0.2em] text-[#765D4B]">
+            Where feelings become words
+          </span>
         </Link>
 
+        <div className="hidden items-center gap-10 md:flex">
+          {links.map((link) => {
+            const active = isActive(link.href);
 
-        {/* Desktop Navigation */}
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={active ? "page" : undefined}
+                className={`relative py-2 text-[10px] font-bold uppercase tracking-[0.18em] transition-opacity hover:opacity-50 ${
+                  active
+                    ? "text-black"
+                    : "text-black/60"
+                }`}
+              >
+                {link.label}
 
-        <div
-          className="
-            hidden
-            items-center
-            gap-8
-            text-sm
-            text-[#8B6F5C]
-            md:flex
-          "
-        >
-
-          <Link
-            href="/"
-            className="transition hover:text-[#2E2A27]"
-          >
-            Home
-          </Link>
-
-
-          <Link
-            href="/letters"
-            className="transition hover:text-[#2E2A27]"
-          >
-            Letters
-          </Link>
-
-
-          <Link
-            href="/fragments"
-            className="transition hover:text-[#2E2A27]"
-          >
-            Fragments
-          </Link>
-
-
-          <Link
-            href="/about"
-            className="transition hover:text-[#2E2A27]"
-          >
-            About
-          </Link>
-
+                {active && (
+                  <span className="absolute bottom-0 left-0 h-[2px] w-full bg-[#765D4B]" />
+                )}
+              </Link>
+            );
+          })}
         </div>
-
-
-        {/* Mobile Button */}
 
         <button
+          type="button"
           onClick={() => setOpen(!open)}
-          className="
-            text-sm
-            text-[#8B6F5C]
-            md:hidden
-          "
+          aria-expanded={open}
+          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+          className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.18em] text-black md:hidden"
         >
-          Menu
+          {open ? "Close" : "Menu"}
+          <span className="text-xl leading-none">
+            {open ? "×" : "+"}
+          </span>
         </button>
-
-      </div>
-
-
-      {/* Mobile Navigation */}
+      </nav>
 
       {open && (
+        <div className="border-t border-black/20 px-6 py-8 md:hidden">
+          <div className="flex flex-col gap-7">
+            {links.map((link, index) => {
+              const active = isActive(link.href);
 
-        <div
-          className="
-            flex
-            flex-col
-            gap-6
-            border-t
-            border-[#E5DDD4]
-            px-6
-            py-8
-            text-sm
-            text-[#8B6F5C]
-            md:hidden
-          "
-        >
-
-          <Link
-            href="/"
-            onClick={() => setOpen(false)}
-          >
-            Home
-          </Link>
-
-
-          <Link
-            href="/letters"
-            onClick={() => setOpen(false)}
-          >
-            Letters
-          </Link>
-
-
-          <Link
-            href="/fragments"
-            onClick={() => setOpen(false)}
-          >
-            Fragments
-          </Link>
-
-
-          <Link
-            href="/about"
-            onClick={() => setOpen(false)}
-          >
-            About
-          </Link>
-
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className={`flex items-center gap-5 font-[Impact,Haettenschweiler,'Arial_Narrow_Bold',sans-serif] text-3xl uppercase tracking-tight transition-opacity hover:opacity-50 ${
+                    active ? "text-black" : "text-black/50"
+                  }`}
+                >
+                  <span className="text-[10px] font-bold tracking-widest text-[#765D4B]">
+                    0{index + 1}
+                  </span>
+                  {link.label}
+                </Link>
+              );
+            })}
+          </div>
         </div>
-
       )}
-
-    </nav>
+    </header>
   );
 }

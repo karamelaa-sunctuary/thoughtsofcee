@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 
 import Navbar from "./components/Navbar";
@@ -8,265 +9,246 @@ import Footer from "./components/Footer";
 import Typewriter from "./components/Typewriter";
 import RecentlyAdded from "./components/RecentlyAdded";
 import VideoGallery from "./components/VideoGallery";
-
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#F8F5F0]">
-
+    <main className="min-h-screen bg-[#EAE4DB] text-black">
       <Navbar />
 
-      {/* Hero */}
-      <section className="flex items-center justify-center px-6 py-20">
-        <div className="max-w-3xl text-center">
-
-          <h1 className="fade-in mb-6 font-heading text-7xl text-[#2E2A27]">
-            Thoughts of Cee
-          </h1>
-
-          <p className="mb-8 text-xl text-[#8B6F5C]">
-            <Typewriter text="where feelings become words." />
+      {/* HERO */}
+      <section className="px-6 pb-20 pt-24 sm:pt-32">
+        <div className="mx-auto max-w-7xl">
+          <p className="mb-8 text-xs font-semibold uppercase tracking-[0.3em] text-[#8B6F5C]">
+            A little space for everything we feel
           </p>
 
-          <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-[#6B645E]">
-            Every feeling holds a story.
-            <br />
-            Some take longer to find their words.
-          </p>
+         
+<h1 className="hero-title">
+  THOUGHTS
+  <br />
+  OF CEE
+</h1>
 
-          <Link
-            href="/fragments"
-            className="inline-flex rounded-full bg-[#2E2A27] px-10 py-4 text-sm uppercase tracking-[0.2em] text-[#F8F5F0] transition hover:opacity-90"
-          >
-            Begin Reading
-          </Link>
 
-        </div>
-        </section>
+          <div className="mt-12 flex flex-col gap-8 border-t border-[#E5DDD4] pt-8 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="mb-4 text-lg font-semibold sm:text-2xl">
+                <Typewriter text="where feelings become words." />
+              </p>
+              <p className="max-w-md text-sm leading-7 text-[#6B645E] sm:text-base">
+                Every feeling holds a story.
+                Some take longer to find their words.
+              </p>
+            </div>
 
-      {/* Atmospheric Video */}
-      <section className="px-6 pb-20">
-        <div className="mx-auto max-w-5xl overflow-hidden rounded-sm">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="h-[280px] w-full object-cover sm:h-[420px]"
-          >
-            <source src="/videos/home-rain.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </section>
-
-      <RecentlyAdded />
-      
-      {/* Featured Thought */}
-      <FeaturedThought />
-      {/* Letters Preview */}
-      <VideoGallery />
-      
-      <section className="px-6 py-20">
-
-        <div className="mx-auto max-w-5xl">
-
-          <div className="mb-12 text-center">
-
-            <p className="mb-5 text-xs uppercase tracking-[0.35em] text-[#8B6F5C]">
-              Letters I Never Sent
-            </p>
-
-            <h2 className="mb-6 font-heading text-5xl text-[#2E2A27]">
-              Words that stayed with me.
-            </h2>
-
-            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-[#6B645E]">
-              Some letters are never meant to be delivered.
-              <br />
-              Some are written simply because they needed somewhere to exist.
-            </p>
-
+            <Link
+              href="/fragments"
+              className="inline-flex w-fit border-b-2 border-[#2E2A27] pb-2 text-sm font-bold uppercase tracking-[0.15em] transition hover:border-[#8B6F5C] hover:text-[#8B6F5C]"
+            >
+              Start reading →
+            </Link>
           </div>
-
-
-          <div className="grid gap-6 md:grid-cols-2">
-
-
-            <Link
-              href="/letters/a-letter-i-never-sent"
-              className="
-                rounded-sm
-                border
-                border-[#E8DED2]
-                bg-[#FFFDF8]
-                p-8
-                transition
-                hover:-translate-y-1
-                hover:shadow-lg
-              "
-            >
-              <p className="mb-4 text-xs uppercase tracking-[0.25em] text-[#8B6F5C]">
-                Letter
-              </p>
-
-              <h3 className="mb-3 font-heading text-3xl text-[#2E2A27]">
-                A Letter I Never Sent
-              </h3>
-
-              <p className="leading-relaxed text-[#6B645E]">
-                Some words stay with us because they were never given a place to go.
-              </p>
-
-            </Link>
-
-
-            <Link
-              href="/letters/the-love-i-learned-to-search-for"
-              className="
-                rounded-sm
-                border
-                border-[#E8DED2]
-                bg-[#FFFDF8]
-                p-8
-                transition
-                hover:-translate-y-1
-                hover:shadow-lg
-              "
-            >
-              <p className="mb-4 text-xs uppercase tracking-[0.25em] text-[#8B6F5C]">
-                Letter
-              </p>
-
-              <h3 className="mb-3 font-heading text-3xl text-[#2E2A27]">
-                The Love I Learned to Search For
-              </h3>
-
-              <p className="leading-relaxed text-[#6B645E]">
-                A reflection on growing, surviving, and learning the kind of love we deserve.
-              </p>
-
-            </Link>
-
-
-            <Link
-                href="/letters/accountability"
-              className="
-                rounded-sm
-                border
-                border-[#E8DED2]
-                bg-[#FFFDF8]
-                p-8
-                transition
-                hover:-translate-y-1
-                hover:shadow-lg
-              "
-            >
-              <p className="mb-4 text-xs uppercase tracking-[0.25em] text-[#8B6F5C]">
-                Letter
-              </p>
-
-              <h3 className="mb-3 font-heading text-3xl text-[#2E2A27]">
-                Accountability
-                </h3>
-
-                <p className="leading-relaxed text-[#6B645E]">
-                A reflection on looking inward, growing honestly, and understanding the parts of ourselves that need healing.
-                </p>
-
-            </Link>
-
-
-            <Link
-              href="/letters/never-ever"
-              className="
-                rounded-sm
-                border
-                border-[#E8DED2]
-                bg-[#FFFDF8]
-                p-8
-                transition
-                hover:-translate-y-1
-                hover:shadow-lg
-              "
-            >
-              <p className="mb-4 text-xs uppercase tracking-[0.25em] text-[#8B6F5C]">
-                Letter
-              </p>
-
-              <h3 className="mb-3 font-heading text-3xl text-[#2E2A27]">
-                Never Ever
-              </h3>
-
-              <p className="leading-relaxed text-[#6B645E]">
-                The moment we realize some promises were never ours to hold.
-              </p>
-
-            </Link>
-
-
-          </div>
-
-        </div>
-
-      </section>
-     
-      {/* Begin Anywhere */}
-      <section className="px-6 py-12">
-        <div className="mx-auto max-w-2xl text-center">
-
-          <p className="mb-6 text-xs uppercase tracking-[0.35em] text-[#8B6F5C]">
-            Begin Anywhere
-          </p>
-
-          <h2 className="mb-6 font-heading text-5xl text-[#2E2A27]">
-            Not sure where to begin?
-          </h2>
-
-          <p className="mb-8 text-lg leading-relaxed text-[#6B645E]">
-            Every feeling holds a story.
-            <br />
-            Some take longer to find their words.
-          </p>
-
-          <Link
-            href="/random"
-            className="inline-flex rounded-full border border-[#2E2A27] px-8 py-4 text-sm uppercase tracking-[0.2em] text-[#2E2A27] transition hover:bg-[#2E2A27] hover:text-[#F8F5F0]"
-          >
-            Open a Random Thought
-          </Link>
-
         </div>
       </section>
 
-
-      {/* Letters Section */}
-      <WritingPreview />
-
-
-      {/* About */}
-      <AboutCee />
-
-{/* About Cee Video */}
+      
+{/* HOMEPAGE EDITORIAL IMAGE */}
 <section className="px-6 pb-24">
-  <div className="mx-auto max-w-5xl overflow-hidden rounded-sm">
-    <video
-      autoPlay
-      muted
-      loop
-      playsInline
-      className="h-[300px] w-full object-cover sm:h-[420px] md:h-[520px]"
-    >
-      <source
-        src="/videos/about-cee.mp4"
-        type="video/mp4"
+  <div className="mx-auto max-w-5xl">
+
+    <div className="overflow-hidden">
+      <Image
+        src="/images/cee-editorial.png"
+        alt="A vintage editorial still life of books, handwritten letters and a quiet writing space"
+        width={1180}
+        height={1472}
+        priority
+        className="h-auto w-full object-cover"
       />
-    </video>
+    </div>
+
+    <div className="mt-4 flex items-center justify-between border-t border-black/20 pt-4">
+      <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#765D4B]">
+        Thoughts of Cee
+      </p>
+
+      <p className="text-[10px] uppercase tracking-[0.2em] text-black/60">
+        A space for the unsaid
+      </p>
+    </div>
+
   </div>
 </section>
 
-      {/* Footer */}
-      <Footer />
 
+      {/* RECENT WRITING */}
+      <RecentlyAdded />
+
+      {/* FEATURED THOUGHT */}
+      <FeaturedThought />
+
+      {/* VIDEO GALLERY */}
+      <VideoGallery />
+
+      {/* LETTERS */}
+      <section className="px-6 py-24">
+        <div className="mx-auto max-w-7xl">
+
+          <div className="mb-16 flex flex-col gap-6 border-b border-[#E5DDD4] pb-8 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-[#8B6F5C]">
+                Letters I never sent
+              </p>
+
+              <h2 className="max-w-3xl font-sans text-5xl font-black uppercase leading-[0.95] tracking-[-0.055em] sm:text-7xl">
+                Words that
+                <br />
+                stayed with me.
+              </h2>
+            </div>
+
+            <p className="max-w-sm text-sm leading-7 text-[#6B645E]">
+              Some letters are never meant to be delivered.
+              Some are written simply because they needed
+              somewhere to exist.
+            </p>
+          </div>
+
+          <div className="grid gap-x-12 md:grid-cols-2">
+
+            <Link
+              href="/letters/a-letter-i-never-sent"
+              className="group border-b border-[#E5DDD4] py-9 transition-colors hover:border-[#8B6F5C]"
+            >
+              <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-[#8B6F5C]">
+                01 / Letter
+              </p>
+              <h3 className="mb-4 font-heading text-3xl transition-colors group-hover:text-[#8B6F5C] sm:text-4xl">
+                A Letter I Never Sent
+              </h3>
+              <p className="max-w-md text-sm leading-7 text-[#6B645E]">
+                Some words stay with us because they were never
+                given a place to go.
+              </p>
+              <p className="mt-6 text-xs font-bold uppercase tracking-[0.15em]">
+                Read letter →
+              </p>
+            </Link>
+
+            <Link
+              href="/letters/the-love-i-learned-to-search-for"
+              className="group border-b border-[#E5DDD4] py-9 transition-colors hover:border-[#8B6F5C]"
+            >
+              <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-[#8B6F5C]">
+                02 / Letter
+              </p>
+              <h3 className="mb-4 font-heading text-3xl transition-colors group-hover:text-[#8B6F5C] sm:text-4xl">
+                The Love I Learned to Search For
+              </h3>
+              <p className="max-w-md text-sm leading-7 text-[#6B645E]">
+                A reflection on growing, surviving, and learning
+                the kind of love we deserve.
+              </p>
+              <p className="mt-6 text-xs font-bold uppercase tracking-[0.15em]">
+                Read letter →
+              </p>
+            </Link>
+
+            <Link
+              href="/letters/accountability"
+              className="group border-b border-[#E5DDD4] py-9 transition-colors hover:border-[#8B6F5C]"
+            >
+              <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-[#8B6F5C]">
+                03 / Letter
+              </p>
+              <h3 className="mb-4 font-heading text-3xl transition-colors group-hover:text-[#8B6F5C] sm:text-4xl">
+                Accountability
+              </h3>
+              <p className="max-w-md text-sm leading-7 text-[#6B645E]">
+                Looking inward, growing honestly, and understanding
+                the parts of ourselves that need healing.
+              </p>
+              <p className="mt-6 text-xs font-bold uppercase tracking-[0.15em]">
+                Read letter →
+              </p>
+            </Link>
+
+            <Link
+              href="/letters/never-ever"
+              className="group border-b border-[#E5DDD4] py-9 transition-colors hover:border-[#8B6F5C]"
+            >
+              <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-[#8B6F5C]">
+                04 / Letter
+              </p>
+              <h3 className="mb-4 font-heading text-3xl transition-colors group-hover:text-[#8B6F5C] sm:text-4xl">
+                Never Ever
+              </h3>
+              <p className="max-w-md text-sm leading-7 text-[#6B645E]">
+                The moment we realize some promises were never
+                ours to hold.
+              </p>
+              <p className="mt-6 text-xs font-bold uppercase tracking-[0.15em]">
+                Read letter →
+              </p>
+            </Link>
+
+          </div>
+        </div>
+      </section>
+
+      {/* BEGIN ANYWHERE */}
+      <section className="px-6 py-20">
+        <div className="mx-auto max-w-7xl border-y border-[#E5DDD4] py-14">
+          <p className="mb-6 text-xs font-semibold uppercase tracking-[0.3em] text-[#8B6F5C]">
+            No particular order
+          </p>
+
+          <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 className="max-w-2xl font-sans text-5xl font-black uppercase leading-[0.95] tracking-[-0.055em] sm:text-7xl">
+                Begin
+                <br />
+                anywhere.
+              </h2>
+              <p className="mt-6 max-w-md text-sm leading-7 text-[#6B645E]">
+                You don't have to know what you're looking for.
+                Sometimes a single thought is enough.
+              </p>
+            </div>
+
+            <Link
+              href="/random"
+              className="inline-flex w-fit border-b-2 border-[#2E2A27] pb-2 text-sm font-bold uppercase tracking-[0.15em] transition hover:border-[#8B6F5C] hover:text-[#8B6F5C]"
+            >
+              Find a random thought →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* WRITING PREVIEW */}
+      <WritingPreview />
+
+      {/* ABOUT CEE */}
+      <AboutCee />
+
+      
+{/* ABOUT CEE EDITORIAL IMAGE */}
+<section className="px-6 pb-24">
+  <div className="mx-auto max-w-7xl overflow-hidden">
+    <Image
+      src="/images/cee-about.png"
+      alt="A vintage writing desk with handwritten letters, old books and warm afternoon light"
+      width={1536}
+      height={1024}
+      className="h-auto w-full object-cover"
+    />
+  </div>
+</section>
+
+
+      <Footer />
     </main>
   );
 }
