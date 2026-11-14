@@ -798,9 +798,151 @@ And learning that what happened
 does not get to decide what you believe about yourself.
 
 — Cee
-      `,
-    ],
-  },
+   `,
+  ],
+},
+
+{
+  slug: "the-days-between",
+  type: "letter",
+  title: "The Days Between",
+  category: "Days Between",
+  collection: "days-between",
+  date: "2026-11-15",
+
+  fragment:
+    "Some chapters are not endings or beginnings. They are the quiet spaces where we slowly become someone new.",
+
+  excerpt:
+    "A letter about the uncertain days between letting go of what was and finding the courage to begin again.",
+
+  featured: [
+    "Nobody really prepares you for the days in between.",
+    "You are no longer holding on to what was, but you are not quite ready for what comes next.",
+    "Perhaps not every season is asking us to move forward.",
+    "Maybe the days in between are not empty at all.",
+    "I am learning that I do not have to rush my way into becoming okay.",
+  ],
+
+  pages: [
+    `
+Nobody really prepares you for the days in between.
+
+The days after something changes.
+After a goodbye.
+After a decision you knew you had to make, but still found difficult to accept.
+
+They tell you that endings make room for beginnings.
+That everything happens for a reason.
+That one day, you will understand why things had to happen the way they did.
+
+But nobody really talks about the waiting.
+
+The part where you have already let go of something, but have not yet found anything to hold on to.
+
+You wake up.
+You go about your day.
+You do the things that need to be done.
+
+And somehow, everything feels a little unfamiliar.
+
+Not necessarily bad.
+Just different.
+
+As though life has moved forward, but a part of you is still trying to catch up.
+    `,
+
+    `
+There is something difficult about not knowing what comes next.
+
+You are no longer holding on to what was, but you are not quite ready for what comes next.
+
+You have questions you cannot answer.
+Plans that no longer look the way they once did.
+Expectations you are slowly learning to release.
+
+Sometimes you wonder whether you are making progress at all.
+
+You look around and see people moving, choosing, building, arriving at places they once dreamed of being.
+
+And you wonder if you should be doing more.
+
+If you should already know what you want.
+If you should have figured things out by now.
+If this uncertainty means you are falling behind.
+
+But perhaps not every season is asking us to move forward.
+
+Some seasons ask us to pause.
+To reconsider.
+To understand what we actually want, instead of continuing towards something simply because we once imagined it.
+
+And maybe that is not a waste of time.
+    `,
+
+    `
+I used to think that if something ended, I needed to replace it with something better.
+
+A new plan.
+A new direction.
+A new reason to feel excited about tomorrow.
+
+I wanted the next chapter to arrive quickly, almost as if its arrival would make everything that came before it easier to accept.
+
+But life does not always work that way.
+
+Sometimes there is no immediate answer.
+No sudden realization.
+No moment when everything finally makes sense.
+
+Sometimes you just have to live through the ordinary days.
+
+The quiet mornings.
+The evenings spent thinking.
+The small decisions nobody else notices.
+
+Maybe the days in between are not empty at all.
+
+Maybe they are where we learn what we can live without.
+What we no longer want to repeat.
+What matters when the noise finally settles.
+
+And perhaps we discover that we have been changing all along, even when it feels like nothing is happening.
+    `,
+
+    `
+I am learning that I do not have to rush my way into becoming okay.
+
+I do not have to turn every ending into a lesson immediately.
+I do not have to pretend that uncertainty feels comfortable.
+And I do not have to know exactly where I am going to believe that I am still moving.
+
+There is room to miss what was.
+There is room to feel hopeful about what might be.
+There is even room to have days when I feel neither.
+
+Maybe this season does not need a name yet.
+
+Maybe I can let it be what it is without asking it to become something else.
+
+Because one day, I might look back and realize that these were not the days when I was standing still.
+
+They were the days when I was quietly finding my way.
+
+And if I am still somewhere in between, perhaps that is alright too.
+
+I am not where I used to be.
+I am not yet where I hope to be.
+
+But I am here.
+
+And for now, that is enough.
+
+— Cee
+    `,
+  ],
+},
+
 
 
   // =========================
