@@ -33,13 +33,16 @@ export default function Navbar() {
           className="flex flex-col"
           aria-label="Thoughts of Cee home"
         >
-          <span className="font-[Impact,Haettenschweiler,'Arial_Narrow_Bold',sans-serif] text-3xl uppercase leading-[0.9] tracking-tight text-black sm:text-4xl">
-            Thoughts of Cee.
-          </span>
+         
+<span
+  aria-label="Thoughts of Cee"
+  className="flex items-center gap-2.5"
+>
+  <span className="h-3 w-3 rounded-full bg-black" />
+  <span className="h-3 w-3 rounded-full bg-black" />
+  <span className="h-3 w-3 rounded-full bg-black" />
+</span>
 
-          <span className="mt-2 text-[9px] font-bold uppercase tracking-[0.2em] text-[#765D4B]">
-            Where feelings become words
-          </span>
         </Link>
 
         <div className="hidden items-center gap-10 md:flex">
@@ -52,9 +55,7 @@ export default function Navbar() {
                 href={link.href}
                 aria-current={active ? "page" : undefined}
                 className={`relative py-2 text-[10px] font-bold uppercase tracking-[0.18em] transition-opacity hover:opacity-50 ${
-                  active
-                    ? "text-black"
-                    : "text-black/60"
+                  active ? "text-black" : "text-black/60"
                 }`}
               >
                 {link.label}

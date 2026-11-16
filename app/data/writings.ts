@@ -943,6 +943,96 @@ And for now, that is enough.
   ],
 },
 
+{
+  slug: "learning-to-begin-again",
+  type: "letter",
+  title: "Learning to Begin Again",
+  category: "Days Between",
+  collection: "days-between",
+  date: "2026-11-16",
+
+  fragment:
+    "Sometimes beginning again is not about making a fresh start. It is about learning to live with everything that came before.",
+
+  excerpt:
+    "A letter about accepting what did not happen, making peace with the past, and allowing ourselves to discover what comes next.",
+
+  featured: [
+    "Sometimes, it's simply learning how to live with everything that came before.",
+    "We can miss what was, without having to return to it.",
+    "Even the smallest decisions can feel like a beginning.",
+    "We don't have to figure everything out at once.",
+    "Maybe beginning again doesn't mean becoming someone entirely new.",
+    "And allowing life to surprise us again.",
+  ],
+
+  pages: [
+    `
+Learning to begin again isn't always about making a fresh start.
+
+Sometimes, it's simply learning how to live with everything that came before.
+
+It's accepting that some things didn't turn out the way we imagined.
+
+That some people left, some plans changed, and some versions of ourselves had to be let go.
+
+And perhaps the hardest part is realising that we cannot keep waiting for the past to become something different.
+
+We can miss what was, without having to return to it.
+    `,
+
+    `
+There will be days when moving forward feels unfamiliar.
+
+When even the smallest decisions feel like a beginning.
+
+And that's alright.
+
+We don't have to figure everything out at once.
+
+We can take our time.
+
+Find new routines.
+
+Discover different places.
+
+Make room for things we haven't experienced yet.
+    `,
+
+    `
+Perhaps beginning again is not as simple as deciding to move forward.
+
+Sometimes it takes a while to feel comfortable with a life that no longer looks the way we once imagined.
+
+There may be things we still miss.
+
+Things we still question.
+
+And moments when we wonder whether we are truly ready for what comes next.
+
+But perhaps readiness doesn't always arrive before we begin.
+
+Perhaps we find it along the way.
+    `,
+
+    `
+Maybe beginning again doesn't mean becoming someone entirely new.
+
+Maybe it means meeting ourselves where we are, with a little more understanding than we had before.
+
+Not erasing what happened.
+
+Not pretending everything was easy.
+
+Just allowing ourselves to believe that there is still more to experience, more to discover, and more life ahead of us.
+
+And allowing life to surprise us again.
+
+— Cee
+    `,
+  ],
+},
+
 
 
   // =========================

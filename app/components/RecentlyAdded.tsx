@@ -4,7 +4,7 @@ import { writings } from "../data/writings";
 
 export default function RecentlyAdded() {
   const recent = [...writings]
-    .filter((item) => item.type === "fragment" && item.date)
+    .filter((item) => item.date)
     .sort(
       (a, b) =>
         new Date(b.date!).getTime() - new Date(a.date!).getTime()
@@ -55,10 +55,14 @@ export default function RecentlyAdded() {
               </span>
 
               <Link
-                href={`/letters/${writing.linkedLetter}`}
+                href={
+                  writing.type === "fragment"
+                    ? `/fragments/${writing.slug}`
+                    : `/letters/${writing.slug}`
+                }
                 className="text-[10px] font-bold uppercase tracking-[0.16em] text-black underline decoration-[#765D4B] underline-offset-4 transition-opacity hover:opacity-50"
               >
-                Read Letter →
+                Read {writing.type === "fragment" ? "Fragment" : "Letter"} →
               </Link>
             </div>
           </article>
