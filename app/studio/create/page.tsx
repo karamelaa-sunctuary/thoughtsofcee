@@ -75,7 +75,19 @@ export default function StudioCreatePage() {
     setSaved(false);
   }
 
-  function onResizeDown(event: React.PointerEvent<SVGCircleElement>, item: DesignElement) {\n    event.stopPropagation();\n    const svg = svgRef.current;\n    const matrix = svg?.getScreenCTM();\n    if (!svg || !matrix) return;\n    const point = svg.createSVGPoint(); point.x = event.clientX; point.y = event.clientY;\n    const local = point.matrixTransform(matrix.inverse());\n    resizeRef.current = { id: item.id, startX: local.x, startY: local.y, width: item.width, height: item.height };\n    setSelectedId(item.id);\n    event.currentTarget.setPointerCapture(event.pointerId);\n  }\n\n  function onPointerDown(event: React.PointerEvent<SVGElement>, item: DesignElement) {
+  function onResizeDown(event: React.PointerEvent<SVGCircleElement>, item: DesignElement) {
+    event.stopPropagation();
+    const svg = svgRef.current;
+    const matrix = svg?.getScreenCTM();
+    if (!svg || !matrix) return;
+    const point = svg.createSVGPoint(); point.x = event.clientX; point.y = event.clientY;
+    const local = point.matrixTransform(matrix.inverse());
+    resizeRef.current = { id: item.id, startX: local.x, startY: local.y, width: item.width, height: item.height };
+    setSelectedId(item.id);
+    event.currentTarget.setPointerCapture(event.pointerId);
+  }
+
+  function onPointerDown(event: React.PointerEvent<SVGElement>, item: DesignElement) {
     event.stopPropagation();
     const svg = svgRef.current;
     if (!svg) return;
@@ -91,7 +103,16 @@ export default function StudioCreatePage() {
   }
 
   function onPointerMove(event: React.PointerEvent<SVGSVGElement>) {
-    if (!svgRef.current) return;\n    if (resizeRef.current) {\n      const point = svgRef.current.createSVGPoint(); point.x = event.clientX; point.y = event.clientY;\n      const matrix = svgRef.current.getScreenCTM(); if (!matrix) return;\n      const local = point.matrixTransform(matrix.inverse());\n      const state = resizeRef.current;\n      setElements((current) => current.map((item) => item.id === state.id ? { ...item, width: Math.max(80, state.width + local.x - state.startX), height: Math.max(80, state.height + local.y - state.startY) } : item));\n      setSaved(false); return;\n    }\n    if (!dragRef.current) return;
+    if (!svgRef.current) return;
+    if (resizeRef.current) {
+      const point = svgRef.current.createSVGPoint(); point.x = event.clientX; point.y = event.clientY;
+      const matrix = svgRef.current.getScreenCTM(); if (!matrix) return;
+      const local = point.matrixTransform(matrix.inverse());
+      const state = resizeRef.current;
+      setElements((current) => current.map((item) => item.id === state.id ? { ...item, width: Math.max(80, state.width + local.x - state.startX), height: Math.max(80, state.height + local.y - state.startY) } : item));
+      setSaved(false); return;
+    }
+    if (!dragRef.current) return;
     const point = svgRef.current.createSVGPoint();
     point.x = event.clientX;
     point.y = event.clientY;
@@ -225,12 +246,20 @@ export default function StudioCreatePage() {
               {selected.type === "text" && <>
                 <label className="mb-2 block text-xs font-bold" htmlFor="element-text">Text</label>
                 <textarea id="element-text" value={selected.text ?? ""} onChange={(event) => updateSelected({ text: event.target.value })} rows={4} className="mb-4 w-full border border-[#CFC4B7] bg-[#F5F0E9] p-3 text-sm outline-none focus:border-black" />
-                <label className="mb-2 block text-xs font-bold" htmlFor="font-family">Font family</label>\n                <select id="font-family" value={selected.fontFamily ?? "Impact"} onChange={(event) => updateSelected({ fontFamily: event.target.value })} className="mb-4 w-full border border-[#CFC4B7] bg-[#F5F0E9] px-3 py-2 text-sm">{FONT_OPTIONS.map((font) => <option key={font} value={font}>{font}</option>)}</select>\n                <label className="mb-2 block text-xs font-bold" htmlFor="font-size">Font size · {selected.fontSize}</label>
+                <label className="mb-2 block text-xs font-bold" htmlFor="font-family">Font family</label>
+                <select id="font-family" value={selected.fontFamily ?? "Impact"} onChange={(event) => updateSelected({ fontFamily: event.target.value })} className="mb-4 w-full border border-[#CFC4B7] bg-[#F5F0E9] px-3 py-2 text-sm">{FONT_OPTIONS.map((font) => <option key={font} value={font}>{font}</option>)}</select>
+                <label className="mb-2 block text-xs font-bold" htmlFor="font-size">Font size · {selected.fontSize}</label>
                 <input id="font-size" type="range" min="24" max="180" value={selected.fontSize ?? 82} onChange={(event) => updateSelected({ fontSize: Number(event.target.value) })} className="mb-4 w-full" />
                 <label className="mb-2 block text-xs font-bold" htmlFor="text-colour">Text colour</label>
                 <input id="text-colour" type="color" value={selected.fill ?? "#000000"} onChange={(event) => updateSelected({ fill: event.target.value })} className="mb-4 h-9 w-full" />
               </>}
-              {selected.type === "image" && <>\n                <label className="mb-2 block text-xs font-bold" htmlFor="image-width">Image width · {Math.round(selected.width)} px</label>\n                <input id="image-width" type="range" min="80" max="1080" value={Math.min(1080, selected.width)} onChange={(event) => updateSelected({ width: Number(event.target.value) })} className="mb-4 w-full" />\n                <label className="mb-2 block text-xs font-bold" htmlFor="image-height">Image height · {Math.round(selected.height)} px</label>\n                <input id="image-height" type="range" min="80" max="1350" value={Math.min(1350, selected.height)} onChange={(event) => updateSelected({ height: Number(event.target.value) })} className="mb-4 w-full" />\n              </>}\n              <label className="mb-2 block text-xs font-bold" htmlFor="position-x">Position X</label>
+              {selected.type === "image" && <>
+                <label className="mb-2 block text-xs font-bold" htmlFor="image-width">Image width · {Math.round(selected.width)} px</label>
+                <input id="image-width" type="range" min="80" max="1080" value={Math.min(1080, selected.width)} onChange={(event) => updateSelected({ width: Number(event.target.value) })} className="mb-4 w-full" />
+                <label className="mb-2 block text-xs font-bold" htmlFor="image-height">Image height · {Math.round(selected.height)} px</label>
+                <input id="image-height" type="range" min="80" max="1350" value={Math.min(1350, selected.height)} onChange={(event) => updateSelected({ height: Number(event.target.value) })} className="mb-4 w-full" />
+              </>}
+              <label className="mb-2 block text-xs font-bold" htmlFor="position-x">Position X</label>
               <input id="position-x" type="number" value={Math.round(selected.x)} onChange={(event) => updateSelected({ x: Number(event.target.value) })} className="mb-3 w-full border border-[#CFC4B7] bg-[#F5F0E9] px-3 py-2 text-sm" />
               <label className="mb-2 block text-xs font-bold" htmlFor="position-y">Position Y</label>
               <input id="position-y" type="number" value={Math.round(selected.y)} onChange={(event) => updateSelected({ y: Number(event.target.value) })} className="mb-4 w-full border border-[#CFC4B7] bg-[#F5F0E9] px-3 py-2 text-sm" />
