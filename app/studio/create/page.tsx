@@ -34,7 +34,7 @@ export default function StudioCreatePage() {
   const dragRef = useRef<{ id: string; dx: number; dy: number } | null>(null);
   const resizeRef = useRef<{ id: string; startX: number; startY: number; width: number; height: number } | null>(null);
   const undoStack = useRef<DesignElement[][]>([]);
-  const redoStack = useRef<DesignElement[][]>([]);
+  const redoStack = useRef<DesignElement[][]>([]);\n  const [guides, setGuides] = useState<{ x?: number; y?: number }>({});
   function rememberChange() {
     undoStack.current.push(elements.map((item) => ({ ...item })));
     if (undoStack.current.length > 50) undoStack.current.shift();
@@ -118,7 +118,7 @@ export default function StudioCreatePage() {
     const matrix = svg.getScreenCTM();
     if (!matrix) return;
     const local = point.matrixTransform(matrix.inverse());
-    dragRef.current = { id: item.id, dx: local.x - item.x, dy: local.y - item.y };
+    rememberChange();\n    dragRef.current = { id: item.id, dx: local.x - item.x, dy: local.y - item.y };
     setSelectedId(item.id);
     (event.currentTarget as SVGElement).setPointerCapture(event.pointerId);
   }
@@ -244,9 +244,9 @@ export default function StudioCreatePage() {
             <span>Instagram portrait · 1080 × 1350</span><span>Drag elements to arrange</span>
           </div>
           <div className="w-full max-w-[760px] border border-[#B9AA9A] bg-[#F5F0E9] p-2 shadow-[0_12px_40px_rgba(46,36,27,0.10)]">
-            <svg ref={svgRef} viewBox={`0 0 ${WIDTH} ${HEIGHT}`} onPointerMove={onPointerMove} onPointerUp={() => { dragRef.current = null; resizeRef.current = null; }} onPointerLeave={() => { dragRef.current = null; resizeRef.current = null; }} onClick={() => setSelectedId(null)} className="block h-auto w-full touch-none" style={{ background }}>
+            <svg ref={svgRef} viewBox={`0 0 ${WIDTH} ${HEIGHT}`} onPointerMove={onPointerMove} onPointerUp={() => { dragRef.current = null; resizeRef.current = null; setGuides({}); }} onPointerLeave={() => { dragRef.current = null; resizeRef.current = null; setGuides({}); }} onClick={() => setSelectedId(null)} className="block h-auto w-full touch-none" style={{ background }}>
               <rect width={WIDTH} height={HEIGHT} fill={background} />
-              {elements.map((item) => <g key={item.id} onPointerDown={(event) => onPointerDown(event, item)} onClick={(event) => { event.stopPropagation(); setSelectedId(item.id); }} className="cursor-move">
+              {guides.x !== undefined && <line data-editor-ui="true" x1={guides.x} x2={guides.x} y1="0" y2={HEIGHT} stroke="#C04435" strokeWidth="2" strokeDasharray="12 8" pointerEvents="none" />}\n              {guides.y !== undefined && <line data-editor-ui="true" x1="0" x2={WIDTH} y1={guides.y} y2={guides.y} stroke="#C04435" strokeWidth="2" strokeDasharray="12 8" pointerEvents="none" />}\n              {elements.map((item) => <g key={item.id} onPointerDown={(event) => onPointerDown(event, item)} onClick={(event) => { event.stopPropagation(); setSelectedId(item.id); }} className="cursor-move">
                 {item.type === "text" ? <text x={item.x} y={item.y} fontFamily={item.fontFamily ?? "Impact"} fontSize={item.fontSize ?? 82} fill={item.fill ?? "#000000"}>{item.text}</text> : <image href={item.src} x={item.x} y={item.y} width={item.width} height={item.height} preserveAspectRatio="xMidYMid meet" />}
                 {selectedId === item.id && <rect data-editor-ui="true" x={item.x - 8} y={item.y - (item.type === "text" ? (item.fontSize ?? 82) : 8)} width={item.width + 16} height={item.type === "text" ? (item.fontSize ?? 82) + 24 : item.height + 16} fill="none" stroke="#765D4B" strokeWidth="3" strokeDasharray="10 8" pointerEvents="none" />}
                 {selectedId === item.id && item.type === "image" && <circle data-editor-ui="true" cx={item.x + item.width} cy={item.y + item.height} r="24" fill="#000000" stroke="#F5F0E9" strokeWidth="5" className="cursor-nwse-resize" onPointerDown={(event) => onResizeDown(event, item)} />}
@@ -285,6 +285,12 @@ export default function StudioCreatePage() {
               <input id="position-x" type="number" value={Math.round(selected.x)} onChange={(event) => updateSelected({ x: Number(event.target.value) })} className="mb-3 w-full border border-[#CFC4B7] bg-[#F5F0E9] px-3 py-2 text-sm" />
               <label className="mb-2 block text-xs font-bold" htmlFor="position-y">Position Y</label>
               <input id="position-y" type="number" value={Math.round(selected.y)} onChange={(event) => updateSelected({ y: Number(event.target.value) })} className="mb-4 w-full border border-[#CFC4B7] bg-[#F5F0E9] px-3 py-2 text-sm" />
+              <div className="mb-4 grid grid-cols-3 gap-1">
+                {[
+                  ["Left", () => updateSelected({ x: 0 })], ["Center", () => updateSelected({ x: (WIDTH - selected.width) / 2 })], ["Right", () => updateSelected({ x: WIDTH - selected.width })],
+                  ["Top", () => updateSelected({ y: 0 })], ["Middle", () => updateSelected({ y: (HEIGHT - selected.height) / 2 })], ["Bottom", () => updateSelected({ y: HEIGHT - selected.height })],
+                ].map(([label, action]) => <button key={String(label)} onClick={action as () => void} className="border border-[#CFC4B7] bg-[#F5F0E9] px-2 py-2 text-[10px]">{String(label)}</button>)}
+              </div>
               <button onClick={deleteSelected} className="w-full border border-[#9C6558] px-3 py-3 text-xs font-bold uppercase tracking-wider text-[#8B3327]">Delete element</button>
             </div>
           </> : <p className="text-xs leading-6 text-[#765D4B]">Select a text or image layer on the canvas to adjust its settings.</p>}
