@@ -12,6 +12,7 @@ type DesignElement = {
   height: number;
   text?: string;
   fontSize?: number;
+  fontFamily?: string;
   fill?: string;
   src?: string;
 };
@@ -19,6 +20,7 @@ type DesignElement = {
 const WIDTH = 1080;
 const HEIGHT = 1350;
 const STORAGE_KEY = "toc-studio-draft-v1";
+const FONT_OPTIONS = ["Impact", "Arial", "Helvetica", "Georgia", "Times New Roman", "Trebuchet MS", "Verdana", "Courier New", "Palatino Linotype", "Comic Sans MS"];
 
 export default function StudioCreatePage() {
   const [elements, setElements] = useState<DesignElement[]>([]);
@@ -30,6 +32,7 @@ export default function StudioCreatePage() {
   const svgRef = useRef<SVGSVGElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const dragRef = useRef<{ id: string; dx: number; dy: number } | null>(null);
+  const resizeRef = useRef<{ id: string; startX: number; startY: number; width: number; height: number } | null>(null);
 
   useEffect(() => {
     try {
@@ -58,6 +61,7 @@ export default function StudioCreatePage() {
       height: 160,
       text: "Your words here.",
       fontSize: 82,
+      fontFamily: "Impact",
       fill: "#000000",
     };
     setElements((current) => [...current, item]);
@@ -71,7 +75,7 @@ export default function StudioCreatePage() {
     setSaved(false);
   }
 
-  function onPointerDown(event: React.PointerEvent<SVGElement>, item: DesignElement) {
+  function onResizeDown(event: React.PointerEvent<SVGCircleElement>, item: DesignElement) {\n    event.stopPropagation();\n    const svg = svgRef.current;\n    const matrix = svg?.getScreenCTM();\n    if (!svg || !matrix) return;\n    const point = svg.createSVGPoint(); point.x = event.clientX; point.y = event.clientY;\n    const local = point.matrixTransform(matrix.inverse());\n    resizeRef.current = { id: item.id, startX: local.x, startY: local.y, width: item.width, height: item.height };\n    setSelectedId(item.id);\n    event.currentTarget.setPointerCapture(event.pointerId);\n  }\n\n  function onPointerDown(event: React.PointerEvent<SVGElement>, item: DesignElement) {
     event.stopPropagation();
     const svg = svgRef.current;
     if (!svg) return;
@@ -87,7 +91,7 @@ export default function StudioCreatePage() {
   }
 
   function onPointerMove(event: React.PointerEvent<SVGSVGElement>) {
-    if (!dragRef.current || !svgRef.current) return;
+    if (!svgRef.current) return;\n    if (resizeRef.current) {\n      const point = svgRef.current.createSVGPoint(); point.x = event.clientX; point.y = event.clientY;\n      const matrix = svgRef.current.getScreenCTM(); if (!matrix) return;\n      const local = point.matrixTransform(matrix.inverse());\n      const state = resizeRef.current;\n      setElements((current) => current.map((item) => item.id === state.id ? { ...item, width: Math.max(80, state.width + local.x - state.startX), height: Math.max(80, state.height + local.y - state.startY) } : item));\n      setSaved(false); return;\n    }\n    if (!dragRef.current) return;
     const point = svgRef.current.createSVGPoint();
     point.x = event.clientX;
     point.y = event.clientY;
@@ -198,10 +202,10 @@ export default function StudioCreatePage() {
             <span>Instagram portrait · 1080 × 1350</span><span>Drag elements to arrange</span>
           </div>
           <div className="w-full max-w-[760px] border border-[#B9AA9A] bg-[#F5F0E9] p-2 shadow-[0_12px_40px_rgba(46,36,27,0.10)]">
-            <svg ref={svgRef} viewBox={`0 0 ${WIDTH} ${HEIGHT}`} onPointerMove={onPointerMove} onPointerUp={() => { dragRef.current = null; }} onPointerLeave={() => { dragRef.current = null; }} onClick={() => setSelectedId(null)} className="block h-auto w-full touch-none" style={{ background }}>
+            <svg ref={svgRef} viewBox={`0 0 ${WIDTH} ${HEIGHT}`} onPointerMove={onPointerMove} onPointerUp={() => { dragRef.current = null; resizeRef.current = null; }} onPointerLeave={() => { dragRef.current = null; resizeRef.current = null; }} onClick={() => setSelectedId(null)} className="block h-auto w-full touch-none" style={{ background }}>
               <rect width={WIDTH} height={HEIGHT} fill={background} />
               {elements.map((item) => <g key={item.id} onPointerDown={(event) => onPointerDown(event, item)} onClick={(event) => { event.stopPropagation(); setSelectedId(item.id); }} className="cursor-move">
-                {item.type === "text" ? <text x={item.x} y={item.y} fontFamily="Impact, Haettenschweiler, Arial Narrow, sans-serif" fontSize={item.fontSize ?? 82} fill={item.fill ?? "#000000"}>{item.text}</text> : <image href={item.src} x={item.x} y={item.y} width={item.width} height={item.height} preserveAspectRatio="xMidYMid meet" />}
+                {item.type === "text" ? <text x={item.x} y={item.y} fontFamily={item.fontFamily ?? "Impact"} fontSize={item.fontSize ?? 82} fill={item.fill ?? "#000000"}>{item.text}</text> : <image href={item.src} x={item.x} y={item.y} width={item.width} height={item.height} preserveAspectRatio="xMidYMid meet" />}
                 {selectedId === item.id && <rect data-editor-ui="true" x={item.x - 8} y={item.y - (item.type === "text" ? (item.fontSize ?? 82) : 8)} width={item.width + 16} height={item.type === "text" ? (item.fontSize ?? 82) + 24 : item.height + 16} fill="none" stroke="#765D4B" strokeWidth="3" strokeDasharray="10 8" pointerEvents="none" />}
               </g>)}
               {elements.length === 0 && <g pointerEvents="none"><text x="540" y="630" textAnchor="middle" fontFamily="Arial, sans-serif" fontSize="34" letterSpacing="8" fill="#8A7A6B">YOUR CANVAS</text><text x="540" y="685" textAnchor="middle" fontFamily="Arial, sans-serif" fontSize="22" fill="#8A7A6B">Add text or upload an image to begin</text></g>}
@@ -221,12 +225,12 @@ export default function StudioCreatePage() {
               {selected.type === "text" && <>
                 <label className="mb-2 block text-xs font-bold" htmlFor="element-text">Text</label>
                 <textarea id="element-text" value={selected.text ?? ""} onChange={(event) => updateSelected({ text: event.target.value })} rows={4} className="mb-4 w-full border border-[#CFC4B7] bg-[#F5F0E9] p-3 text-sm outline-none focus:border-black" />
-                <label className="mb-2 block text-xs font-bold" htmlFor="font-size">Font size · {selected.fontSize}</label>
+                <label className="mb-2 block text-xs font-bold" htmlFor="font-family">Font family</label>\n                <select id="font-family" value={selected.fontFamily ?? "Impact"} onChange={(event) => updateSelected({ fontFamily: event.target.value })} className="mb-4 w-full border border-[#CFC4B7] bg-[#F5F0E9] px-3 py-2 text-sm">{FONT_OPTIONS.map((font) => <option key={font} value={font}>{font}</option>)}</select>\n                <label className="mb-2 block text-xs font-bold" htmlFor="font-size">Font size · {selected.fontSize}</label>
                 <input id="font-size" type="range" min="24" max="180" value={selected.fontSize ?? 82} onChange={(event) => updateSelected({ fontSize: Number(event.target.value) })} className="mb-4 w-full" />
                 <label className="mb-2 block text-xs font-bold" htmlFor="text-colour">Text colour</label>
                 <input id="text-colour" type="color" value={selected.fill ?? "#000000"} onChange={(event) => updateSelected({ fill: event.target.value })} className="mb-4 h-9 w-full" />
               </>}
-              <label className="mb-2 block text-xs font-bold" htmlFor="position-x">Position X</label>
+              {selected.type === "image" && <>\n                <label className="mb-2 block text-xs font-bold" htmlFor="image-width">Image width · {Math.round(selected.width)} px</label>\n                <input id="image-width" type="range" min="80" max="1080" value={Math.min(1080, selected.width)} onChange={(event) => updateSelected({ width: Number(event.target.value) })} className="mb-4 w-full" />\n                <label className="mb-2 block text-xs font-bold" htmlFor="image-height">Image height · {Math.round(selected.height)} px</label>\n                <input id="image-height" type="range" min="80" max="1350" value={Math.min(1350, selected.height)} onChange={(event) => updateSelected({ height: Number(event.target.value) })} className="mb-4 w-full" />\n              </>}\n              <label className="mb-2 block text-xs font-bold" htmlFor="position-x">Position X</label>
               <input id="position-x" type="number" value={Math.round(selected.x)} onChange={(event) => updateSelected({ x: Number(event.target.value) })} className="mb-3 w-full border border-[#CFC4B7] bg-[#F5F0E9] px-3 py-2 text-sm" />
               <label className="mb-2 block text-xs font-bold" htmlFor="position-y">Position Y</label>
               <input id="position-y" type="number" value={Math.round(selected.y)} onChange={(event) => updateSelected({ y: Number(event.target.value) })} className="mb-4 w-full border border-[#CFC4B7] bg-[#F5F0E9] px-3 py-2 text-sm" />
