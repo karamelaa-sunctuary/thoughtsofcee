@@ -20,6 +20,8 @@ async function endStudioSession() {
   "use server";
   const cookieStore = await cookies();
   cookieStore.delete("toc_studio_session");
+  cookieStore.delete("toc_supabase_access");
+  cookieStore.delete("toc_supabase_refresh");
   redirect("/studio/access");
 }
 
