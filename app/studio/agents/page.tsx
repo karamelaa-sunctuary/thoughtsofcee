@@ -2,7 +2,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, BrainCircuit, BookOpen, HeartHandshake, Clapperboard, Compass, FileText, Globe, Image as ImageIcon, PenLine, Palette, Share2, Sparkles, ChartNoAxesCombined, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, BrainCircuit, BookOpen, HeartHandshake, Clapperboard, Compass, FileText, Globe, Image as ImageIcon, PenLine, Palette, Share2, Sparkles, ChartNoAxesCombined, ShieldCheck, Scale } from "lucide-react";
 
 function safeMatch(a: string, b: string) {
   const left = Buffer.from(a); const right = Buffer.from(b);
@@ -18,6 +18,7 @@ const agents = [
   { icon: Globe, name: "Website Manager Agent", role: "Website and publishing", description: "Plans website updates, checks content readiness, prepares publishing tasks and flags changes that need review.", status: "Existing agent", href: "/studio/agents/website-manager", action: "Open workspace" },
   { icon: Share2, name: "Content Distribution Agent", role: "Social and distribution", description: "Turns approved content into channel-specific versions and prepares a distribution schedule across social platforms.", status: "Existing agent", href: "/studio/agents/content-distribution", action: "Open workspace" },
   { icon: ChartNoAxesCombined, name: "Business Intelligence Agent", role: "Performance and business insight", description: "Looks at goals, performance, audience signals, costs and opportunities; highlights trends, assumptions and commercial risks.", status: "Existing agent", href: "/studio/agents/business-intelligence", action: "Open workspace" },
+  { icon: Scale, name: "Legal & Regulatory Agent", role: "App development legal risk and compliance", description: "Flags legal and regulatory issues across product design, privacy, AI, intellectual property, consumer terms, marketing, security and launch readiness. Prepares questions and issue lists for qualified counsel.", status: "Legal risk advisor", href: "/studio/agents/legal-regulatory", action: "Open workspace" },
   { icon: BookOpen, name: "Thoughts of Cee Memory Agent", role: "Shared knowledge and continuity", description: "Keeps approved brand guidance, project context, decisions and reusable knowledge available to the team, with clear boundaries around what is remembered.", status: "Existing agent", href: "/studio/agents/memory", action: "Open workspace" },
 ];;
 
