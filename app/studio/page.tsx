@@ -134,7 +134,7 @@ export default async function CreativeStudioPage() {
                   </div>
                   <h3 className="text-sm font-bold">{format.name}</h3>
                   <p className="mt-1 text-[10px] uppercase tracking-[0.12em] text-[#8A7A6B]">{format.size} · {format.ratio}</p>
-                </div>)}
+                </a>)}
               </div>
             </section>
 
