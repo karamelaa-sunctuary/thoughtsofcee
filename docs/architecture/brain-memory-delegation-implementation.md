@@ -1,6 +1,6 @@
 # Brain, Shared Memory & Delegation — Implementation Blueprint
 
-**Status:** Architecture approved for implementation planning; database changes and live model execution remain gated  
+**Status:** Architecture approved; private-schema database foundation deployed to Supabase Preview; Supabase Auth application integration and live model execution remain in progress/gated  
 **Scope:** Preview branch only  
 **Owner:** Founder  
 **Principle:** The Brain coordinates; specialists contribute; the Review Board challenges; the founder decides.
@@ -14,7 +14,7 @@
 - Agent instructions and notes currently use browser `localStorage`.
 - The repository does not currently declare `@supabase/supabase-js` or `@supabase/ssr`.
 - The Supabase project already has 11 public tables with RLS enabled. Their existing ownership model references `auth.users` through `user_id`; the Studio's custom HMAC cookie is not a Supabase Auth identity.
-- No database schema changes, secrets, model connections, paid services, or production changes are included in this blueprint.
+- No secrets, model connections, paid services, or production changes are included in this blueprint.
 
 These facts mean that adding cloud persistence safely requires an explicit identity bridge. A browser-only key, a public write policy, or an exposed service-role/secret key is not an acceptable shortcut.
 
@@ -119,14 +119,19 @@ Use idempotency keys for task creation and transitions. Enforce maximum payload 
 
 ## 7. Rollout sequence
 
-### Phase 0 — Foundation and security (next)
-- Decide the verified founder identity bridge between the Studio gate and Supabase Auth.
-- Confirm required Vercel Preview environment variables without exposing their values.
-- Review existing Auth configuration and current RLS policies.
-- Produce a reviewed migration proposal; no hosted DDL until the founder explicitly approves it.
+### Phase 0 — Foundation and security (partially complete)
+- Confirmed one existing Supabase Auth user is present and has a confirmed email/password credential; no email address or credential material is included in this document.
+- Deployed the private `private` schema and nine founder-scoped tables: `department_instructions`, `department_memory`, `agent_profiles`, `agent_tasks`, `agent_runs`, `agent_messages`, `review_decisions`, `founder_decisions`, and `department_events`.
+- Enabled RLS on all nine tables. Added ownership constraints to prevent child records from referencing another founder's tasks/runs/agents. Made messages, reviews, founder decisions and department events append-only for authenticated users.
+- Added indexes for ownership and foreign-key paths.
+- Recorded the three deployed migrations in `supabase/migrations/` on the Preview branch.
+- Verified 9/9 tables have RLS enabled and all 9 cross-record ownership constraints exist. Supabase health advisor returned no findings. Security advisor still reports the pre-existing leaked-password protection warning. Performance advisor now reports unused indexes because the new tables are empty; it no longer reports missing foreign-key indexes.
+- Next: implement Supabase SSR cookie auth and server-side authorization in the Next.js 16 app, then add tightly scoped public RPC functions for the private tables. Do not expose the `private` schema through PostgREST.
+- Confirm required Vercel Preview environment variables without exposing their values. Do not configure or reveal secrets in chat.
 
-### Phase 1 — Shared memory
-- Add private persistence and typed server-only data access.
+### Phase 1 — Shared memory (database foundation deployed; application layer next)
+- Add cookie-based Supabase SSR auth and verified founder identity checks.
+- Add narrowly scoped authenticated RPC functions for private persistence and typed server-only data access; keep `private` out of the exposed API schemas.
 - Build read/write/approve/version APIs.
 - Replace localStorage as the source of truth while retaining an export/import path for existing browser notes.
 - Test cross-session persistence, authorization failures, ownership isolation, and version history.
@@ -173,9 +178,4 @@ The current Studio uses a custom HMAC session cookie, while the existing Supabas
 
 **Recommended path:** integrate a verified Supabase Auth founder identity on Preview, retain the Studio access gate as an additional layer during migration, then apply private-schema memory/task persistence with least-privilege policies. This avoids a broad service-role bypass and aligns with the existing ownership model.
 
-Before the database phase, the founder must approve:
-1. the Supabase Auth identity bridge;
-2. the proposed private-schema tables and RLS/security model;
-3. the exact Preview environment configuration required.
-
-No database change has been made by this blueprint.
+Founder approval for the Supabase Auth identity bridge and private-schema database foundation was given in chat on 22 Nov 2026. The first three migrations are now deployed to the Supabase project associated with Preview. The remaining operational prerequisite is configuring the Preview environment with the project URL and publishable key, and completing the auth UI/SSR integration. No service-role key is required in the browser. No production changes have been made.
