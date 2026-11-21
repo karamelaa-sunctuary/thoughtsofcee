@@ -17,7 +17,7 @@ export default async function BrainPage() {
   const store = await cookies();
   const token = store.get("toc_studio_session")?.value ?? "";
   if (!safeMatch(token, expected)) redirect("/studio/access");
-  const configured = Boolean(process.env.OPENAI_API_KEY);
+  const configured = false;
 
   return <main className="min-h-screen bg-[#EAE4DB] text-black">
     <header className="flex items-center justify-between border-b border-[#CFC4B7] px-5 py-5 sm:px-9">
