@@ -70,7 +70,8 @@ export default async function CreativeStudioPage() {
             <a href="/studio" className="flex items-center gap-3 bg-black px-3 py-3 text-[#EAE4DB]"><FolderOpen size={16} /> Overview</a>
             <a href="#projects" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><Layers3 size={16} /> My projects</a>
             <a href="#create" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><Plus size={16} /> Create</a>
-            <a href="/studio/agents" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><WandSparkles size={16} /> AI Studio</a>
+            <a href="/studio/agents" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><WandSparkles size={16} /> AI Agents</a>
+            <a href="/studio/brain" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><Sparkles size={16} /> Brain Console</a>
           </nav>
           <p className="mb-4 mt-9 text-[9px] font-bold uppercase tracking-[0.2em] text-[#8A7A6B]">Your resources</p>
           <nav className="space-y-1 text-sm">
@@ -123,6 +124,12 @@ export default async function CreativeStudioPage() {
                   </a>;
                 })}
               </div>
+            </section>
+
+            <section className="grid gap-3 border-b border-[#CFC4B7] pb-10 pt-10 sm:grid-cols-3">
+              <a href="/studio/agents" className="border border-[#CFC4B7] bg-[#292522] p-5 text-[#EAE4DB] transition hover:bg-black"><WandSparkles size={20}/><p className="mt-5 text-[9px] font-bold uppercase tracking-[.2em] text-[#D1B9A2]">Meet your team</p><h2 className="mt-2 text-2xl [font-family:Impact,Haettenschweiler,Arial_Narrow_Bold,sans-serif]">AI AGENTS</h2><p className="mt-2 text-xs leading-5 text-[#E0D7CD]">Explore your specialist agents and their roles.</p><span className="mt-4 inline-block text-[9px] font-bold uppercase tracking-widest underline">Open AI team ↗</span></a>
+              <a href="/studio/brain" className="border border-[#CFC4B7] bg-[#F5F0E9] p-5 transition hover:border-black"><Sparkles size={20}/><p className="mt-5 text-[9px] font-bold uppercase tracking-[.2em] text-[#765D4B]">Central coordinator</p><h2 className="mt-2 text-2xl [font-family:Impact,Haettenschweiler,Arial_Narrow_Bold,sans-serif]">THE BRAIN</h2><p className="mt-2 text-xs leading-5 text-[#6B625A]">Open the central Brain console.</p><span className="mt-4 inline-block text-[9px] font-bold uppercase tracking-widest underline">Open Brain ↗</span></a>
+              <a href="/studio/planning" className="border border-[#CFC4B7] bg-[#F5F0E9] p-5 transition hover:border-black"><Clock3 size={20}/><p className="mt-5 text-[9px] font-bold uppercase tracking-[.2em] text-[#765D4B]">Goals & workstreams</p><h2 className="mt-2 text-2xl [font-family:Impact,Haettenschweiler,Arial_Narrow_Bold,sans-serif]">PLANNING ROOM</h2><p className="mt-2 text-xs leading-5 text-[#6B625A]">Build plans, milestones and risk registers.</p><span className="mt-4 inline-block text-[9px] font-bold uppercase tracking-widest underline">Open planning ↗</span></a>
             </section>
 
             <section id="formats" className="pt-12">
