@@ -9,6 +9,7 @@ import {
   FolderOpen,
   Image as ImageIcon,
   Layers3,
+  ListTodo,
   Plus,
   Settings2,
   Sparkles,
@@ -33,6 +34,7 @@ const tools = [
   { icon: Sparkles, title: "AI Studio", detail: "Turn a thought into an editable creative direction", tag: "ASSISTED" },
   { icon: ImageIcon, title: "Media Library", detail: "Keep photographs, artwork and brand assets together", tag: "LIBRARY" },
   { icon: Layers3, title: "Brand Library", detail: "Your colours, typography and signature details", tag: "IDENTITY" },
+  { icon: ListTodo, title: "Planning Room", detail: "Build plans, assign work and review risks with your AI team", tag: "BRAIN" },
 ];
 
 const formats = [
@@ -74,7 +76,7 @@ export default async function CreativeStudioPage() {
           <nav className="space-y-1 text-sm">
             <a href="#brand" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><BookOpen size={16} /> Brand library</a>
             <a href="#media" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><ImageIcon size={16} /> Media library</a>
-            <a href="#planner" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><Clock3 size={16} /> Social planner</a>
+            <a href="/studio/planning" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><Clock3 size={16} /> Planning room</a>
           </nav>
           <div className="mt-auto border-t border-[#CFC4B7] pt-5">
             <a href="#settings" className="mb-4 flex items-center gap-3 text-xs text-[#514941]"><Settings2 size={15} /> Studio settings</a>
@@ -114,7 +116,7 @@ export default async function CreativeStudioPage() {
               <div className="grid gap-px border border-[#CFC4B7] bg-[#CFC4B7] sm:grid-cols-2 2xl:grid-cols-4">
                 {tools.map((tool) => {
                   const Icon = tool.icon;
-                  return <a key={tool.title} href={tool.title === "Create a design" ? "/studio/create" : tool.title === "AI Studio" ? "/studio/agents" : "#coming-next"} className="group min-h-[190px] bg-[#F5F0E9] p-6 transition hover:bg-white">
+                  return <a key={tool.title} href={tool.title === "Create a design" ? "/studio/create" : tool.title === "AI Studio" ? "/studio/agents" : tool.title === "Planning Room" ? "/studio/planning" : "#coming-next"} className="group min-h-[190px] bg-[#F5F0E9] p-6 transition hover:bg-white">
                     <div className="flex items-start justify-between"><Icon size={20} strokeWidth={1.5} /><span className="text-[8px] uppercase tracking-[0.18em] text-[#8A7A6B]">{tool.tag}</span></div>
                     <h3 className="mt-9 text-2xl [font-family:Impact,Haettenschweiler,'Arial_Narrow_Bold',sans-serif]">{tool.title}</h3>
                     <p className="mt-2 max-w-[240px] text-xs leading-6 text-[#6B625A]">{tool.detail}</p>
