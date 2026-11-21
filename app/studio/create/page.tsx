@@ -173,7 +173,12 @@ export default function StudioCreatePage() {
     const point = pointFromEvent(event);
     const layer = [...draft.layers].reverse().find((item) => {
       const p = localPoint(point, item);
-      return Math.abs(p.x) <= item.width / 2 && Math.abs(p.y) <= item.height / 2;
+      const handle = Math.max(22, draft.width / 45);
+      const rotateY = -item.height / 2 - handle * 2.5;
+      const inside = Math.abs(p.x) <= item.width / 2 && Math.abs(p.y) <= item.height / 2;
+      const onRotateHandle = Math.abs(p.x) <= handle && Math.abs(p.y - rotateY) <= handle;
+      const onResizeHandle = Math.abs(p.x - item.width / 2) <= handle && Math.abs(p.y - item.height / 2) <= handle;
+      return inside || onRotateHandle || onResizeHandle;
     });
     if (!layer) { setSelectedId(null); return; }
     setSelectedId(layer.id);
