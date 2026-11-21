@@ -1,5 +1,3 @@
-"use server";
-
 import { createHmac } from "node:crypto";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -7,6 +5,7 @@ import { redirect } from "next/navigation";
 const founderEmail = "thoughtsofcee@gmail.com";
 
 export async function requestFounderCode(formData: FormData) {
+  "use server";
   const email = String(formData.get("email") ?? "").trim().toLowerCase();
   if (email !== founderEmail) redirect("/studio/access?sent=1");
   const url = process.env.SUPABASE_URL;
@@ -21,6 +20,7 @@ export async function requestFounderCode(formData: FormData) {
 }
 
 export async function verifyFounderCode(formData: FormData) {
+  "use server";
   const token = String(formData.get("code") ?? "").trim().replace(/\s/g, "");
   if (!/^\d{6}$/.test(token)) redirect("/studio/access?code=1&error=1");
   const url = process.env.SUPABASE_URL;
