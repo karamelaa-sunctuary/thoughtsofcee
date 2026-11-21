@@ -124,14 +124,15 @@ Use idempotency keys for task creation and transitions. Enforce maximum payload 
 - Deployed the private `private` schema and nine founder-scoped tables: `department_instructions`, `department_memory`, `agent_profiles`, `agent_tasks`, `agent_runs`, `agent_messages`, `review_decisions`, `founder_decisions`, and `department_events`.
 - Enabled RLS on all nine tables. Added ownership constraints to prevent child records from referencing another founder's tasks/runs/agents. Made messages, reviews, founder decisions and department events append-only for authenticated users.
 - Added indexes for ownership and foreign-key paths.
-- Recorded the three deployed migrations in `supabase/migrations/` on the Preview branch.
-- Verified 9/9 tables have RLS enabled and all 9 cross-record ownership constraints exist. Supabase health advisor returned no findings. Security advisor still reports the pre-existing leaked-password protection warning. Performance advisor now reports unused indexes because the new tables are empty; it no longer reports missing foreign-key indexes.
-- Next: implement Supabase SSR cookie auth and server-side authorization in the Next.js 16 app, then add tightly scoped public RPC functions for the private tables. Do not expose the `private` schema through PostgREST.
+- Added nine authenticated-only, `SECURITY INVOKER` RPCs for listing/creating/approving memory and instructions, listing/creating tasks, and recording founder task decisions. The private schema remains unexposed through PostgREST.
+- Recorded four deployed migrations in `supabase/migrations/` on the Preview branch.
+- Verified 9/9 tables have RLS enabled and all 9 cross-record ownership constraints exist. A rollback-only SQL test, running as the authenticated role with the founder JWT subject, successfully created and listed a temporary memory item and created/approved a temporary task; the transaction was rolled back. Verified anonymous users cannot execute the RPCs and the functions are not `SECURITY DEFINER`. Supabase health advisor returned no findings. Security advisor still reports the pre-existing leaked-password protection warning. Performance advisor reports unused indexes because the new tables are empty; it no longer reports missing foreign-key indexes.
+- Next: implement Supabase SSR cookie auth and server-side authorization in the Next.js 16 app. Do not expose the `private` schema through PostgREST.
 - Confirm required Vercel Preview environment variables without exposing their values. Do not configure or reveal secrets in chat.
 
-### Phase 1 — Shared memory (database foundation deployed; application layer next)
+### Phase 1 — Shared memory (database and RPC foundation deployed; application layer next)
 - Add cookie-based Supabase SSR auth and verified founder identity checks.
-- Add narrowly scoped authenticated RPC functions for private persistence and typed server-only data access; keep `private` out of the exposed API schemas.
+- Use the deployed authenticated RPC functions for private persistence and typed server-side data access; keep `private` out of the exposed API schemas.
 - Build read/write/approve/version APIs.
 - Replace localStorage as the source of truth while retaining an export/import path for existing browser notes.
 - Test cross-session persistence, authorization failures, ownership isolation, and version history.
