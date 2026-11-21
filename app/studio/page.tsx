@@ -114,7 +114,7 @@ export default async function CreativeStudioPage() {
               <div className="grid gap-px border border-[#CFC4B7] bg-[#CFC4B7] sm:grid-cols-2 2xl:grid-cols-4">
                 {tools.map((tool) => {
                   const Icon = tool.icon;
-                  return <a key={tool.title} href={tool.title === "Create a design" ? "#formats" : "#coming-next"} className="group min-h-[190px] bg-[#F5F0E9] p-6 transition hover:bg-white">
+                  return <a key={tool.title} href={tool.title === "Create a design" ? "/studio/create" : "#coming-next"} className="group min-h-[190px] bg-[#F5F0E9] p-6 transition hover:bg-white">
                     <div className="flex items-start justify-between"><Icon size={20} strokeWidth={1.5} /><span className="text-[8px] uppercase tracking-[0.18em] text-[#8A7A6B]">{tool.tag}</span></div>
                     <h3 className="mt-9 text-2xl [font-family:Impact,Haettenschweiler,'Arial_Narrow_Bold',sans-serif]">{tool.title}</h3>
                     <p className="mt-2 max-w-[240px] text-xs leading-6 text-[#6B625A]">{tool.detail}</p>
@@ -126,7 +126,7 @@ export default async function CreativeStudioPage() {
             <section id="formats" className="pt-12">
               <div className="mb-5"><p className="text-[9px] uppercase tracking-[0.2em] text-[#765D4B]">Choose a starting point</p><h2 className="mt-2 text-3xl [font-family:Impact,Haettenschweiler,'Arial_Narrow_Bold',sans-serif]">START WITH A FORMAT</h2></div>
               <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-                {formats.map((format, index) => <div key={format.name} className="border border-[#CFC4B7] bg-[#F5F0E9] p-5">
+                {formats.map((format, index) => <a href="/studio/create" key={format.name} className="block border border-[#CFC4B7] bg-[#F5F0E9] p-5 transition hover:border-black">
                   <div className="mb-5 flex h-28 items-center justify-center bg-[#EAE4DB]">
                     <div className={`flex items-center justify-center border border-[#765D4B]/50 bg-[#EAE4DB] ${index === 0 ? "h-20 w-14" : index === 1 ? "h-24 w-12" : index === 2 ? "h-20 w-20" : "h-24 w-16"}`}>
                       <span className="text-[8px] uppercase tracking-[0.12em] text-[#765D4B]">TOC</span>
