@@ -68,7 +68,7 @@ export default async function CreativeStudioPage() {
             <a href="/studio" className="flex items-center gap-3 bg-black px-3 py-3 text-[#EAE4DB]"><FolderOpen size={16} /> Overview</a>
             <a href="#projects" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><Layers3 size={16} /> My projects</a>
             <a href="#create" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><Plus size={16} /> Create</a>
-            <a href="#ai-studio" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><WandSparkles size={16} /> AI Studio</a>
+            <a href="/studio/agents" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><WandSparkles size={16} /> AI Studio</a>
           </nav>
           <p className="mb-4 mt-9 text-[9px] font-bold uppercase tracking-[0.2em] text-[#8A7A6B]">Your resources</p>
           <nav className="space-y-1 text-sm">
@@ -114,7 +114,7 @@ export default async function CreativeStudioPage() {
               <div className="grid gap-px border border-[#CFC4B7] bg-[#CFC4B7] sm:grid-cols-2 2xl:grid-cols-4">
                 {tools.map((tool) => {
                   const Icon = tool.icon;
-                  return <a key={tool.title} href={tool.title === "Create a design" ? "/studio/create" : "#coming-next"} className="group min-h-[190px] bg-[#F5F0E9] p-6 transition hover:bg-white">
+                  return <a key={tool.title} href={tool.title === "Create a design" ? "/studio/create" : tool.title === "AI Studio" ? "/studio/agents" : "#coming-next"} className="group min-h-[190px] bg-[#F5F0E9] p-6 transition hover:bg-white">
                     <div className="flex items-start justify-between"><Icon size={20} strokeWidth={1.5} /><span className="text-[8px] uppercase tracking-[0.18em] text-[#8A7A6B]">{tool.tag}</span></div>
                     <h3 className="mt-9 text-2xl [font-family:Impact,Haettenschweiler,'Arial_Narrow_Bold',sans-serif]">{tool.title}</h3>
                     <p className="mt-2 max-w-[240px] text-xs leading-6 text-[#6B625A]">{tool.detail}</p>
