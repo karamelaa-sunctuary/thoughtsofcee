@@ -19,6 +19,14 @@ const agents = [
   { icon: Share2, name: "Content Distribution Agent", role: "Social and distribution", description: "Turns approved content into channel-specific versions and prepares a distribution schedule across social platforms.", status: "Existing agent", href: "/studio/agents/content-distribution", action: "Open workspace" },
   { icon: ChartNoAxesCombined, name: "Business Intelligence Agent", role: "Performance and business insight", description: "Looks at goals, performance, audience signals, costs and opportunities; highlights trends, assumptions and commercial risks.", status: "Existing agent", href: "/studio/agents/business-intelligence", action: "Open workspace" },
   { icon: BookOpen, name: "Thoughts of Cee Memory Agent", role: "Shared knowledge and continuity", description: "Keeps approved brand guidance, project context, decisions and reusable knowledge available to the team, with clear boundaries around what is remembered.", status: "Existing agent", href: "/studio/agents/memory", action: "Open workspace" },
+];;
+
+const critics = [
+  { icon: Palette, name: "Creative Critic", role: "Visual and creative review", description: "Challenges concepts, layouts, typography, imagery and originality.", status: "Review Board", href: "/studio/agents/creative-critic", action: "Open reviewer" },
+  { icon: FileText, name: "Editorial Critic", role: "Writing and narrative review", description: "Checks emotional depth, clarity, pacing, originality and voice.", status: "Review Board", href: "/studio/agents/editorial-critic", action: "Open reviewer" },
+  { icon: ShieldCheck, name: "Brand Guardian", role: "Brand integrity review", description: "Checks outputs against brand identity, values, audience and purpose.", status: "Review Board", href: "/studio/agents/brand-guardian", action: "Open reviewer" },
+  { icon: ChartNoAxesCombined, name: "Strategy & Research Critic", role: "Evidence and strategy review", description: "Questions assumptions, checks evidence and tests strategic logic.", status: "Review Board", href: "/studio/agents/strategy-research-critic", action: "Open reviewer" },
+  { icon: ShieldCheck, name: "Quality Assurance Agent", role: "Completeness and readiness review", description: "Checks requirements, accuracy, consistency and readiness for approval.", status: "Review Board", href: "/studio/agents/quality-assurance", action: "Open reviewer" },
 ];
 
 export default async function StudioAgentsPage() {
@@ -42,7 +50,7 @@ export default async function StudioAgentsPage() {
         <p className="mt-7 max-w-2xl text-sm leading-7 text-[#514941]">Your existing specialist agents, gathered in one place—with one central Brain to coordinate them. This is the team structure and workspace; connecting each agent's actual model, tools and permissions is the next integration step.</p>
         <Link href="/studio/review-board" className="mt-7 mr-3 inline-flex items-center gap-2 border border-[#B9AA9A] px-5 py-3 text-[10px] font-bold uppercase tracking-[.16em]">Open Review Board <ArrowUpRight size={14}/></Link><Link href="/studio/planning" className="mt-7 inline-flex items-center gap-2 bg-black px-5 py-3 text-[10px] font-bold uppercase tracking-[.16em] text-[#EAE4DB]">Open the planning room <ArrowUpRight size={14}/></Link>
         <div className="mt-10 grid gap-px border border-[#CFC4B7] bg-[#CFC4B7] sm:grid-cols-2 xl:grid-cols-3">
-          {agents.map((agent) => {
+          {[...agents, ...critics].map((agent) => {
             const Icon = agent.icon;
             return <article key={agent.name} className={`flex min-h-[270px] flex-col p-6 ${agent.featured ? "bg-[#292522] text-[#EAE4DB] sm:col-span-2 xl:col-span-3" : "bg-[#F5F0E9]"}`}>
               <div className="flex items-center justify-between"><Icon size={22} strokeWidth={1.4}/><span className={`text-[8px] uppercase tracking-[.15em] ${agent.featured ? "text-[#D1B9A2]" : "text-[#765D4B]"}`}>{agent.status}</span></div>
