@@ -21,8 +21,13 @@ Never commit secrets or put them in browser code or `NEXT_PUBLIC_` variables.
 1. Open Authentication → Users.
 2. Invite `thoughtsofcee@gmail.com` if it is not already an existing confirmed user. Keep public sign-ups disabled.
 3. Confirm the user is verified/confirmed.
-4. Check Authentication → Providers → Email is enabled and email OTP is enabled.
-5. Keep existing production URL configuration unchanged.
+4. Check Authentication → Providers → Email is enabled.
+5. Open Authentication → Email Templates → Magic Link. Change the template to include the six-digit OTP variable and not the confirmation URL, for example:
+
+   `<h2>Your Thoughts of Cee sign-in code</h2><p>Enter this one-time code: {{ .Token }}</p>`
+
+   Supabase sends a clickable Magic Link when the template uses `{{ .ConfirmationURL }}`; this Studio screen expects the six-digit `{{ .Token }}` code. Save the template.
+6. Keep existing production URL configuration unchanged.
 
 The built-in email sender may have rate/recipient limits on the free plan. If delivery is limited, use an SMTP provider you control; do not buy anything without reviewing the free tier and terms first.
 
