@@ -33,6 +33,27 @@ export default function StudioCreatePage() {
   const fileRef = useRef<HTMLInputElement>(null);
   const dragRef = useRef<{ id: string; dx: number; dy: number } | null>(null);
   const resizeRef = useRef<{ id: string; startX: number; startY: number; width: number; height: number } | null>(null);
+  const undoStack = useRef<DesignElement[][]>([]);
+  const redoStack = useRef<DesignElement[][]>([]);
+  function rememberChange() {
+    undoStack.current.push(elements.map((item) => ({ ...item })));
+    if (undoStack.current.length > 50) undoStack.current.shift();
+    redoStack.current = [];
+  }
+  function undo() {
+    const previous = undoStack.current.pop();
+    if (!previous) return;
+    redoStack.current.push(elements.map((item) => ({ ...item })));
+    setElements(previous);
+    setSaved(false);
+  }
+  function redo() {
+    const next = redoStack.current.pop();
+    if (!next) return;
+    undoStack.current.push(elements.map((item) => ({ ...item })));
+    setElements(next);
+    setSaved(false);
+  }
 
   useEffect(() => {
     try {
@@ -198,7 +219,7 @@ export default function StudioCreatePage() {
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <Link href="/studio" className="border border-[#CFC4B7] px-4 py-2 text-[10px] uppercase tracking-wider">Back to studio</Link>
-          <button onClick={saveDraft} className="bg-black px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-[#EAE4DB]"> {saved ? "Saved locally ✓" : "Save draft"} </button>
+          <button onClick={undo} disabled={undoStack.current.length === 0} className="border border-[#CFC4B7] px-3 py-2 text-[10px] uppercase tracking-wider disabled:opacity-40">↶ Undo</button>\n          <button onClick={redo} disabled={redoStack.current.length === 0} className="border border-[#CFC4B7] px-3 py-2 text-[10px] uppercase tracking-wider disabled:opacity-40">↷ Redo</button>\n          <button onClick={saveDraft} className="bg-black px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-[#EAE4DB]"> {saved ? "Saved locally ✓" : "Save draft"} </button>
           <button onClick={exportPng} className="bg-[#765D4B] px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-white">Export PNG ↓</button>
         </div>
       </header>
@@ -228,6 +249,7 @@ export default function StudioCreatePage() {
               {elements.map((item) => <g key={item.id} onPointerDown={(event) => onPointerDown(event, item)} onClick={(event) => { event.stopPropagation(); setSelectedId(item.id); }} className="cursor-move">
                 {item.type === "text" ? <text x={item.x} y={item.y} fontFamily={item.fontFamily ?? "Impact"} fontSize={item.fontSize ?? 82} fill={item.fill ?? "#000000"}>{item.text}</text> : <image href={item.src} x={item.x} y={item.y} width={item.width} height={item.height} preserveAspectRatio="xMidYMid meet" />}
                 {selectedId === item.id && <rect data-editor-ui="true" x={item.x - 8} y={item.y - (item.type === "text" ? (item.fontSize ?? 82) : 8)} width={item.width + 16} height={item.type === "text" ? (item.fontSize ?? 82) + 24 : item.height + 16} fill="none" stroke="#765D4B" strokeWidth="3" strokeDasharray="10 8" pointerEvents="none" />}
+                {selectedId === item.id && item.type === "image" && <circle data-editor-ui="true" cx={item.x + item.width} cy={item.y + item.height} r="24" fill="#000000" stroke="#F5F0E9" strokeWidth="5" className="cursor-nwse-resize" onPointerDown={(event) => onResizeDown(event, item)} />}
               </g>)}
               {elements.length === 0 && <g pointerEvents="none"><text x="540" y="630" textAnchor="middle" fontFamily="Arial, sans-serif" fontSize="34" letterSpacing="8" fill="#8A7A6B">YOUR CANVAS</text><text x="540" y="685" textAnchor="middle" fontFamily="Arial, sans-serif" fontSize="22" fill="#8A7A6B">Add text or upload an image to begin</text></g>}
             </svg>
@@ -268,7 +290,7 @@ export default function StudioCreatePage() {
           </> : <p className="text-xs leading-6 text-[#765D4B]">Select a text or image layer on the canvas to adjust its settings.</p>}
           <div className="mt-8 border-t border-[#CFC4B7] pt-5">
             <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#765D4B]">Coming next</p>
-            <p className="mt-2 text-xs leading-6 text-[#6B625A]">Resize handles, more social formats, cloud saving and the Thoughts of Cee brand kit.</p>
+            <p className="mt-2 text-xs leading-6 text-[#6B625A]">More typefaces, crop controls, cloud saving and the Thoughts of Cee brand kit.</p>
           </div>
         </aside>
       </div>
