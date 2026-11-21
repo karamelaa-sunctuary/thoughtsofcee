@@ -2,7 +2,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, BrainCircuit, BookOpen, Clapperboard, Compass, FileText, Globe, Image as ImageIcon, PenLine, Palette, Share2, Sparkles, ChartNoAxesCombined, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, BrainCircuit, BookOpen, HeartHandshake, Clapperboard, Compass, FileText, Globe, Image as ImageIcon, PenLine, Palette, Share2, Sparkles, ChartNoAxesCombined, ShieldCheck } from "lucide-react";
 
 function safeMatch(a: string, b: string) {
   const left = Buffer.from(a); const right = Buffer.from(b);
@@ -12,6 +12,7 @@ function safeMatch(a: string, b: string) {
 const agents = [
   { icon: BrainCircuit, name: "The Brain", role: "Chief of Staff · Orchestrator", description: "Your central AI lead. Understands the goal, assigns work to the right agents, combines their outputs, presents recommendations, tracks decisions and raises risks before anything reaches you.", status: "Core coordinator", href: "/studio/planning", action: "Open planning room", featured: true },
   { icon: Palette, name: "Creative Director Agent", role: "Creative direction", description: "Shapes concepts, visual identity, campaigns, moodboards and creative briefs. Can call on image and video tools when providers are connected.", status: "Existing agent", href: "/studio/create", action: "Open creative canvas" },
+  { icon: HeartHandshake, name: "Audience & Storytelling Agent", role: "Psychology-informed audience insight", description: "Studies human experience, narrative engagement and audience needs to recommend what to say, why it matters and how to approach it sensitively. Not a psychologist and never provides diagnosis or therapy.", status: "Skill specification added", href: "/studio/planning", action: "Plan audience content" },
   { icon: FileText, name: "Editorial Agent", role: "Writing and editorial quality", description: "Reviews writing, protects the Thoughts of Cee voice, improves clarity and prepares fragments, letters, captions and scripts.", status: "Existing agent", href: "/studio/planning", action: "Plan editorial work" },
   { icon: Globe, name: "Website Manager Agent", role: "Website and publishing", description: "Plans website updates, checks content readiness, prepares publishing tasks and flags changes that need review.", status: "Existing agent", href: "/studio/planning", action: "Plan website work" },
   { icon: Share2, name: "Content Distribution Agent", role: "Social and distribution", description: "Turns approved content into channel-specific versions and prepares a distribution schedule across social platforms.", status: "Existing agent", href: "/studio/planning", action: "Plan distribution" },
