@@ -22,11 +22,11 @@ const agents = [
 ];;
 
 const critics = [
-  { icon: Palette, name: "Creative Critic", role: "Visual and creative review", description: "Challenges concepts, layouts, typography, imagery and originality.", status: "Review Board", href: "/studio/agents/creative-critic", action: "Open reviewer" },
-  { icon: FileText, name: "Editorial Critic", role: "Writing and narrative review", description: "Checks emotional depth, clarity, pacing, originality and voice.", status: "Review Board", href: "/studio/agents/editorial-critic", action: "Open reviewer" },
-  { icon: ShieldCheck, name: "Brand Guardian", role: "Brand integrity review", description: "Checks outputs against brand identity, values, audience and purpose.", status: "Review Board", href: "/studio/agents/brand-guardian", action: "Open reviewer" },
-  { icon: ChartNoAxesCombined, name: "Strategy & Research Critic", role: "Evidence and strategy review", description: "Questions assumptions, checks evidence and tests strategic logic.", status: "Review Board", href: "/studio/agents/strategy-research-critic", action: "Open reviewer" },
-  { icon: ShieldCheck, name: "Quality Assurance Agent", role: "Completeness and readiness review", description: "Checks requirements, accuracy, consistency and readiness for approval.", status: "Review Board", href: "/studio/agents/quality-assurance", action: "Open reviewer" },
+  { icon: Palette, name: "Creative Critic", role: "Visual and creative review", description: "Challenges concepts, layouts, typography, imagery and originality.", status: "Review Board", featured: false, href: "/studio/agents/creative-critic", action: "Open reviewer" },
+  { icon: FileText, name: "Editorial Critic", role: "Writing and narrative review", description: "Checks emotional depth, clarity, pacing, originality and voice.", status: "Review Board", featured: false, href: "/studio/agents/editorial-critic", action: "Open reviewer" },
+  { icon: ShieldCheck, name: "Brand Guardian", role: "Brand integrity review", description: "Checks outputs against brand identity, values, audience and purpose.", status: "Review Board", featured: false, href: "/studio/agents/brand-guardian", action: "Open reviewer" },
+  { icon: ChartNoAxesCombined, name: "Strategy & Research Critic", role: "Evidence and strategy review", description: "Questions assumptions, checks evidence and tests strategic logic.", status: "Review Board", featured: false, href: "/studio/agents/strategy-research-critic", action: "Open reviewer" },
+  { icon: ShieldCheck, name: "Quality Assurance Agent", role: "Completeness and readiness review", description: "Checks requirements, accuracy, consistency and readiness for approval.", status: "Review Board", featured: false, href: "/studio/agents/quality-assurance", action: "Open reviewer" },
 ];
 
 export default async function StudioAgentsPage() {
