@@ -35,11 +35,12 @@ async function unlockStudio(formData: FormData) {
   redirect("/studio");
 }
 
-export default function StudioAccessPage({
+export default async function StudioAccessPage({
   searchParams,
 }: {
   searchParams: Promise<{ setup?: string; error?: string }>;
 }) {
+  const params = await searchParams;
   return (
     <main className="min-h-screen bg-[#EAE4DB] px-6 py-10 text-black sm:px-10">
       <div className="mx-auto flex min-h-[80vh] max-w-6xl flex-col justify-between">
@@ -59,7 +60,8 @@ export default function StudioAccessPage({
             <form action={unlockStudio} className="space-y-5">
               <label htmlFor="password" className="block text-xs font-bold uppercase tracking-[0.14em]">Founder password</label>
               <input id="password" name="password" type="password" autoComplete="current-password" required className="w-full border border-[#CFC4B7] bg-[#EAE4DB] px-4 py-3 text-sm outline-none focus:border-black" placeholder="Enter your private password" />
-              <p role="alert" className="min-h-5 text-xs text-[#8B3327]">{/* Error message is rendered below when needed. */}</p>
+              {params.error === "1" && <p role="alert" className="text-xs text-[#8B3327]">That password was not accepted. Please try again.</p>}
+              {params.setup === "1" && <p role="alert" className="text-xs text-[#8B3327]">Studio access is not configured in this Preview. Check the two required environment variables.</p> }
               <button className="w-full bg-black px-5 py-4 text-xs font-bold uppercase tracking-[0.18em] text-[#EAE4DB] hover:bg-[#765D4B]">Unlock Creative Studio ↗</button>
             </form>
             <p className="mt-7 border-t border-[#CFC4B7] pt-5 text-[10px] uppercase leading-5 tracking-[0.12em] text-[#765D4B]">Where feelings become words.</p>
