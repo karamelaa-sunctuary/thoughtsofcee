@@ -16,6 +16,10 @@ type Layer = {
   fontSize?: number;
   fill?: string;
   src?: string;
+  align?: "left" | "center" | "right";
+  opacity?: number;
+  lineHeight?: number;
+  shadow?: boolean;
 };
 
 type Draft = { name: string; width: number; height: number; background: string; layers: Layer[] };
@@ -39,6 +43,8 @@ export default function StudioCreatePage() {
   const [saved, setSaved] = useState(false);
   const [hydrated, setHydrated] = useState(false);
   const [showGrid, setShowGrid] = useState(false);
+  const [imagePrompt, setImagePrompt] = useState("A quiet, cinematic editorial photograph for Thoughts of Cee");
+  const [promptCopied, setPromptCopied] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const imageCache = useRef<Map<string, HTMLImageElement>>(new Map());
@@ -94,6 +100,7 @@ export default function StudioCreatePage() {
       const cy = layer.y + layer.height / 2;
       context.translate(cx, cy);
       context.rotate((layer.rotation || 0) * Math.PI / 180);
+      context.globalAlpha = layer.opacity ?? 1;
       if (layer.type === "image" && layer.src) {
         let image = imageCache.current.get(layer.id);
         if (!image || image.src !== layer.src) {
@@ -118,9 +125,12 @@ export default function StudioCreatePage() {
         context.fillStyle = layer.fill || "#000000";
         context.font = `700 ${layer.fontSize || 80}px "${layer.fontFamily || "Impact"}"`;
         context.textBaseline = "top";
+        context.textAlign = layer.align || "left";
+        if (layer.shadow) { context.shadowColor = "rgba(0,0,0,.22)"; context.shadowBlur = 12; context.shadowOffsetX = 3; context.shadowOffsetY = 4; }
         const lines = (layer.text || "").split("\n");
-        const lineHeight = (layer.fontSize || 80) * 1.08;
-        lines.forEach((line, index) => context.fillText(line, -layer.width / 2, -layer.height / 2 + index * lineHeight, layer.width));
+        const lineHeight = (layer.fontSize || 80) * (layer.lineHeight || 1.08);
+        const textX = layer.align === "center" ? 0 : layer.align === "right" ? layer.width / 2 : -layer.width / 2;
+        lines.forEach((line, index) => context.fillText(line, textX, -layer.height / 2 + index * lineHeight, layer.width));
       }
       context.restore();
     }
@@ -231,7 +241,7 @@ export default function StudioCreatePage() {
 
   const addText = () => {
     remember();
-    const layer: Layer = { id: crypto.randomUUID(), type: "text", x: 110, y: 220, width: 860, height: 220, rotation: 0, text: "Your words here.", fontFamily: "Impact", fontSize: 92, fill: "#000000" };
+    const layer: Layer = { id: crypto.randomUUID(), type: "text", x: 110, y: 220, width: 860, height: 220, rotation: 0, text: "Your words here.", fontFamily: "Impact", fontSize: 92, fill: "#000000", align: "left", opacity: 1, lineHeight: 1.08, shadow: false };
     changeDraft((current) => ({ ...current, layers: [...current.layers, layer] }));
     setSelectedId(layer.id);
   };
@@ -331,6 +341,7 @@ export default function StudioCreatePage() {
           <div className="mt-7"><p className="mb-3 text-[10px] font-bold uppercase tracking-[.2em] text-[#765D4B]">Layers · {draft.layers.length}</p>
             {draft.layers.length === 0 ? <p className="text-xs leading-5 text-[#765D4B]">Your design elements will appear here.</p> : [...draft.layers].reverse().map((layer) => <button key={layer.id} onClick={() => setSelectedId(layer.id)} className={`mb-1 block w-full truncate border px-3 py-2 text-left text-xs ${selectedId === layer.id ? "border-black bg-[#DCD2C6]" : "border-[#CFC4B7] bg-[#F5F0E9]"}`}>{layer.type === "text" ? "T  " + (layer.text || "Text").slice(0, 22) : "▧  Image"}</button>)}
           </div>
+          <div className="mt-7 border-t border-[#CFC4B7] pt-5"><p className="mb-3 text-[10px] font-bold uppercase tracking-[.2em] text-[#765D4B]">AI image brief</p><textarea value={imagePrompt} onChange={(event) => { setImagePrompt(event.target.value); setPromptCopied(false); }} rows={4} className="w-full border border-[#CFC4B7] bg-[#F5F0E9] p-3 text-xs leading-5" /><button onClick={() => { navigator.clipboard.writeText(imagePrompt); setPromptCopied(true); }} className="mt-2 w-full border border-[#CFC4B7] px-3 py-2 text-[10px] font-bold uppercase tracking-wider">{promptCopied ? "Prompt copied ✓" : "Copy image brief"}</button><p className="mt-2 text-[10px] leading-5 text-[#765D4B]">Image generation will be enabled when we connect the image provider and secure API key.</p></div>
           <div className="mt-7 border-t border-[#CFC4B7] pt-5"><p className="mb-3 text-[10px] font-bold uppercase tracking-[.2em] text-[#765D4B]">Canvas</p><label className="mb-2 block text-xs">Format</label><select value={FORMATS.find((item) => item.width === draft.width && item.height === draft.height)?.name || "Instagram portrait"} onChange={(event) => setFormat(event.target.value)} className="w-full border border-[#CFC4B7] bg-[#F5F0E9] px-2 py-2 text-xs">{FORMATS.map((item) => <option key={item.name}>{item.name}</option>)}</select><label className="mb-2 mt-4 block text-xs">Background</label><div className="flex flex-wrap gap-2">{COLORS.map((color) => <button key={color} aria-label={`Background ${color}`} onClick={() => { remember(); changeDraft((current) => ({ ...current, background: color })); }} className="h-7 w-7 border border-[#9E9388]" style={{ backgroundColor: color }} />)}</div><label className="mt-4 flex items-center gap-2 text-xs"><input type="checkbox" checked={showGrid} onChange={(event) => setShowGrid(event.target.checked)} /> Show alignment grid</label></div>
         </aside>
         <section className="flex min-h-[650px] flex-col items-center justify-center overflow-hidden bg-[#D8D0C7] p-5">
@@ -345,7 +356,7 @@ export default function StudioCreatePage() {
           <p className="mb-4 text-[10px] font-bold uppercase tracking-[.2em] text-[#765D4B]">Design details</p>
           <label className="mb-2 block text-xs font-semibold">Project name</label><input value={draft.name} onChange={(event) => changeDraft((current) => ({ ...current, name: event.target.value }))} className="mb-5 w-full border border-[#CFC4B7] bg-[#F5F0E9] px-3 py-2 text-sm outline-none focus:border-black" />
           {selected ? <><p className="mb-4 border-b border-[#CFC4B7] pb-3 text-xs font-bold uppercase tracking-widest">{selected.type} selected</p>
-            {selected.type === "text" ? <><label className="mb-2 block text-xs">Text</label><textarea rows={5} value={selected.text || ""} onChange={(event) => updateSelected({ text: event.target.value })} className="mb-4 w-full border border-[#CFC4B7] bg-[#F5F0E9] p-3 text-sm" /><label className="mb-2 block text-xs">Typeface</label><select value={selected.fontFamily || "Impact"} onChange={(event) => updateSelected({ fontFamily: event.target.value })} className="mb-4 w-full border border-[#CFC4B7] bg-[#F5F0E9] p-2 text-sm">{FONTS.map((font) => <option key={font}>{font}</option>)}</select><label className="mb-2 block text-xs">Font size · {selected.fontSize}</label><input type="range" min="20" max="200" value={selected.fontSize || 92} onChange={(event) => updateSelected({ fontSize: Number(event.target.value) })} className="mb-4 w-full" /><label className="mb-2 block text-xs">Text colour</label><input type="color" value={selected.fill || "#000000"} onChange={(event) => updateSelected({ fill: event.target.value })} className="mb-5 h-9 w-full" /></> : <p className="mb-5 text-xs leading-5 text-[#765D4B]">Resize proportionally from the canvas handle. Crop and image adjustments are next on the roadmap.</p>}
+            {selected.type === "text" ? <><label className="mb-2 block text-xs">Text</label><textarea rows={5} value={selected.text || ""} onChange={(event) => updateSelected({ text: event.target.value })} className="mb-4 w-full border border-[#CFC4B7] bg-[#F5F0E9] p-3 text-sm" /><label className="mb-2 block text-xs">Typeface</label><select value={selected.fontFamily || "Impact"} onChange={(event) => updateSelected({ fontFamily: event.target.value })} className="mb-4 w-full border border-[#CFC4B7] bg-[#F5F0E9] p-2 text-sm">{FONTS.map((font) => <option key={font}>{font}</option>)}</select><label className="mb-2 block text-xs">Font size · {selected.fontSize}</label><input type="range" min="20" max="200" value={selected.fontSize || 92} onChange={(event) => updateSelected({ fontSize: Number(event.target.value) })} className="mb-4 w-full" /><label className="mb-2 block text-xs">Text colour</label><div className="mb-3 flex flex-wrap gap-2">{["#000000", "#292522", "#765D4B", "#8B6F5C", "#FFFFFF", "#B65C48", "#66745B", "#D2A85A"].map((color) => <button key={color} aria-label={"Text colour " + color} onClick={() => updateSelected({ fill: color })} className={"h-7 w-7 border " + (selected.fill === color ? "border-black ring-2 ring-black ring-offset-2" : "border-[#B9AA9A]")} style={{ backgroundColor: color }} />)}</div><div className="mb-5 flex items-center gap-2"><input type="color" value={selected.fill || "#000000"} onChange={(event) => updateSelected({ fill: event.target.value })} className="h-9 w-12" /><input value={selected.fill || "#000000"} onChange={(event) => updateSelected({ fill: event.target.value })} className="min-w-0 flex-1 border border-[#CFC4B7] bg-[#F5F0E9] px-2 py-2 text-xs uppercase" /></div><label className="mb-2 block text-xs">Text alignment</label><div className="mb-4 grid grid-cols-3 gap-1">{(["left", "center", "right"] as const).map((align) => <button key={align} onClick={() => updateSelected({ align })} className={"border px-2 py-2 text-xs capitalize " + ((selected.align || "left") === align ? "border-black bg-[#DCD2C6]" : "border-[#CFC4B7]")}>{align}</button>)}</div><label className="mb-2 block text-xs">Line spacing · {Math.round((selected.lineHeight || 1.08) * 100)}%</label><input type="range" min="85" max="180" value={Math.round((selected.lineHeight || 1.08) * 100)} onChange={(event) => updateSelected({ lineHeight: Number(event.target.value) / 100 })} className="mb-4 w-full" /><label className="mb-2 block text-xs">Text opacity · {Math.round((selected.opacity ?? 1) * 100)}%</label><input type="range" min="10" max="100" value={Math.round((selected.opacity ?? 1) * 100)} onChange={(event) => updateSelected({ opacity: Number(event.target.value) / 100 })} className="mb-4 w-full" /><label className="mb-5 flex items-center gap-2 text-xs"><input type="checkbox" checked={!!selected.shadow} onChange={(event) => updateSelected({ shadow: event.target.checked })} /> Soft text shadow</label></> : <p className="mb-5 text-xs leading-5 text-[#765D4B]">Resize proportionally from the canvas handle. Crop and image adjustments are next on the roadmap.</p>}
             <label className="mb-2 block text-xs">Rotation · {Math.round(selected.rotation)}°</label><input type="range" min="-180" max="180" value={Math.round(selected.rotation)} onChange={(event) => updateSelected({ rotation: Number(event.target.value) })} className="mb-5 w-full" />
             <div className="mb-5 grid grid-cols-2 gap-2"><button onClick={() => updateSelected({ x: (draft.width - selected.width) / 2 })} className="border border-[#CFC4B7] px-2 py-2 text-xs">Center horizontally</button><button onClick={() => updateSelected({ y: (draft.height - selected.height) / 2 })} className="border border-[#CFC4B7] px-2 py-2 text-xs">Center vertically</button></div>
             <button onClick={removeSelected} className="w-full border border-[#9C6558] px-3 py-3 text-xs font-bold uppercase tracking-wider text-[#8B3327]">Delete layer</button>
