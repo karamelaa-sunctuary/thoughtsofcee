@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 const founderEmail = "thoughtsofcee@gmail.com";
 
 export async function proxy(request: NextRequest) {
+  if (request.nextUrl.pathname === "/studio/access") return NextResponse.next();
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_ANON_KEY;
   let access = request.cookies.get("toc_supabase_access")?.value;
