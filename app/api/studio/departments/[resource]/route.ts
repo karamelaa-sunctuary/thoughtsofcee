@@ -14,7 +14,28 @@ function isObject(value: unknown): value is Record<string, unknown> {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
 
+function safeDiagnosticMessage(value: unknown): string {
+  if (typeof value !== "string") return "";
+  return value
+    .replace(/https?:\/\/[^\s"'<>]+/gi, "[url]")
+    .replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, "[email]")
+    .replace(/\beyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\b/g, "[token]")
+    .replace(/(key|secret|token|password|authorization)\s*[:=]\s*[^\s,;]+/gi, "$1=[redacted]")
+    .slice(0, 240);
+}
+
+function logDepartmentFailure(stage: string, error: unknown) {
+  const detail = isObject(error) ? error : {};
+  console.error("[studio-departments] request failed", {
+    stage,
+    errorName: error instanceof Error ? error.name : "UnknownError",
+    errorCode: typeof detail.code === "string" ? detail.code.slice(0, 40) : undefined,
+    message: safeDiagnosticMessage(error instanceof Error ? error.message : detail.message),
+  });
+}
+
 export async function GET(request: Request, context: { params: Promise<{ resource: string }> }) {
+  let stage = "founder_context";
   try {
     const founder = await getFounderContext();
     if (!founder) return NextResponse.json({ error: "Verified founder identity required." }, { status: 401 });
@@ -25,34 +46,47 @@ export async function GET(request: Request, context: { params: Promise<{ resourc
     const scope = filter.get("scope");
 
     if (resource === "memory") {
+      stage = "memory_list_rpc";
       if (status && !STATUSES.includes(status as (typeof STATUSES)[number])) {
         return NextResponse.json({ error: "Unsupported memory status." }, { status: 400 });
       }
       const { data, error } = await founder.supabase.rpc("studio_memory_list", { p_status: status });
-      if (error) return NextResponse.json({ error: "Memory could not be loaded." }, { status: 503 });
+      if (error) {
+        logDepartmentFailure(stage, error);
+        return NextResponse.json({ error: "Memory could not be loaded." }, { status: 503 });
+      }
       return NextResponse.json({ ok: true, items: data ?? [] });
     }
 
     if (resource === "instructions") {
+      stage = "instruction_list_rpc";
       if (scope && !SCOPES.includes(scope as (typeof SCOPES)[number])) {
         return NextResponse.json({ error: "Unsupported instruction scope." }, { status: 400 });
       }
       const { data, error } = await founder.supabase.rpc("studio_instruction_list", { p_scope: scope });
-      if (error) return NextResponse.json({ error: "Instructions could not be loaded." }, { status: 503 });
+      if (error) {
+        logDepartmentFailure(stage, error);
+        return NextResponse.json({ error: "Instructions could not be loaded." }, { status: 503 });
+      }
       return NextResponse.json({ ok: true, items: data ?? [] });
     }
 
     if (resource === "tasks") {
+      stage = "task_list_rpc";
       if (status && !TASK_STATUSES.includes(status as (typeof TASK_STATUSES)[number])) {
         return NextResponse.json({ error: "Unsupported task status." }, { status: 400 });
       }
       const { data, error } = await founder.supabase.rpc("studio_task_list", { p_status: status });
-      if (error) return NextResponse.json({ error: "Tasks could not be loaded." }, { status: 503 });
+      if (error) {
+        logDepartmentFailure(stage, error);
+        return NextResponse.json({ error: "Tasks could not be loaded." }, { status: 503 });
+      }
       return NextResponse.json({ ok: true, items: data ?? [] });
     }
 
     return NextResponse.json({ error: "Unknown department resource." }, { status: 404 });
-  } catch {
+  } catch (error) {
+    logDepartmentFailure(stage, error);
     return NextResponse.json({ error: "Department service is unavailable." }, { status: 503 });
   }
 }
