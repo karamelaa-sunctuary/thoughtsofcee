@@ -71,6 +71,7 @@ export default async function CreativeStudioPage() {
             <a href="#projects" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><Layers3 size={16} /> My projects</a>
             <a href="#create" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><Plus size={16} /> Create</a>
             <a href="/studio/agents" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><WandSparkles size={16} /> AI Agents</a>
+            <a href="/studio/departments" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><ListTodo size={16} /> Departments</a>
             <a href="/studio/brain" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><Sparkles size={16} /> Brain Console</a>
           </nav>
           <p className="mb-4 mt-9 text-[9px] font-bold uppercase tracking-[0.2em] text-[#8A7A6B]">Your resources</p>
