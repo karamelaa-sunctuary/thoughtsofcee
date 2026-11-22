@@ -18,14 +18,25 @@ Use the project's publishable key only. Never place a Supabase secret/service-ro
 
 Install the pinned packages from `package.json` with `npm install`, then restart the development server.
 
+## Supabase Auth dashboard settings
+
+In the Supabase Dashboard for the Preview project's Auth configuration:
+
+1. Open **Authentication → Sign In / Providers → Email** and enable the Email provider.
+2. Open **Authentication → URL Configuration** and add this exact local redirect URL to the Redirect URLs allowlist: `http://localhost:3000/auth/callback`.
+3. Save the changes.
+
+The built-in Supabase email sender is limited and best-effort. It may only deliver to addresses authorized for the project's organization and currently allows a small number of emails per hour. Do not repeatedly click the send button. If the provider reports an email rate-limit error, stop and let the limit reset; do not add a paid SMTP service without founder approval.
+
 ## Sign-in
 
 1. Unlock the Studio using the existing Studio access password.
 2. Open `/studio/identity`.
-3. Sign in using the existing founder Supabase Auth email and password.
-4. The page checks the session on the server using `auth.getClaims()`.
+3. Enter the email address on the existing founder account and request one sign-in link.
+4. Open the newest email link in the same browser. Supabase redirects to `/auth/callback`, where the server exchanges the one-time code for a cookie-backed session.
+5. The page verifies the session on the server using `auth.getClaims()`.
 
-There is no sign-up control and no credential is stored by the Identity page. Supabase Auth manages its own secure session cookies.
+There is no sign-up control and no password is required by the Identity page. `shouldCreateUser: false` prevents this sign-in form from creating a second account.
 
 ## Security notes
 

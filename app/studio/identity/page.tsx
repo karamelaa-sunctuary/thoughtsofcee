@@ -12,7 +12,7 @@ function safeMatch(a: string, b: string) {
   return left.length === right.length && timingSafeEqual(left, right);
 }
 
-export default async function StudioIdentityPage() {
+export default async function StudioIdentityPage({ searchParams }: { searchParams: Promise<{ auth?: string }> }) {
   const accessCode = process.env.STUDIO_ACCESS_CODE;
   const secret = process.env.STUDIO_SESSION_SECRET;
   if (!accessCode || !secret) redirect("/studio/access");
@@ -22,6 +22,7 @@ export default async function StudioIdentityPage() {
   const token = store.get("toc_studio_session")?.value ?? "";
   if (!safeMatch(token, expected)) redirect("/studio/access");
 
+  const params = await searchParams;
   const configured = Boolean(
     process.env.NEXT_PUBLIC_SUPABASE_URL &&
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
@@ -50,6 +51,9 @@ export default async function StudioIdentityPage() {
         <p className="mt-6 max-w-2xl text-sm leading-7 text-[#514941]">
           The Studio access password protects the workspace. Supabase Auth provides the verified user identity required by the private department database and its row-level security policies. Both checks remain separate.
         </p>
+        {params.auth === "link_error" && (
+          <p role="alert" className="mt-6 border border-[#B98B69] bg-[#F5F0E9] p-4 text-xs leading-6 text-[#8B3327]">The sign-in link could not be verified. Check the Supabase Email provider and redirect URL settings before requesting one new link.</p>
+        )}
         <div className="mt-9"><IdentityPanel configured={configured} authenticated={authenticated}/></div>
       </div>
     </main>
