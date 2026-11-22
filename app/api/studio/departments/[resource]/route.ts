@@ -10,8 +10,6 @@ const TASK_STATUSES = ["draft", "ready", "assigned", "running", "review", "await
 const PRIORITIES = ["low", "normal", "high", "urgent"] as const;
 const SCOPES = ["global", "project", "agent"] as const;
 
-type Resource = "memory" | "instructions" | "tasks";
-
 function isObject(value: unknown): value is Record<string, unknown> {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
