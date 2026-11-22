@@ -1,7 +1,8 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
+import { updateSupabaseSession } from "@/lib/supabase/proxy";
 
-export function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const secret = process.env.STUDIO_SESSION_SECRET;
   const token = request.cookies.get("toc_studio_session")?.value ?? "";
   const expected = secret
@@ -14,23 +15,23 @@ export function proxy(request: NextRequest) {
     tokenBuffer.length === expectedBuffer.length &&
     timingSafeEqual(tokenBuffer, expectedBuffer);
 
-  if (authenticated || request.nextUrl.pathname === "/studio/access") {
-    return NextResponse.next();
+  if (!authenticated && request.nextUrl.pathname !== "/studio/access") {
+    if (request.nextUrl.pathname.startsWith("/api/")) {
+      return NextResponse.json({ error: "Founder authentication required." }, { status: 401 });
+    }
+
+    const response = NextResponse.redirect(new URL("/studio/access", request.url));
+    response.cookies.set("toc_studio_session", "", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 0,
+    });
+    return response;
   }
 
-  if (request.nextUrl.pathname.startsWith("/api/")) {
-    return NextResponse.json({ error: "Founder authentication required." }, { status: 401 });
-  }
-
-  const response = NextResponse.redirect(new URL("/studio/access", request.url));
-  response.cookies.set("toc_studio_session", "", {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    path: "/",
-    maxAge: 0,
-  });
-  return response;
+  return updateSupabaseSession(request);
 }
 
 export const config = { matcher: ["/studio/:path*", "/api/studio/:path*"] };

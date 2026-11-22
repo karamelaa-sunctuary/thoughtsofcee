@@ -94,6 +94,7 @@ export default async function CreativeStudioPage() {
               <p className="hidden text-[10px] uppercase tracking-[0.18em] text-[#765D4B] lg:block">Your creative workspace</p>
             </div>
             <div className="flex items-center gap-4">
+              <a href="/studio/identity" className="text-[9px] font-bold uppercase tracking-[0.14em] text-[#765D4B] underline underline-offset-4">Founder identity</a>
               <span className="hidden text-[10px] uppercase tracking-[0.15em] text-[#765D4B] sm:inline">Private workspace</span>
               <form action={endStudioSession}><button className="border border-[#CFC4B7] px-3 py-2 text-[9px] font-bold uppercase tracking-[0.15em] hover:border-black">Lock</button></form>
             </div>
