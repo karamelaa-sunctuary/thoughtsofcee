@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const MODEL = "gemini-3.8-flash";
+const MODEL = "gemini-3.5-flash";
 const MAX_MESSAGES = 12;
 const MAX_MESSAGE_CHARS = 4000;
 const MAX_TOTAL_CHARS = 16000;
