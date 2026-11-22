@@ -92,7 +92,7 @@ export default function DepartmentsWorkspace() {
       <div className="grid gap-px border border-[#CFC4B7] bg-[#CFC4B7] md:grid-cols-3">
         {tabs.map((tab) => {
           const Icon = tab.id === "memory" ? BrainCircuit : tab.id === "instructions" ? BookOpen : ClipboardList;
-          return <button key={tab.id} type="button" onClick={() => { setActive(tab.id); setError(""); setNotice(""); }} className={`min-h-[130px] bg-[#F5F0E9] p-5 text-left transition ${active === tab.id ? "bg-[#292522] text-[#EAE4DB]" : "hover:bg-white"}`}>
+          return <button key={tab.id} type="button" onClick={() => { setActive(tab.id); setError(""); setNotice(""); }} aria-pressed={active === tab.id} className={`min-h-[130px] p-5 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-[#765D4B] ${active === tab.id ? "bg-[#292522] text-[#EAE4DB]" : "bg-[#F5F0E9] hover:bg-white"}`}>
             <div className="flex items-center justify-between"><Icon size={19}/><span className={`text-[9px] uppercase tracking-[.16em] ${active === tab.id ? "text-[#D1B9A2]" : "text-[#765D4B]"}`}>{items[tab.id].length} records</span></div>
             <h2 className="mt-6 text-2xl [font-family:Impact,Haettenschweiler,'Arial_Narrow_Bold',sans-serif]">{tab.label}</h2>
             <p className={`mt-1 text-[11px] leading-5 ${active === tab.id ? "text-[#E0D7CD]" : "text-[#6B625A]"}`}>{tab.description}</p>
