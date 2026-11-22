@@ -9,10 +9,10 @@
 
 - The Studio is protected by a founder access-code flow that issues an HMAC-backed `toc_studio_session` cookie.
 - `proxy.ts` validates that cookie for Studio pages and Studio API routes.
-- The Brain API route intentionally returns HTTP 503. It does not call a model.
-- The Brain console is a client-side UI; its conversation is held in React state and is not saved to the database.
-- Agent instructions and notes currently use browser `localStorage`.
-- The repository does not currently declare `@supabase/supabase-js` or `@supabase/ssr`.
+- The Brain API route calls the Gemini Developer API using `gemini-3.5-flash` and the server-only `GEMINI_API_KEY`. Its free-tier request is verified; quota and availability remain subject to Google's limits. HTTP 429 does not trigger a paid fallback.
+- The Brain console is still a client-side UI; its conversation is held in React state and is not saved to the database.
+- Planning data and agent notes still use browser `localStorage`; persistent application-level memory and task workflows are not yet connected.
+- The Preview branch now pins `@supabase/supabase-js` and `@supabase/ssr`, and includes a founder identity page plus SSR session helpers. Local dependency installation, environment configuration, and sign-in verification are still pending.
 - The Supabase project already has 11 public tables with RLS enabled. Their existing ownership model references `auth.users` through `user_id`; the Studio's custom HMAC cookie is not a Supabase Auth identity.
 - No secrets, model connections, paid services, or production changes are included in this blueprint.
 
@@ -112,10 +112,10 @@ Use idempotency keys for task creation and transitions. Enforce maximum payload 
 ## 6. Model/runtime policy
 
 - Keep the current free-first decision: no paid model/API calls, no subscriptions, and no model provider activation without explicit founder approval.
-- The Brain's 503 response remains correct until a provider/runtime is selected, tested, and approved.
-- Architecture and memory CRUD can be developed independently of a model.
-- Every run should disclose provider/model, whether external processing occurs, and any known cost.
-- No autonomous agent execution until scheduling, retries, failure handling, audit, and founder controls are implemented and tested.
+- The Brain currently uses the Gemini Developer API with the free-tier `gemini-3.5-flash` endpoint. The founder has explicitly chosen the free-first path; no Google AI Pro subscription, paid API tier, paid fallback, or billing activation is enabled by this code.
+- Free-tier quota, model availability and rate limits are provider-controlled. A 429 or capacity error must stop the run and surface a clear message; never switch to a paid model or provider.
+- Every run should disclose provider/model, external processing, and known cost when a run-history layer is implemented.
+- No scheduled agent execution or autonomous publishing until identity, persistence, scheduling, retries, failure handling, audit, and founder controls are implemented and tested.
 
 ## 7. Rollout sequence
 
