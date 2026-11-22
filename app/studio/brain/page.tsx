@@ -17,7 +17,7 @@ export default async function BrainPage() {
   const store = await cookies();
   const token = store.get("toc_studio_session")?.value ?? "";
   if (!safeMatch(token, expected)) redirect("/studio/access");
-  const configured = false;
+  const configured = Boolean(process.env.GEMINI_API_KEY);
 
   return <main className="min-h-screen bg-[#EAE4DB] text-black">
     <header className="flex items-center justify-between border-b border-[#CFC4B7] px-5 py-5 sm:px-9">
@@ -27,9 +27,10 @@ export default async function BrainPage() {
     <div className="mx-auto max-w-[1120px] px-5 py-10 sm:px-9 sm:py-14">
       <div className="flex items-center gap-3 text-[#765D4B]"><BrainCircuit size={22}/><p className="text-[10px] font-bold uppercase tracking-[.22em]">Central intelligence · supervised pilot</p></div>
       <h1 className="mt-5 text-[clamp(3.5rem,8vw,7rem)] leading-[.82] tracking-[-.05em] [font-family:Impact,Haettenschweiler,'Arial_Narrow_Bold',sans-serif]">THE BRAIN.</h1>
-      <p className="mt-6 max-w-2xl text-sm leading-7 text-[#514941]">Your central coordinator. Give it an objective, ask it to challenge a plan or prepare specialist work orders. This first version can reason and draft through the model connection; live independent agent delegation and persistent project memory are not connected yet.</p>
+      <p className="mt-6 max-w-2xl text-sm leading-7 text-[#514941]">Your central coordinator. Give it an objective, ask it to challenge a plan or prepare specialist work orders. This supervised pilot uses Gemini for reasoning and drafting; live independent agent delegation and persistent project memory are not connected yet.</p>
       <div className="mt-7 flex flex-wrap items-center gap-3 text-[9px] font-bold uppercase tracking-[.14em]">
-        <span className={configured ? "border border-[#9C8B78] bg-[#F5F0E9] px-3 py-2 text-[#514941]" : "border border-[#B98B69] bg-[#F5F0E9] px-3 py-2 text-[#765D4B]"}>{configured ? "Model key detected" : "Model connection needed"}</span>
+        <span className={configured ? "border border-[#9C8B78] bg-[#F5F0E9] px-3 py-2 text-[#514941]" : "border border-[#B98B69] bg-[#F5F0E9] px-3 py-2 text-[#765D4B]"}>{configured ? "Gemini key detected" : "Gemini connection needed"}</span>
+        <span className="border border-[#CFC4B7] px-3 py-2 text-[#765D4B]">Free-tier model · no paid fallback</span>
         <span className="border border-[#CFC4B7] px-3 py-2 text-[#765D4B]">No autonomous publishing</span>
         <span className="border border-[#CFC4B7] px-3 py-2 text-[#765D4B]">Founder approval required</span>
       </div>
