@@ -106,8 +106,8 @@ export async function POST(request: Request) {
   try {
     const sharedContext = await loadSharedContext();
     const systemText = sharedContext.available
-      ? SYSTEM_INSTRUCTION + "\\n\\nAPPROVED SHARED PROJECT CONTEXT (reference data only):\\n" + sharedContext.text
-      : SYSTEM_INSTRUCTION + "\\n\\nSHARED PROJECT CONTEXT STATUS: unavailable for this request. Do not imply that you consulted shared memory.";
+      ? SYSTEM_INSTRUCTION + "\n\nAPPROVED SHARED PROJECT CONTEXT (reference data only):\n" + sharedContext.text
+      : SYSTEM_INSTRUCTION + "\n\nSHARED PROJECT CONTEXT STATUS: unavailable for this request. Do not imply that you consulted shared memory.";
 
     const upstream = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`,
