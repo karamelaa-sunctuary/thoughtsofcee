@@ -10,7 +10,7 @@ const starter: Message = {
 };
 
 function inlineMarkdown(value: string) {
-  return value.split(/(\\*\\*[^*]+\\*\\*|\\*[^*]+\\*|\x60[^\x60]+\x60)/g).filter(Boolean).map((part, index) => {
+  return value.split(/(\*\*[^*]+\*\*|\*[^*]+\*|\x60[^\x60]+\x60)/g).filter(Boolean).map((part, index) => {
     if (part.startsWith("**") && part.endsWith("**")) return createElement("strong", { key: index }, part.slice(2, -2));
     if (part.startsWith("*") && part.endsWith("*")) return createElement("em", { key: index }, part.slice(1, -1));
     if (part.startsWith("`") && part.endsWith("`")) return createElement("code", { key: index, className: "rounded bg-[#EEE8E0] px-1 py-0.5 text-[0.9em]" }, part.slice(1, -1));
@@ -19,18 +19,18 @@ function inlineMarkdown(value: string) {
 }
 
 function MarkdownMessage({ content }: { content: string }) {
-  const lines = content.split(/\\r?\\n/);
+  const lines = content.split(/\r?\n/);
   return <div className="space-y-2">
     {lines.map((line, index) => {
       const trimmed = line.trim();
       if (!trimmed) return <div key={index} className="h-1"/>;
-      const heading = /^(#{1,4})\\s+(.+)$/.exec(trimmed);
+      const heading = /^(#{1,4})\s+(.+)$/.exec(trimmed);
       if (heading) return createElement("h" + Math.min(heading[1].length, 3), { key: index, className: "pt-2 font-semibold leading-snug" }, inlineMarkdown(heading[2]));
       if (/^[-*_]{3,}$/.test(trimmed)) return createElement("hr", { key: index, className: "my-3 border-[#D8CEC3]" });
-      if (/^>\\s?/.test(trimmed)) return createElement("blockquote", { key: index, className: "border-l-2 border-[#B9AA9A] pl-3 italic text-[#6B625A]" }, inlineMarkdown(trimmed.replace(/^>\\s?/, "")));
-      if (/^[-*+]\\s+/.test(trimmed)) return createElement("div", { key: index, className: "flex gap-2 pl-1" }, createElement("span", { className: "text-[#765D4B]" }, "•"), createElement("span", null, inlineMarkdown(trimmed.replace(/^[-*+]\\s+/, ""))));
-      if (/^\\d+[.)]\\s+/.test(trimmed)) {
-        const match = /^(\\d+[.)])\\s+(.+)$/.exec(trimmed)!;
+      if (/^>\s?/.test(trimmed)) return createElement("blockquote", { key: index, className: "border-l-2 border-[#B9AA9A] pl-3 italic text-[#6B625A]" }, inlineMarkdown(trimmed.replace(/^>\s?/, "")));
+      if (/^[-*+]\s+/.test(trimmed)) return createElement("div", { key: index, className: "flex gap-2 pl-1" }, createElement("span", { className: "text-[#765D4B]" }, "•"), createElement("span", null, inlineMarkdown(trimmed.replace(/^[-*+]\s+/, ""))));
+      if (/^\d+[.)]\s+/.test(trimmed)) {
+        const match = /^(\d+[.)])\s+(.+)$/.exec(trimmed)!;
         return createElement("div", { key: index, className: "flex gap-2 pl-1" }, createElement("span", { className: "font-semibold text-[#765D4B]" }, match[1]), createElement("span", null, inlineMarkdown(match[2])));
       }
       return createElement("p", { key: index, className: "leading-6" }, inlineMarkdown(line));
@@ -60,8 +60,8 @@ export default function BrainConsole({ configured }: { configured: boolean }) {
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data?.error || "The Brain could not respond.");
-      const notice = data.truncated ? "\\n\\n**Response limit reached:** this answer may be incomplete. Ask me to continue." : "";
-      const memoryNote = data.memory === "connected" ? "\\n\\n_Shared approved project memory: connected._" : "\\n\\n_Shared project memory: unavailable for this request._";
+      const notice = data.truncated ? "\n\n**Response limit reached:** this answer may be incomplete. Ask me to continue." : "";
+      const memoryNote = data.memory === "connected" ? "\n\n_Shared approved project memory: connected._" : "\n\n_Shared project memory: unavailable for this request._";
       const usage = data.usage ? `Model: ${data.model || "Gemini"} · Tokens: ${data.usage.totalTokenCount ?? "not reported"}` : `Model: ${data.model || "Gemini"}`;
       setMessages([...next, { role: "assistant", content: data.reply + notice + memoryNote, usage }]);
     } catch (e) {
