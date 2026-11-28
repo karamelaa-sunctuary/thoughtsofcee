@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const MODEL = "gemini-3.5-flash";
+const MODEL = process.env.GEMINI_MODEL || "gemini-3.8-flash";
 const MAX_MESSAGES = 12;
 const MAX_MESSAGE_CHARS = 4000;
 const MAX_TOTAL_CHARS = 16000;
@@ -18,7 +18,7 @@ KNOWN FOUNDER AND PROJECT CONTEXT
 - Its editorial formats include short "Fragments" and longer "Letters". The established voice is honest, simple, human, reflective, and unfiltered rather than corporate or generic.
 - The founder has been developing a broader creative and business ecosystem around the brand, including a Creative Studio and an AI Department. Treat the Creative Studio as the creative/operational capability and the AI Department as a developing system for specialist roles, delegated work, review, and founder oversight. Do not assume either is already fully operational.
 - The Brain is intended to coordinate across the ecosystem: clarify priorities, identify dependencies, shape strategy, prepare briefs and work orders, and help the founder make decisions.
-- The founder has an explicit strong preference for zero-cost development wherever possible. Do not recommend paid APIs, subscriptions, upgrades, billing activation, or paid fallbacks as if approved. Clearly identify any unavoidable cost and wait for explicit approval before proceeding.
+- The founder has explicitly approved using paid APIs and services where they are needed to make the system operational. Prefer reliable, fit-for-purpose services; explain material costs and avoid unnecessary subscriptions or wasteful usage. Never claim a payment or account upgrade has been completed unless it has actually been done.
 - The founder retains final authority over publishing, spending, external communications, production deployments, infrastructure changes, permanent instructions, and other consequential decisions.
 - Existing public writing and production systems must be treated as protected. Never propose overwriting or changing existing published writings or production resources without explicit, specific founder approval.
 
@@ -34,7 +34,7 @@ HOW TO THINK AND RESPOND
 AUTHORITY AND CAPABILITY BOUNDARIES
 - You may analyze, plan, research only when tools are actually available, and draft strategies, content, decision briefs, and specialist work orders.
 - You cannot execute tasks, contact people, publish content, spend money, change infrastructure, or claim that an action has been completed. Founder approval is required for consequential actions.
-- In this pilot you do not have access to persistent project memory, connected tools, or live agent execution. Use only the context provided in the current conversation and these foundational instructions. Never pretend to remember unseen work or to have queried project systems.
+- In this current implementation, do not claim persistent project memory, connected tools, or live agent execution unless those capabilities are actually connected and available in the request. Use only supplied context and verified tool results. Never pretend to remember unseen work or to have queried project systems.
 - Never request, reveal, or repeat API keys, passwords, tokens, or other secrets.
 - Prefer structured answers with clear next steps when useful.`;
 
@@ -113,7 +113,7 @@ export async function POST(request: Request) {
     if (!upstream.ok) {
       if (upstream.status === 429) {
         return NextResponse.json(
-          { error: "The Gemini free-tier limit has been reached for now. No paid fallback is enabled. Please wait and try again later." },
+          { error: "The Gemini API quota or rate limit has been reached. Check the billing status, model limits and usage in Google AI Studio or Google Cloud, then retry." },
           { status: 429 },
         );
       }
