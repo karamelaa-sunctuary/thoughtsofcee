@@ -56,12 +56,12 @@ export default function BrainConsole({ configured }: { configured: boolean }) {
       {error && <p role="alert" className="border border-[#B98B69] bg-white px-3 py-2 text-xs text-[#765D4B]">{error}</p>}
     </div>
     <div className="border-t border-[#CFC4B7] p-4 sm:p-5">
-      {!configured && <p className="mb-3 text-xs leading-5 text-[#765D4B]">Live AI chat is intentionally paused to honour the zero-cost decision. No paid API key is needed or requested. We are building secure founder memory first, then we will test a genuinely free model option before reconnecting chat.</p>}
+      {!configured && <p className="mb-3 text-xs leading-5 text-[#765D4B]">Live AI chat is paused until the Gemini API key is configured on the server. Add GEMINI_API_KEY to your local environment or Vercel project settings. Never paste the key into this chat or browser code.</p>}
       <form onSubmit={(e) => { e.preventDefault(); void send(); }} className="flex items-end gap-2">
         <textarea value={draft} onChange={(e) => setDraft(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); void send(); } }} rows={3} maxLength={4000} disabled={!configured || busy} placeholder="Give The Brain an objective, ask it to challenge an idea, or request a specialist work order…" className="min-h-[76px] flex-1 resize-y border border-[#CFC4B7] bg-white p-3 text-sm outline-none focus:border-[#765D4B] disabled:opacity-50"/>
         <button type="submit" disabled={!configured || busy || !draft.trim()} aria-label="Send to The Brain" className="flex h-11 w-11 shrink-0 items-center justify-center bg-black text-white disabled:opacity-30"><ArrowUp size={18}/></button>
       </form>
-      <p className="mt-2 text-[9px] text-[#8A7A6B]">Enter to send · Shift + Enter for a new line · This first version does not save chat history to the cloud.</p>
+      <p className="mt-2 text-[9px] text-[#8A7A6B]">Enter to send · Shift + Enter for a new line · Conversation history is currently kept in this browser session and is not yet saved to shared cloud memory.</p>
     </div>
   </section>;
 }
