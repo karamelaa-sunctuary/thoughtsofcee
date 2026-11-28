@@ -6,7 +6,7 @@ import { ArrowUp, LoaderCircle, RotateCcw } from "lucide-react";
 type Message = { role: "user" | "assistant"; content: string };
 const starter: Message = {
   role: "assistant",
-  content: "I'm The Brain. I can turn an objective into a plan, challenge assumptions, prepare specialist work orders and return a decision brief. I will be clear about what I can actually execute versus what is still awaiting a connected agent runtime. What should we work on first?"
+  content: "I'm The Brain. I can use approved shared project memory when it is available, turn objectives into plans, challenge assumptions and prepare specialist work orders. Live agent execution is still being connected. What should we work on first?"
 };
 
 export default function BrainConsole({ configured }: { configured: boolean }) {
@@ -31,7 +31,9 @@ export default function BrainConsole({ configured }: { configured: boolean }) {
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data?.error || "The Brain could not respond.");
-      setMessages([...next, { role: "assistant", content: data.reply }]);
+      const notice = data.truncated ? "\n\n[This response reached the generation limit and may be incomplete. Ask me to continue.]" : "";
+      const memoryNote = data.memory === "connected" ? "\n\n[Shared approved project memory: connected]" : "\n\n[Shared project memory: unavailable for this request]";
+      setMessages([...next, { role: "assistant", content: data.reply + notice + memoryNote }]);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong.");
       setMessages(next);
@@ -44,7 +46,7 @@ export default function BrainConsole({ configured }: { configured: boolean }) {
 
   return <section className="overflow-hidden border border-[#CFC4B7] bg-[#F5F0E9]">
     <div className="flex items-center justify-between border-b border-[#CFC4B7] px-4 py-4 sm:px-6">
-      <div><p className="text-[10px] font-bold uppercase tracking-[.17em]">Brain console</p><p className="mt-1 text-[10px] text-[#765D4B]">Supervised conversation · recent context only</p></div>
+      <div><p className="text-[10px] font-bold uppercase tracking-[.17em]">Brain console</p><p className="mt-1 text-[10px] text-[#765D4B]">Supervised conversation · approved shared memory when available</p></div>
       <button onClick={reset} disabled={busy} className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-[.12em] text-[#765D4B] disabled:opacity-40"><RotateCcw size={13}/> New session</button>
     </div>
     <div className="max-h-[560px] min-h-[300px] space-y-4 overflow-y-auto p-4 sm:p-6">
