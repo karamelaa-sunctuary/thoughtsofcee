@@ -67,7 +67,7 @@ export default async function CreativeStudioPage() {
           <div className="my-9 h-px bg-[#CFC4B7]" />
           <p className="mb-4 text-[9px] font-bold uppercase tracking-[0.2em] text-[#8A7A6B]">Workspace</p>
           <nav className="space-y-1 text-sm">
-            <a href="/studio" className="flex items-center gap-3 bg-black px-3 py-3 text-[#EAE4DB]"><FolderOpen size={16} /> Overview</a>
+            <a href="/studio" className="flex items-center gap-3 bg-black px-3 py-3" style={{ color: "#EAE4DB" }}><FolderOpen size={16} /> Overview</a>
             <a href="#projects" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><Layers3 size={16} /> My projects</a>
             <a href="#create" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><Plus size={16} /> Create</a>
             <a href="/studio/agents" className="flex items-center gap-3 px-3 py-3 text-[#514941] hover:bg-black/5"><WandSparkles size={16} /> AI Agents</a>
@@ -108,7 +108,7 @@ export default async function CreativeStudioPage() {
                 <h1 className="text-[clamp(3.5rem,8vw,7.5rem)] leading-[0.78] tracking-[-0.055em] [font-family:Impact,Haettenschweiler,'Arial_Narrow_Bold',sans-serif]">THE CREATIVE<br />SIDE OF CEE.</h1>
                 <p className="mt-7 max-w-xl text-sm leading-7 text-[#514941]">A home for the visuals, ideas and little details behind the words. Start something new, keep your brand close, and let the work grow at its own pace.</p>
               </div>
-              <a href="#create" className="inline-flex w-fit items-center gap-3 bg-black px-6 py-4 text-[10px] font-bold uppercase tracking-[0.17em] text-[#EAE4DB] transition hover:bg-[#765D4B]">Create something <ArrowUpRight size={15} /></a>
+              <a href="#create" className="inline-flex w-fit items-center gap-3 bg-black px-6 py-4 text-[10px] font-bold uppercase tracking-[0.17em] transition hover:bg-[#765D4B]" style={{ color: "#EAE4DB" }}>Create something <ArrowUpRight size={15} /></a>
             </div>
 
             <section id="create" className="pt-10">
