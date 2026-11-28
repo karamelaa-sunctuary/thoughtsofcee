@@ -125,7 +125,7 @@ export async function POST(request: Request) {
           })),
           generationConfig: {
             temperature: 0.65,
-            maxOutputTokens: 3000,
+            maxOutputTokens: 8192,
           },
         }),
         cache: "no-store",
@@ -168,7 +168,7 @@ export async function POST(request: Request) {
     }
 
     const finishReason = data?.candidates?.[0]?.finishReason;
-    return NextResponse.json({ reply, model: MODEL, truncated: finishReason === "MAX_TOKENS", memory: sharedContext.available ? "connected" : "unavailable", finishReason: typeof finishReason === "string" ? finishReason : null });
+    return NextResponse.json({ reply, model: MODEL, truncated: finishReason === "MAX_TOKENS", memory: sharedContext.available ? "connected" : "unavailable", finishReason: typeof finishReason === "string" ? finishReason : null, usage: data?.usageMetadata ?? null });
   } catch (error) {
     const timedOut = error instanceof Error && error.name === "TimeoutError";
     return NextResponse.json(
